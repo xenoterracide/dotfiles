@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-source $HOME/.profile
+source $HOME/.config/my/rc.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
