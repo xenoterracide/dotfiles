@@ -1,22 +1,22 @@
 [user]
-	name = Caleb Cushing
+  name = Caleb Cushing
 {% if yadm.hostname == "Calebs-MBP" %}
-	email = caleb@7pi.co
+  email = caleb@7pi.co
 {% else %}
   email = xenoterracide@gmail.com
 {% endif %}
 [push]
-	default = current
+  default = current
 [core]
-	autocrlf = input
+  autocrlf = input
 [alias]
-	csa = commit --signoff --all
-	fap = fetch --all --prune
-	pushf = push --force-with-lease
-	mush = merge --squash
-	blow = !git branch -d $1 && !git push origin :$1 && :
+  csa = commit --signoff --all
+  fap = fetch --all --prune
+  pushf = push --force-with-lease
+  mush = merge --squash
+  blow = !git branch -d $1 && !git push origin :$1 && :
 [rerere]
-	enabled = true
+  enabled = true
 [merge]
 {% if yadm.os == "Darwin" %}
   guitool = meld
