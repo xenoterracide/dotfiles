@@ -84,6 +84,7 @@ plugins=(
   git-escape-magic
   git-flow
   gitignore
+  gradle
   magic-enter
   safe-paste
   scd
