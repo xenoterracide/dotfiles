@@ -3,8 +3,8 @@ set -x
 if command -v zsh >/dev/null 2>&1; then 
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     export KEEP_ZSHRC="yes"
-    mkdir -p .oh-my-zsh/custom/themes
-    curl -fsSL https://raw.githubusercontent.com/reobin/typewritten/master/typewritten.zsh-theme > "$HOME/.oh-my-zsh/custom/themes/typewritten.zsh-theme"
+    export RUNZSH="no"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    curl -fsSL https://raw.githubusercontent.com/reobin/typewritten/master/typewritten.zsh-theme > "$HOME/.oh-my-zsh/custom/themes/typewritten.zsh-theme"
   fi
 fi
