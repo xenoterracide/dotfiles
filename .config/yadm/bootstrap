@@ -1,5 +1,4 @@
 #!/bin/sh
-set -x
 if command -v zsh >/dev/null 2>&1; then
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     export KEEP_ZSHRC="yes"
