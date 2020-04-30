@@ -1,0 +1,15 @@
+[user]
+	name = Caleb Cushing
+	email = caleb@7pi.co
+[push]
+	default = current
+[core]
+	autocrlf = input
+[alias]
+	csa = commit --signoff --all
+	fap = fetch --all --prune
+	pushf = push --force-with-lease
+	mush = merge --squash
+	blow = !git branch -d $1 && !git push origin :$1 && :
+[rerere]
+	enabled = true
