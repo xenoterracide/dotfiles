@@ -1,6 +1,10 @@
 [user]
 	name = Caleb Cushing
+{% if yadm.hostname == "Calebs-MBP" %}
 	email = caleb@7pi.co
+{% else %}
+  email = xenoterracide@gmail.com
+{% endif %}
 [push]
 	default = current
 [core]
