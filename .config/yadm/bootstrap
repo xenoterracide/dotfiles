@@ -2,6 +2,7 @@
 set -x
 if [ command -v zsh >/dev/null 2>&1 ]; then 
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    KEEP_ZSHRC=true
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     curl -fsSL https://raw.githubusercontent.com/reobin/typewritten/master/typewritten.zsh-theme > "$HOME/.oh-my-zsh/custom/themes/typewritten.zsh-theme"
   fi
