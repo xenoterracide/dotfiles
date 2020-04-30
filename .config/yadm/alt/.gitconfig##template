@@ -17,3 +17,9 @@
 	blow = !git branch -d $1 && !git push origin :$1 && :
 [rerere]
 	enabled = true
+[merge]
+{% if yadm.os == "Darwin" %}
+  guitool = meld
+{% else %}
+  guitool = vimdiff3
+{% endif %}
