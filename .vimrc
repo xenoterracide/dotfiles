@@ -39,13 +39,6 @@ set noswapfile
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-set tabstop=4
-set shiftwidth=4
 
 set noerrorbells visualbell t_vb=
 
