@@ -9,6 +9,7 @@ export ZSH="/Users/calebcushing/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="typewritten"
+TYPEWRITTEN_CURSOR="block"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,8 +72,8 @@ ZSH_COLORIZE_STYLE="monokai"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  colored-man-pages 
-  colorize 
+  colored-man-pages
+  colorize
   command-not-found
   common-aliases
   direnv
