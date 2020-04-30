@@ -6,6 +6,6 @@ if command -v zsh >/dev/null 2>&1; then
     export RUNZSH="no"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     curl -fsSL https://raw.githubusercontent.com/reobin/typewritten/master/typewritten.zsh-theme > "$HOME/.oh-my-zsh/custom/themes/typewritten.zsh-theme"
-    ./bootstrap.zsh
+    $HOME/.config/yadm/bootstrap.zsh
   fi
 fi
