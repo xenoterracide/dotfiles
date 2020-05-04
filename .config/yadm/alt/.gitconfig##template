@@ -19,8 +19,6 @@
   enabled = true
 [checkout]
   defaultRemote = origin
-[pager]
-  branch = false
 [merge]
 {% if yadm.os == "Darwin" %}
   tool = meld
