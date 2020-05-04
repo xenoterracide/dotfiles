@@ -128,3 +128,12 @@ unalias cp
 
 alias vi="vim -Xp"
 alias vim="vim -Xp"
+
+{% if yadm.os == "Darwin" %}
+jdk() {
+  version=$1
+  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+  java -version
+}
+{% else %}
+
