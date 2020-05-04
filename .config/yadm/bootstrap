@@ -1,14 +1,26 @@
 #!/bin/sh
+set -x
+
+
 if command -v zsh >/dev/null 2>&1; then
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     export KEEP_ZSHRC="yes"
     export RUNZSH="no"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    curl -fsSL https://raw.githubusercontent.com/reobin/typewritten/master/typewritten.zsh-theme > "$HOME/.oh-my-zsh/custom/themes/typewritten.zsh-theme"
   fi
+  curl -fsSL https://raw.githubusercontent.com/reobin/typewritten/master/typewritten.zsh-theme > "$HOME/.oh-my-zsh/custom/themes/typewritten.zsh-theme"
 fi
+
+
 if command -v vim >/dev/null 2&>1; then
-  mkdir -p $HOME/.vim/pack/local/start
-  cd $HOME/.vim/pack/local/start
-  git clone https://github.com/editorconfig/editorconfig-vim.git
+  VIM_PLUGDIR="$HOME/.vim/pack/local/start"
+  VIM_EDITORCONFIG="editorconfig-vim"
+  VIM_EDITORCONFIG_URI="https://github.com/editorconfig/$VIM_EDITORCONFIG.git"
+
+  mkdir -p $VIM_PLUGDIR
+  if [ ! -d "$VIM_PLUGDIR/$VIM_EDITORCONFIG" ]; then
+    git clone $VIM_EDITORCONFIG_URI "$VIM_PLUGDIR/$VIM_EDITORCONFIG"
+  else
+    git -C "$VIM_PLUGDIR/$VIM_EDITORCONFIG" pull "$VIM_EDITORCONFIG_URI"
+  fi
 fi
