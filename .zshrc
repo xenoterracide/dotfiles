@@ -10,6 +10,8 @@ export ZSH="/Users/calebcushing/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="typewritten"
 TYPEWRITTEN_CURSOR="block"
+TYPEWRITTEN_RIGHT_PROMPT_PREFIX="# "
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
