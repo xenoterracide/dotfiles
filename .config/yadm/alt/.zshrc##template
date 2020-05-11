@@ -15,6 +15,7 @@ export ZSH="/Users/calebcushing/.oh-my-zsh"
 ZSH_THEME="typewritten"
 TYPEWRITTEN_CURSOR="block"
 TYPEWRITTEN_RIGHT_PROMPT_PREFIX="# "
+TYPEWRITTEN_GIT_RELATIVE_PATH=true
 
 
 # Set list of themes to pick from when loading at random
