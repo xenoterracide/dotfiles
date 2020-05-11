@@ -1,3 +1,6 @@
+;;;
+; this file is generated edit ~/.config/yadm/alt/.gitconfig##template instead
+;;;
 [user]
   name = Caleb Cushing
 {% if yadm.hostname == "Calebs-MBP" %}
