@@ -82,16 +82,13 @@ plugins=(
   colored-man-pages
   colorize
   command-not-found
-  common-aliases
   direnv
   history
   history-substring-search
   gitfast
   git-auto-fetch
   git-escape-magic
-  git-flow
   gitignore
-  gradle
   magic-enter
   safe-paste
   scd
@@ -121,10 +118,6 @@ export VISUAL='vim'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-
-unalias mv
-unalias rm
-unalias cp
 
 
 # Example aliases
