@@ -2,6 +2,9 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "files.autoSave": "onFocusChange",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
     "graphql.trace.server": "messages",
     "git.alwaysSignOff": true,
     "git.autofetch": true,
