@@ -1,43 +1,58 @@
 {
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "files.autoSave": "onFocusChange",
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    },
-    "graphql.trace.server": "messages",
-    "git.alwaysSignOff": true,
-    "git.autofetch": true,
-    "git.enableSmartCommit": true,
-    "debug.toolBarLocation": "docked",
-    "git.postCommitCommand": "push",
-    "sqltools.autoOpenSessionFiles": false,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "explorer.confirmDelete": false,
-    "prettier.requireConfig": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.formatOnSave": true,
-    "java.semanticHighlighting.enabled": true,
-    "java.codeGeneration.useBlocks": true,
-    "java.import.gradle.arguments": "",
-    "java.import.gradle.home": "",
-    "java.import.gradle.jvmArguments": "",
-    "java.import.gradle.user.home": "",
-    "java.import.gradle.version": "",
-    "java.saveActions.organizeImports": true,
-    "sqltools.useNodeRuntime": true,
-    "extensions.ignoreRecommendations": false,
-    "gitSemanticCommit.preserveScope": true,
-    "git.alwaysShowStagedChangesResourceGroup": true,
-    "jest.enableInlineErrorMessages": true,
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "jest.debugCodeLens.showWhenTestStateIn": [
-      "pass",
-      "fail",
-      "unknown"
-    ],
-    "jest.runAllTestsFirst": false,
-    "jest.autoEnable": false
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.autoSave": "onFocusChange",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "graphql.trace.server": "messages",
+  "git.alwaysSignOff": true,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "debug.toolBarLocation": "docked",
+  "git.postCommitCommand": "push",
+  "sqltools.autoOpenSessionFiles": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDelete": false,
+  "prettier.requireConfig": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "java.semanticHighlighting.enabled": true,
+  "java.codeGeneration.useBlocks": true,
+  "java.import.gradle.arguments": "",
+  "java.import.gradle.home": "",
+  "java.import.gradle.jvmArguments": "",
+  "java.import.gradle.user.home": "",
+  "java.import.gradle.version": "",
+  "java.saveActions.organizeImports": true,
+  "sqltools.useNodeRuntime": true,
+  "extensions.ignoreRecommendations": false,
+  "gitSemanticCommit.preserveScope": true,
+  "git.alwaysShowStagedChangesResourceGroup": true,
+  "jest.enableInlineErrorMessages": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "jest.debugCodeLens.showWhenTestStateIn": [
+    "pass",
+    "fail",
+    "unknown"
+  ],
+  "jest.runAllTestsFirst": false,
+  "jest.autoEnable": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  },
+  "pgFormatter.noGrouping": true,
+  "pgFormatter.wrapLimit": 100,
+  "sql-formatter.uppercase": true,
+  "sqltools.format": {
+    "linesBetweenQueries": 2,
+  }
 }
