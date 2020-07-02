@@ -42,3 +42,8 @@ set noswapfile
 
 set noerrorbells visualbell t_vb=
 
+"""""""""""""""""""""""""""
+" => show hidden characters
+"""""""""""""""""""""""""""
+set list
+
