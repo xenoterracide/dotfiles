@@ -2,9 +2,6 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "files.autoSave": "onFocusChange",
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": true
-  },
   "graphql.trace.server": "messages",
   "git.alwaysSignOff": true,
   "git.autofetch": true,
@@ -31,7 +28,6 @@
   "extensions.ignoreRecommendations": false,
   "gitSemanticCommit.preserveScope": true,
   "git.alwaysShowStagedChangesResourceGroup": true,
-  "jest.enableInlineErrorMessages": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "jest.debugCodeLens.showWhenTestStateIn": [
     "pass",
@@ -47,12 +43,31 @@
     "**/.factorypath": true
   },
   "[sql]": {
-    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    "editor.defaultFormatter": "mtxr.sqltools"
   },
   "pgFormatter.noGrouping": true,
   "pgFormatter.wrapLimit": 100,
   "sql-formatter.uppercase": true,
   "sqltools.format": {
     "linesBetweenQueries": 2,
-  }
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ]
 }
