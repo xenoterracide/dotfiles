@@ -40,4 +40,6 @@
   },
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
 }
