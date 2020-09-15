@@ -133,5 +133,8 @@ jdk() {
   export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
   java -version
 }
+
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+
 {% else %}
 
