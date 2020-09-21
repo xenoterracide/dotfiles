@@ -126,6 +126,7 @@ export VISUAL='vim'
 
 alias vi="vim -Xp"
 alias vim="vim -Xp"
+alias dps="docker ps --format='table {{.ID}} {{.Image}} {{.Status}}'"
 
 {% if yadm.os == "Darwin" %}
 jdk() {
