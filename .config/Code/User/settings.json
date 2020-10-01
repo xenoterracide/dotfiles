@@ -42,4 +42,5 @@
   "eslint.format.enable": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
+  "python.formatting.provider": "black",
 }
