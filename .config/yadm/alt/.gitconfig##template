@@ -14,7 +14,7 @@
   autocrlf = input
 [alias]
   csa = commit --signoff --all
-  fap = fetch --all --prune
+  fap = fetch --all --prune --prune-tags
   pushf = push --force-with-lease
   mush = merge --squash
   blow = !git branch -d $1 && !git push origin :$1 && :
