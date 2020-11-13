@@ -23,4 +23,5 @@
 [merge]
   tool = meld
   guitool = meld
-
+[commit]
+  template = ~/.gitmessaage

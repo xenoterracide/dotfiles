@@ -6,7 +6,6 @@
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "debug.toolBarLocation": "docked",
-  "git.postCommitCommand": "push",
   "sqltools.autoOpenSessionFiles": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "explorer.confirmDelete": false,
@@ -43,4 +42,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "python.formatting.provider": "black",
+  "git.showPushSuccessNotification": true,
+  "git.postCommitCommand": "push",
+  "terminal.integrated.scrollback": 10000,
 }
