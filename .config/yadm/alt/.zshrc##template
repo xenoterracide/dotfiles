@@ -127,6 +127,7 @@ export VISUAL='vim'
 alias vi="vim -Xp"
 alias vim="vim -Xp"
 
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 {% if yadm.os == "Darwin" %}
 jdk() {
   version=$1
@@ -138,4 +139,3 @@ eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 
 {% else %}
 
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
