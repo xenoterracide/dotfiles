@@ -24,4 +24,4 @@
   tool = meld
   guitool = meld
 [commit]
-  template = ~/.gitmessaage
+  template = ~/.gitmessage
