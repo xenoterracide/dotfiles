@@ -62,3 +62,7 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 zinit ice wait'!' lucid nocd atload'!tw_setup'
 zinit load reobin/typewritten
+
+zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+  atpull'%atclone' pick"direnv" src"zhook.zsh" for \
+    direnv/direnv
