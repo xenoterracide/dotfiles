@@ -20,5 +20,5 @@ if command -v vim >/dev/null 2&>1; then
   else
     git -C "$VIM_PLUGDIR/$VIM_EDITORCONFIG" pull "$VIM_EDITORCONFIG_URI"
   fi
-  curl https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim > $VIM_COLORDIR/desertink.vim
+  curl -fsSL https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim > $VIM_COLORDIR/desertink.vim
 fi
