@@ -13,11 +13,13 @@ fi
 if command -v vim >/dev/null 2&>1; then
   VIM_COLORDIR="$HOME/.vim/colors"
   VIM_PLUGDIR="$HOME/.vim/pack/local/start"
+  VIM_AFTER_SYNTAX="$HOME/.vim/after/syntax"
   VIM_EDITORCONFIG="editorconfig-vim"
   VIM_EDITORCONFIG_URI="https://github.com/editorconfig/$VIM_EDITORCONFIG.git"
 
   mkdir -p $VIM_PLUGDIR
   mkdir -p $VIM_COLORDIR
+  mkdir -p $VIM_AFTER_SYNTAX
   if [ ! -d "$VIM_PLUGDIR/$VIM_EDITORCONFIG" ]; then
     git clone --quite $VIM_EDITORCONFIG_URI "$VIM_PLUGDIR/$VIM_EDITORCONFIG"
   else
@@ -25,3 +27,4 @@ if command -v vim >/dev/null 2&>1; then
   fi
   curl -fsSL https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim > $VIM_COLORDIR/desertink.vim
 fi
+  curl -fsSL https://raw.githubusercontent.com/zinit-zsh/zinit-vim-syntax/master/after/syntax/zsh.vim > $VIM_AFTER_SYNTAX/zsh.vim

@@ -52,17 +52,21 @@ autoload -Uz _zinit
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-  zinit-zsh/z-a-rust \
   zinit-zsh/z-a-as-monitor \
   zinit-zsh/z-a-patch-dl \
   zinit-zsh/z-a-bin-gem-node \
+  zinit-zsh/z-a-meta-plugins \
   zdharma/zui \
-  zdharma/zplugin-crasis
+  zdharma/zplugin-crasis \
+  zsh-users/zsh-autosuggestions \
+  zdharma/fast-syntax-highlighting
 
 ### End of Zinit's installer chunk
 zinit ice wait'!' lucid nocd atload'!tw_setup'
-zinit load reobin/typewritten
+zinit light reobin/typewritten
 
 zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \
     direnv/direnv
+
+zinit wait lucid for zinit-zsh/zinit-console
