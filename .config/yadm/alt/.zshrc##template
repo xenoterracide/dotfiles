@@ -72,4 +72,7 @@ zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
 
 zinit wait lucid for zinit-zsh/zinit-console
 
-zinit for zsh-users+fast ext-git
+zinit for ext-git zsh-users+fast
+
+bindkey '\t' autosuggest-accept
+

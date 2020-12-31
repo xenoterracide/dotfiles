@@ -2,10 +2,11 @@
 set -x
 
 if command -v zsh >/dev/null 2>&1; then
-  if command -v zinit >/dev/null 2&>1; then
+  if command zinit >/dev/null 2&>1; then
     set +x
     sh -c $(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)
     set -x
+    sh -c bootstrap.zsh
   fi
 fi
 
@@ -26,5 +27,5 @@ if command -v vim >/dev/null 2&>1; then
     git -C "$VIM_PLUGDIR/$VIM_EDITORCONFIG" pull "$VIM_EDITORCONFIG_URI"
   fi
   curl -fsSL https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim > $VIM_COLORDIR/desertink.vim
-fi
   curl -fsSL https://raw.githubusercontent.com/zinit-zsh/zinit-vim-syntax/master/after/syntax/zsh.vim > $VIM_AFTER_SYNTAX/zsh.vim
+fi
