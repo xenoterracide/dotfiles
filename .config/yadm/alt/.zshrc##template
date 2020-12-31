@@ -64,6 +64,7 @@ zinit light-mode for \
 
 zinit ice wait'!' lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
+zinit light pavoljuhas/smart-change-directory
 
 zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \
