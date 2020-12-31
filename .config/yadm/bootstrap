@@ -1,12 +1,13 @@
 #!/bin/sh
 set -x
 
+for f in bootstrap.d/*.sh; do source $f; done
+
 if command -v zsh >/dev/null 2>&1; then
   if command zinit >/dev/null 2&>1; then
     set +x
     sh -c $(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)
     set -x
-    sh -c bootstrap.zsh
   fi
 fi
 
