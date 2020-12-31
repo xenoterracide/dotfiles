@@ -34,3 +34,5 @@
 {% endif %}
 [commit]
   template = ~/.gitmessage
+[pull]
+  ff = only
