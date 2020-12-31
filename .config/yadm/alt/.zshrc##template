@@ -58,15 +58,19 @@ zinit light-mode for \
   zinit-zsh/z-a-meta-plugins \
   zdharma/zui \
   zdharma/zplugin-crasis \
-  zsh-users/zsh-autosuggestions \
-  zdharma/fast-syntax-highlighting
+  zdharma/zconvey
 
 ### End of Zinit's installer chunk
+
 zinit ice wait'!' lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
+zinit light voronkovich/gitignore
+zinit pack for dircolors-material
 
 zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \
     direnv/direnv
 
 zinit wait lucid for zinit-zsh/zinit-console
+
+zinit for zsh-users+fast
