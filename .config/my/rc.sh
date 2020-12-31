@@ -6,3 +6,7 @@ if command -v perl >/dev/null 2>&1; then
     eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
   fi
 fi
+
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
