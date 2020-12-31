@@ -7,6 +7,6 @@ if command -v perl >/dev/null 2>&1; then
   fi
 fi
 
-if command -v kubectl >/dev/null 2>&1; then
+if command kubectl >/dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
