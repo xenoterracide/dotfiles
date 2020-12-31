@@ -3,7 +3,7 @@ set +x
 
 
 if command -v zsh >/dev/null 2>&1; then
-  $(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)
+  sh -c $(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)
 fi
 
 
@@ -14,9 +14,9 @@ if command -v vim >/dev/null 2&>1; then
   VIM_EDITORCONFIG_URI="https://github.com/editorconfig/$VIM_EDITORCONFIG.git"
 
   mkdir -p $VIM_PLUGDIR
-  mkdir -p
+  mkdir -p $VIM_COLORDIR
   if [ ! -d "$VIM_PLUGDIR/$VIM_EDITORCONFIG" ]; then
-    git clone $VIM_EDITORCONFIG_URI "$VIM_PLUGDIR/$VIM_EDITORCONFIG"
+    git clone --quite $VIM_EDITORCONFIG_URI "$VIM_PLUGDIR/$VIM_EDITORCONFIG"
   else
     git -C "$VIM_PLUGDIR/$VIM_EDITORCONFIG" pull "$VIM_EDITORCONFIG_URI"
   fi
