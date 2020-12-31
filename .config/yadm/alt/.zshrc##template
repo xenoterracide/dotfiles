@@ -62,15 +62,14 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-zinit wait'1' lucid nocd atload'!tw_setup'
+zinit ice wait'!' lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
 
 zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \
     direnv/direnv
 
-zinit light-mode \
-  as"program" \
+zinit as"program" \
   mv"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
