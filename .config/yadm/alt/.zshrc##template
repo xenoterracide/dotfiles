@@ -1,5 +1,5 @@
 ###
-#this file is generated edit ~/.config/yadm/alt/.gitconfig##template instead
+# edit ~/.config/yadm/alt/.zshrc##template
 ###
 
 plugins=(
@@ -76,6 +76,4 @@ zinit as"program" \
   for pavoljuhas/smart-change-directory
 
 zinit for ext-git zsh-users+fast
-
-bindkey '\t' autosuggest-accept
 
