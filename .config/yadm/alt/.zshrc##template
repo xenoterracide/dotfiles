@@ -75,5 +75,7 @@ zinit as"program" \
   src"shellrcfiles/zshrc_scd" \
   for pavoljuhas/smart-change-directory
 
+zinit snippet OMZL::history.zsh
+
 zinit for ext-git zsh-users+fast
 
