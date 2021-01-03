@@ -119,3 +119,5 @@ $RECYCLE.BIN/
 # Ref: https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
 # Ref: https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
 .idea
+
+*.swp
