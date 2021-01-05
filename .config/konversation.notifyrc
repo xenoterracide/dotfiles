@@ -39,7 +39,14 @@ Sound=
 TTS=
 
 [Event/highlight]
-Action=Popup|Taskbar
+Action=Sound|Popup|Taskbar
+Execute=
+Logfile=
+Sound=
+TTS=
+
+[Event/join]
+Action=
 Execute=
 Logfile=
 Sound=
@@ -67,6 +74,13 @@ Sound=
 TTS=
 
 [Event/nick]
+Action=Sound|Popup|Taskbar
+Execute=
+Logfile=
+Sound=
+TTS=
+
+[Event/nickchange]
 Action=
 Execute=
 Logfile=
@@ -95,7 +109,7 @@ Sound=
 TTS=
 
 [Event/queryMessage]
-Action=Popup|Taskbar
+Action=
 Execute=
 Logfile=
 Sound=
