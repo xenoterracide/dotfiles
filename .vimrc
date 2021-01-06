@@ -1,7 +1,7 @@
 filetype plugin on
 filetype indent on
 syntax enable
-colorscheme desert
+colorscheme desertink
 " When searching try to be smart about cases
 set smartcase
 

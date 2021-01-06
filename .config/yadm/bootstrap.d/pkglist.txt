@@ -1,0 +1,6 @@
+zsh
+vim
+xclip
+exa
+bat
+pgcli

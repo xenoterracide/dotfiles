@@ -1,3 +1,5 @@
+.git
+node_modules
 *.code-workspace
 
 # You may want to customise this file depending on your Operating System
@@ -119,5 +121,3 @@ $RECYCLE.BIN/
 # Ref: https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
 # Ref: https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
 .idea
-
-*.swp
