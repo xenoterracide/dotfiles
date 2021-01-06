@@ -68,17 +68,20 @@ zinit as"program" \
   src"shellrcfiles/zshrc_scd" \
   for pavoljuhas/smart-change-directory
 
-local CONDA_DIR=$HOME/.local/share/miniconda
 
-zinit as"command" id-as"miniconda" \
-  dl"https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" \
-  sbin"$CONDA_DIR/bin/conda" \
-  atclone"rm -rf $CONDA_DIR; sh Miniconda3-latest-Linux-x86_64.sh -b -p $CONDA_DIR" \
-  atpull"%atclone" \
-for zdharma/null
-
-zinit snippet OMZL::history.zsh
 zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::history
 
+export SDKMAN_DIR="$HOME/.local/share/sdkman"
+zinit as"command" id-as"sdkman" \
+  dl"https://get.sdkman.io?rcupdate=false" \
+  atclone"zsh get.sdkman.io" \
+  atpull"%atclone" \
+  src"$SDKMAN_DIR/bin/sdkman-init.sh" \
+  for zdharma/null
+
+sdk install java
+
+zinit ice lucid
 zinit for ext-git zsh-users+fast
 compdef -d yadm
