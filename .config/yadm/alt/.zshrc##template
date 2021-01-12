@@ -57,39 +57,35 @@ zinit light-mode for \
 
 zinit ice wait'!' lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
+zinit snippet OMZP::colored-man-pages
 
-zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+zinit wait lucid as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \
     direnv/direnv
 
-zinit as"program" \
+zinit wait lucid as"program" \
   mv"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
   for pavoljuhas/smart-change-directory
 
-
-zinit snippet OMZP::colored-man-pages
-zinit snippet OMZP::history
-
 export SDKMAN_DIR="$HOME/.local/share/sdkman"
-zinit as"command" id-as"sdkman" \
+zinit wait lucid as"command" \
   dl"https://get.sdkman.io?rcupdate=false" \
   atclone"zsh get.sdkman.io" \
   atpull"%atclone" \
+  atload"sdk install jdk; zicompinit;" \
   src"$SDKMAN_DIR/bin/sdkman-init.sh" \
   for zdharma/null
 
 export NVM_DIR="$HOME/.local/share/nvm"
-zinit as"command" id-as"nvm" \
-  dl"https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" \
-  atclone"zsh install.sh" \
+zinit wait lucid as"program" \
+  atclone"source install.sh" \
   atpull"%atclone" \
-  atinit"zicompinit" \
-  for zdharma/null
+  atload"zicompinit" \
+  for nvm-sh/nvm
 
-sdk install java
-
+zinit snippet OMZP::history
 zinit ice lucid
 zinit for ext-git zsh-users+fast
 compdef -d yadm
