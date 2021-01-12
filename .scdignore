@@ -1,3 +1,5 @@
+.zinit
+
 .git
 node_modules
 *.code-workspace

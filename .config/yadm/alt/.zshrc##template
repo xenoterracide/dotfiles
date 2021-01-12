@@ -78,6 +78,7 @@ zinit wait lucid as"command" \
   atpull"%atclone" \
   atload"zicompinit" \
   src"$SDKMAN_DIR/bin/sdkman-init.sh" \
+  blockf \
   for zdharma/null
 
 export NVM_DIR="$HOME/.local/share/nvm"
@@ -89,5 +90,5 @@ zinit wait lucid as"program" \
 
 zinit snippet OMZL::history.zsh
 zinit ice lucid
-zinit for ext-git zsh-users+fast
+zinit atinit"zicompinit" for ext-git zsh-users+fast
 compdef -d yadm
