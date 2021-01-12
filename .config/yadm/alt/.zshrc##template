@@ -64,7 +64,7 @@ zinit wait lucid as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
     direnv/direnv
 
 zinit wait lucid as"program" \
-  mv"bin/scd* -> scd" \
+  cp"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
   atload"zicompinit" \
