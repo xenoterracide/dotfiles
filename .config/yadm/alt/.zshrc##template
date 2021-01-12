@@ -67,6 +67,8 @@ zinit wait lucid as"program" \
   mv"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
+  atload"zicompinit" \
+  blockf \
   for pavoljuhas/smart-change-directory
 
 export SDKMAN_DIR="$HOME/.local/share/sdkman"
@@ -74,7 +76,7 @@ zinit wait lucid as"command" \
   dl"https://get.sdkman.io?rcupdate=false" \
   atclone"zsh get.sdkman.io" \
   atpull"%atclone" \
-  atload"sdk install jdk; zicompinit;" \
+  atload"zicompinit" \
   src"$SDKMAN_DIR/bin/sdkman-init.sh" \
   for zdharma/null
 
@@ -85,7 +87,7 @@ zinit wait lucid as"program" \
   atload"zicompinit" \
   for nvm-sh/nvm
 
-zinit snippet OMZP::history
+zinit snippet OMZL::history.zsh
 zinit ice lucid
 zinit for ext-git zsh-users+fast
 compdef -d yadm
