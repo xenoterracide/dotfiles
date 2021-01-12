@@ -80,6 +80,14 @@ zinit as"command" id-as"sdkman" \
   src"$SDKMAN_DIR/bin/sdkman-init.sh" \
   for zdharma/null
 
+export NVM_DIR="$HOME/.local/share/nvm"
+zinit as"command" id-as"nvm" \
+  dl"https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" \
+  atclone"zsh install.sh" \
+  atpull"%atclone" \
+  atinit"zicompinit" \
+  for zdharma/null
+
 sdk install java
 
 zinit ice lucid
