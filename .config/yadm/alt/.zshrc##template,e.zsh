@@ -25,8 +25,6 @@ jdk() {
   export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
   java -version
 }
-
-
 {% else %}
 
 ### Added by Zinit's installer
@@ -55,8 +53,7 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-zinit ice wait'!' lucid nocd atload'!tw_setup'
-zinit light reobin/typewritten
+zinit snippet OMZL::history.zsh
 zinit snippet OMZP::colored-man-pages
 
 zinit wait lucid as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
@@ -67,28 +64,38 @@ zinit wait lucid as"program" \
   cp"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
-  atload"zicompinit" \
-  blockf \
+  atclone"scd --add $HOME --recursive" \
   for pavoljuhas/smart-change-directory
 
 export SDKMAN_DIR="$HOME/.local/share/sdkman"
 zinit wait lucid as"command" \
   dl"https://get.sdkman.io?rcupdate=false" \
-  atclone"zsh get.sdkman.io" \
+  atclone"zsh get.sdkman.io && source $SDKMAN_DIR/bin/sdkman-init.sh && sdk install java" \
   atpull"%atclone" \
-  atload"zicompinit" \
-  src"$SDKMAN_DIR/bin/sdkman-init.sh" \
-  blockf \
   for zdharma/null
 
+
+#zinit wait lucid as"null" \
+#  dl"https://raw.githubusercontent.com/sdkman/sdkman-cli/master/zsh/_sdk" \
+#  atinit"zicompinit" \
+#  for zdharma/null
+
 export NVM_DIR="$HOME/.local/share/nvm"
-zinit wait lucid as"program" \
-  atclone"source install.sh" \
+zinit wait lucid as"null" \
+  dl"https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" \
+  atclone"mkdir -p $NVM_DIR && PROFILE=/dev/null source install.sh && source nvm.sh && nvm install --lts" \
+  src"$NVM_DIR/nvm.sh" \
   atpull"%atclone" \
-  atload"zicompinit" \
+  blockf \
+  atinit"zicompinit" \
   for nvm-sh/nvm
 
-zinit snippet OMZL::history.zsh
+zinit ice as"command" mv"cpanmin.us* -> cpanm" pick"cpanm"
+zinit snippet https://cpanmin.us
+
 zinit ice lucid
-zinit atinit"zicompinit" for ext-git zsh-users+fast
+zinit atload"zicompinit" for zsh-users+fast
 compdef -d yadm
+
+zinit ice wait'!' lucid nocd atload'!tw_setup'
+zinit light reobin/typewritten

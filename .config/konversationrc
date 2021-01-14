@@ -1,9 +1,14 @@
 [Aliases]
-AliasList=video /exec media video,audio /exec media audio,media /exec media,gauge /exec gauge,tinyurl /exec tinyurl,fortune /exec fortune,sysinfo /exec sysinfo,uptime /exec uptime,sayclip /exec sayclip,cmd /exec cmd,bug /exec bug
+AliasList=bug /exec bug,cmd /exec cmd,sayclip /exec sayclip,uptime /exec uptime,sysinfo /exec sysinfo,fortune /exec fortune,tinyurl /exec tinyurl,gauge /exec gauge,media /exec media,audio /exec media audio,video /exec media video
 
 [Appearance]
-ChannelSplitterSizes=483,156
-TopicSplitterSizes=34,231
+BacklogLines=99
+ChannelSplitterSizes=472,167
+IrcColorCode4=255,85,127
+NickColor2=255,85,127
+NickColor8=85,85,255
+ShowNicknameBox=false
+TopicSplitterSizes=34,237
 TreeSplitterSizes=87,640
 
 [Autoreplace List]
@@ -36,38 +41,60 @@ EnableNotifications[$d]
 Name=#zsh
 Password=
 
+[Channel 10]
+EnableNotifications=true
+Name=#zsh
+Password=
+
+[Channel 11]
+EnableNotifications=true
+Name=#kde
+Password=
+
+[Channel 12]
+EnableNotifications=true
+Name=#alacritty
+Password=
+
+[Channel 13]
+EnableNotifications=true
+Name=#konversation
+Password=
+
 [Channel 2]
 Name=#kde
 Password=
 
 [Channel 3]
-EnableNotifications=true
-Name=#manjaro
+Name=#alacritty
 Password=
 
 [Channel 4]
-EnableNotifications=true
-Name=#manjaro-talk
+Name=#manjaro
 Password=
 
 [Channel 5]
-EnableNotifications=true
-Name=#manjaro-unregistered
+Name=#konversation
 Password=
 
 [Channel 6]
 EnableNotifications=true
-Name=#postgresql
+Name=#manjaro
 Password=
 
 [Channel 7]
 EnableNotifications=true
-Name=#zsh
+Name=#manjaro-talk
 Password=
 
 [Channel 8]
 EnableNotifications=true
-Name=#kde
+Name=#manjaro-unregistered
+Password=
+
+[Channel 9]
+EnableNotifications=true
+Name=#postgresql
 Password=
 
 [DCC Settings]
@@ -97,8 +124,8 @@ RegExp=false
 
 [Identity 0]
 AuthType=nickserv
-AutomaticAway=false
-AutomaticUnaway=false
+AutomaticAway=true
+AutomaticUnaway=true
 AwayInactivity=10
 AwayMessage=
 AwayNick=
@@ -106,7 +133,7 @@ AwayReason=Gone away for now
 Bot=nickserv
 Codec=UTF-8
 Ident=xenoterracide
-InsertRememberLineOnAway=false
+InsertRememberLineOnAway=true
 KickReason=User terminated!
 Name=manjaro-user
 Nicknames=xenoterracide
@@ -122,12 +149,23 @@ SaslAccount=xenoteerracide
 ShowAwayMessage=false
 
 [MainWindow]
+RestorePositionForNextInstance=false
 State=AAAA/wAAAAD9AAAAAAAAAtgAAAEwAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
 eDP1 Height 960=357
 eDP1 Width 1707=728
-eDP1 XPosition=849
-eDP1 YPosition=110
+eDP1 XPosition=979
+eDP1 YPosition=425
+
+[Message Text Colors]
+ActionMessage=0,170,255
+AlternateBackground=0,0,0
+ChannelMessage=187,187,187
+CommandMessage=170,170,255
+Hyperlink=0,170,255
+QueryMessage=255,85,0
+ServerMessage=170,170,127
+TextViewBackground=34,34,34
 
 [Notification Messages]
 HideOnCloseInfo=0
@@ -135,17 +173,17 @@ HideOnCloseInfo=0
 [Server 0]
 BypassProxy=false
 Password=
-Port=8001
-SSLEnabled=false
+Port=6697
+SSLEnabled=true
 Server=chat.freenode.net
 
 [ServerGroup 0]
 AutoConnect=true
-AutoJoinChannels=Channel 0,Channel 1,Channel 2
-ChannelHistory=Channel 3,Channel 4,Channel 5,Channel 6,Channel 7,Channel 8
+AutoJoinChannels=Channel 0,Channel 1,Channel 2,Channel 3,Channel 4,Channel 5
+ChannelHistory=Channel 6,Channel 7,Channel 8,Channel 9,Channel 10,Channel 11,Channel 12,Channel 13
 ConnectCommands=
 EnableNotifications=true
-Expanded=false
+Expanded=true
 Identity=manjaro-user
 Name=freenode
 NotifyList=
@@ -154,3 +192,6 @@ ServerList=Server 0
 [ServerListDialog]
 ServerListHeaderState=\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\xf4\x00\x00\x00\x03\x00\x01\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc8\xff\xff\xff\xff\x00\x00\x00\x81\x00\x00\x00\x00\x00\x00\x00\x03\x00\x00\x00d\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x03\xe8\x01\x00\x00\x00\xc8
 Size=533,273
+
+[Themes]
+IconTheme=default-dark
