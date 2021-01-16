@@ -114,13 +114,16 @@ ShowRealNames=false
 TrayNotify=true
 TrayNotifyOnlyOwnNick=true
 
+[Highlight List]
+HighlightNickColor=85,255,255
+
 [Highlight0]
 AutoText=
 ChatWindows=
-Color=255,0,0
+Color=0,255,255
 Notify=true
-Pattern=Caleb
-RegExp=false
+Pattern=.*\\s+[Cc]aleb\\s+.*
+RegExp=true
 
 [Identity 0]
 AuthType=nickserv
@@ -149,13 +152,12 @@ SaslAccount=xenoteerracide
 ShowAwayMessage=false
 
 [MainWindow]
-RestorePositionForNextInstance=false
 State=AAAA/wAAAAD9AAAAAAAAAtgAAAEwAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
 eDP1 Height 960=357
 eDP1 Width 1707=728
 eDP1 XPosition=979
-eDP1 YPosition=425
+eDP1 YPosition=27
 
 [Message Text Colors]
 ActionMessage=0,170,255

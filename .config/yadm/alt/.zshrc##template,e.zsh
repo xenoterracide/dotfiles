@@ -74,11 +74,7 @@ zinit wait lucid as"command" \
   atpull"%atclone" \
   for zdharma/null
 
-
-#zinit wait lucid as"null" \
-#  dl"https://raw.githubusercontent.com/sdkman/sdkman-cli/master/zsh/_sdk" \
-#  atinit"zicompinit" \
-#  for zdharma/null
+zinit snippet OMZP::sdk
 
 export NVM_DIR="$HOME/.local/share/nvm"
 zinit wait lucid as"null" \
@@ -90,12 +86,13 @@ zinit wait lucid as"null" \
   atinit"zicompinit" \
   for nvm-sh/nvm
 
-zinit ice as"command" mv"cpanmin.us* -> cpanm" pick"cpanm"
+zinit ice as"command" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
+
+zinit ice wait'!' lucid nocd atload'!tw_setup'
+zinit light reobin/typewritten
 
 zinit ice lucid
 zinit atload"zicompinit" for zsh-users+fast
 compdef -d yadm
 
-zinit ice wait'!' lucid nocd atload'!tw_setup'
-zinit light reobin/typewritten
