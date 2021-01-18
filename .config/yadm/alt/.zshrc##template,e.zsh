@@ -55,6 +55,7 @@ zinit light-mode for \
 
 zinit snippet OMZL::history.zsh
 zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::systemd
 
 zinit wait lucid as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \

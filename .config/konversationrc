@@ -126,7 +126,7 @@ Pattern=.*\\s+[Cc]aleb\\s+.*
 RegExp=true
 
 [Identity 0]
-AuthType=nickserv
+AuthType=saslplain
 AutomaticAway=true
 AutomaticUnaway=true
 AwayInactivity=10
@@ -148,16 +148,17 @@ PreShellCommand=
 QuitReason=Konversation terminated!
 Realname=Caleb Cushing
 ReturnMessage=
-SaslAccount=xenoteerracide
+SaslAccount=xenoterracide
 ShowAwayMessage=false
 
 [MainWindow]
+RestorePositionForNextInstance=false
 State=AAAA/wAAAAD9AAAAAAAAAtgAAAEwAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
 eDP1 Height 960=357
 eDP1 Width 1707=728
-eDP1 XPosition=979
-eDP1 YPosition=27
+eDP1 XPosition=853
+eDP1 YPosition=251
 
 [Message Text Colors]
 ActionMessage=0,170,255
