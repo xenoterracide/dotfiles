@@ -1,2 +1,2 @@
 #!/bin/zsh
-source ~/.config/my/global.sh
+source $HOME/.config/my/global.sh
