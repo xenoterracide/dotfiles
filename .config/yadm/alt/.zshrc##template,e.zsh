@@ -1,5 +1,4 @@
-###
-# edit ~/.config/yadm/alt/.zshrc##template
+### # edit ~/.config/yadm/alt/.zshrc##template
 ###
 
 plugins=(
@@ -18,14 +17,6 @@ plugins=(
 source $HOME/.config/my/env.sh
 source $HOME/.config/my/rc.sh
 source $HOME/.config/my/alias.sh
-
-{% if yadm.os == "Darwin" %}
-jdk() {
-  version=$1
-  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
-  java -version
-}
-{% else %}
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -52,7 +43,7 @@ zinit light-mode for \
   zdharma/zconvey
 
 ### End of Zinit's installer chunk
-source ~/.config/my/global.sh
+source $HOME/.config/my/global.sh
 
 zinit ice wait"!" lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
