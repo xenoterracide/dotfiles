@@ -52,7 +52,7 @@ zinit light-mode for \
   zdharma/zconvey
 
 ### End of Zinit's installer chunk
-source ~/.config/my/global.env.sh
+source ~/.config/my/global.sh
 
 zinit ice wait"!" lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
