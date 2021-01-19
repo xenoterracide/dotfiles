@@ -1,5 +1,6 @@
 #!/bin/sh
-eval `keychain --eval --inherit any id_rsa`
+eval `keychain --eval --inherit any --agents ssh id_rsa`
+eval `keychain --eval --inherit any --agents gpg 202671F87222DA97`
 
 if command -v perl >/dev/null 2>&1; then
   if perl -Mlocal::lib -e 1 >/dev/null 2>&1; then

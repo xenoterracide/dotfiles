@@ -52,10 +52,15 @@ zinit light-mode for \
   zdharma/zconvey
 
 ### End of Zinit's installer chunk
+source ~/.config/my/global.env.sh
+
+zinit ice wait"!" lucid nocd atload'!tw_setup'
+zinit light reobin/typewritten
 
 zinit snippet OMZL::history.zsh
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::systemd
+zinit snippet OMZP::sdk
 
 zinit wait lucid as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
   atpull'%atclone' pick"direnv" src"zhook.zsh" for \
@@ -68,32 +73,10 @@ zinit wait lucid as"program" \
   atclone"scd --add $HOME --recursive" \
   for pavoljuhas/smart-change-directory
 
-export SDKMAN_DIR="$HOME/.local/share/sdkman"
-zinit wait lucid as"command" \
-  dl"https://get.sdkman.io?rcupdate=false" \
-  atclone"zsh get.sdkman.io && source $SDKMAN_DIR/bin/sdkman-init.sh && sdk install java" \
-  atpull"%atclone" \
-  for zdharma/null
-
-zinit snippet OMZP::sdk
-
-export NVM_DIR="$HOME/.local/share/nvm"
-zinit wait lucid as"null" \
-  dl"https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" \
-  atclone"mkdir -p $NVM_DIR && PROFILE=/dev/null source install.sh && source nvm.sh && nvm install --lts" \
-  src"$NVM_DIR/nvm.sh" \
-  atpull"%atclone" \
-  blockf \
-  atinit"zicompinit" \
-  for nvm-sh/nvm
 
 zinit ice as"command" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
-zinit ice wait'!' lucid nocd atload'!tw_setup'
-zinit light reobin/typewritten
-
-zinit ice lucid
-zinit atload"zicompinit" for zsh-users+fast
+zinit lucid atload"zicompinit" for zsh-users+fast
 compdef -d yadm
 
