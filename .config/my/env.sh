@@ -6,3 +6,4 @@ export TYPEWRITTEN_GIT_RELATIVE_PATH=true
 
 export EDITOR='vim'
 export VISUAL='vim'
+export PAGER='less -S'

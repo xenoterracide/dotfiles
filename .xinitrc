@@ -65,3 +65,4 @@ get_session(){
 
 exec $(get_session)
 setxkbmap -option "terminate:ctrl_alt_bksp"
+xinput --disable "TPPS/2 IBM TrackPoint"
