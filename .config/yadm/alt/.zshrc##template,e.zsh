@@ -70,4 +70,4 @@ zinit snippet https://cpanmin.us
 
 zinit lucid atload"zicompinit" for zsh-users+fast
 compdef -d yadm
-
+bindkey -e
