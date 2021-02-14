@@ -68,6 +68,9 @@ zinit wait lucid as"program" \
 zinit ice as"command" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
+zinit ice from"gh-r" as"program"
+zinit load xenoterracide/brix
+
 zinit lucid atload"zicompinit" for zsh-users+fast
 compdef -d yadm
 bindkey -e
