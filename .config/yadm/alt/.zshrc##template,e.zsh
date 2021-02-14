@@ -68,7 +68,7 @@ zinit wait lucid as"program" \
 zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
-zinit ice wait lucid as"program" from"gh-r" atload"export $PATH=$ZPFX/brix-0.1.0/bin:$PATH"
+zinit ice wait lucid as"program" from"gh-r" atload"$PATH=$ZPFX/brix-0.1.0/bin:$PATH"
 zinit light xenoterracide/brix
 
 zinit lucid atload"zicompinit" for zsh-users+fast
