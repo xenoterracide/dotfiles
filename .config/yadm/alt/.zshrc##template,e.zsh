@@ -65,10 +65,10 @@ zinit wait lucid as"program" \
   for pavoljuhas/smart-change-directory
 
 
-zinit ice as"command" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
+zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
-zinit ice from"gh-r" as"program" pick"brix" cp"bin/brix* -> brix"
+zinit ice lucid from"gh-r" as"program" pick"brix" cp"brix-0.1.0/bin/brix* -> brix"
 zinit load xenoterracide/brix
 
 zinit lucid atload"zicompinit" for zsh-users+fast
