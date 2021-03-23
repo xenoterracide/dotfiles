@@ -1,2 +1,7 @@
 zsh
 vim
+bat
+exa
+docker
+kubernetes
+

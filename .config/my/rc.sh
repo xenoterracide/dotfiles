@@ -1,5 +1,7 @@
 #!/bin/sh
-eval `keychain --eval --inherit any --agents ssh id_rsa`
+if command -v keychain >/dev/null 2>&1; then
+  eval `keychain --eval --inherit any --agents ssh id_rsa`
+fi
 #eval `keychain --eval --inherit any --agents gpg 202671F87222DA97 570B348783282576`
 
 if command -v perl >/dev/null 2>&1; then
