@@ -25,7 +25,7 @@ if command -v vim >/dev/null 2&>1; then
   mkdir -p $VIM_COLORDIR
   mkdir -p $VIM_AFTER_SYNTAX
   if [ ! -d "$VIM_PLUGDIR/$VIM_EDITORCONFIG" ]; then
-    git clone --quite $VIM_EDITORCONFIG_URI "$VIM_PLUGDIR/$VIM_EDITORCONFIG"
+    git clone --quiet $VIM_EDITORCONFIG_URI "$VIM_PLUGDIR/$VIM_EDITORCONFIG"
   else
     git -C "$VIM_PLUGDIR/$VIM_EDITORCONFIG" pull "$VIM_EDITORCONFIG_URI"
   fi

@@ -1,2 +1,2 @@
 #!/bin/sh
-dnf install -y $(cat pkglist.txt)
+sudo dnf install -y $(cat bootstrap.d/pkglist.txt)
