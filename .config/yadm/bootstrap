@@ -1,7 +1,9 @@
 #!/bin/sh
 set -x
 
-for f in bootstrap.d/*.sh; do source $f; done
+if ls bootstrap.d/*.sh 1> /dev/null 2>&1; then
+  for f in bootstrap.d/*.sh; do source $f; done
+fi
 
 if command -v zsh >/dev/null 2>&1; then
   if command zinit >/dev/null 2&>1; then

@@ -1,2 +1,2 @@
 #!/bin/sh
-dnf install -y
+dnf install -y $(cat pkglist.txt)
