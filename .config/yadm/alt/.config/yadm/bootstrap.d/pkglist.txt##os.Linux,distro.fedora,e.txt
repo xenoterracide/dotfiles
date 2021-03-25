@@ -14,3 +14,8 @@ opera-stable
 powertop
 htop
 iotop
+tuned-gtk
+tuned-utils
+tlp
+akmod-acpi_call
+

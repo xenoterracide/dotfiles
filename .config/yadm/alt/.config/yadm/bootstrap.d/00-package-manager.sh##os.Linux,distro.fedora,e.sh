@@ -13,7 +13,10 @@ EOF
 FEDORA_VERSION=$(rpm -E %fedora)
 RPMFUSION_MIRROR="https://download1.rpmfusion.org/"
 
-sudo dnf -y install $RPMFUSION_MIRROR/free/fedora/rpmfusion-free-release-$FEDORA_VERSION.noarch.rpm $RPMFUSION_MIRROR/nonfree/fedora/rpmfusion-nonfree-release-$FEDORA_VERSION.noarch.rpm
+sudo dnf -y install \
+  $RPMFUSION_MIRROR/free/fedora/rpmfusion-free-release-$FEDORA_VERSION.noarch.rpm
+  $RPMFUSION_MIRROR/nonfree/fedora/rpmfusion-nonfree-release-$FEDORA_VERSION.noarch.rpm \
+  https://repo.linrunner.de/fedora/tlp/repos/releases/tlp-release.fc$FEDORA_VERSION.noarch.rpm
 
 sudo dnf install -y $(cat bootstrap.d/pkglist.txt)
 
