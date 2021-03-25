@@ -4,4 +4,10 @@ bat
 exa
 docker
 kubernetes
-
+snapd
+gnome-tweak-tool
+gnome-shell-extension-topicons-plus
+alien
+ffmpeg
+ffmpeg-devel
+opera-stable

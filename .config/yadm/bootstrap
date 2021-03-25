@@ -1,15 +1,20 @@
 #!/bin/sh
 set -x
 
-WGET='wget --no-verbose --no-if-modified-since'
+DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
+WGET="wget --no-verbose --timestamping --directory-prefix $DOWNLOAD_DIR"
+WGET_GH='wget --no-verbose --no-if-modified-since'
+TAR='tar --extract --verbose --keep-newer-files --file'
 
 if ls bootstrap.d/*.sh 1> /dev/null 2>&1; then
   for f in bootstrap.d/*.sh; do source $f; done
 fi
 
+mkdir -p ~/.local/bin
+
 if command -v zsh >/dev/null 2>&1; then
   set +x
-  $WGET --output-document - https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh > /dev/null | sh
+  $WGET_GH --output-document - https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh > /dev/null | sh
   set -x
 fi
 
@@ -28,6 +33,11 @@ if command -v vim >/dev/null 2&>1; then
   else
     git -C "$VIM_PLUGDIR/$VIM_EDITORCONFIG" pull "$VIM_EDITORCONFIG_URI"
   fi
-  $WGET --directory-prefix $VIM_COLORDIR https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim
-  $WGET --directory-prefix $VIM_AFTER_SYNTAX https://raw.githubusercontent.com/zinit-zsh/zinit-vim-syntax/master/after/syntax/zsh.vim
+  $WGET_GH --directory-prefix $VIM_COLORDIR https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim
+  $WGET_GH --directory-prefix $VIM_AFTER_SYNTAX https://raw.githubusercontent.com/zinit-zsh/zinit-vim-syntax/master/after/syntax/zsh.vim
 fi
+
+TOOLBOX_VERSION=1.20.7940
+$WGET https://download-cf.jetbrains.com/toolbox/jetbrains-toolbox-$TOOLBOX_VERSION.tar.gz \
+  && $TAR $DOWNLOAD_DIR/jetbrains-toolbox-$TOOLBOX_VERSION.tar.gz --strip-components=1 -C ~/.local/bin
+
