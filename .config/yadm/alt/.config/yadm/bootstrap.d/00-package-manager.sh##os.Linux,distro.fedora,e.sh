@@ -17,5 +17,5 @@ sudo dnf -y install $RPMFUSION_MIRROR/free/fedora/rpmfusion-free-release-$FEDORA
 
 sudo dnf install -y $(cat bootstrap.d/pkglist.txt)
 
-sudo snap install discord
+sudo snap install discord zoom-client
 
