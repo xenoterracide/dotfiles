@@ -11,3 +11,6 @@ alien
 ffmpeg
 ffmpeg-devel
 opera-stable
+powertop
+htop
+iotop
