@@ -5,9 +5,9 @@ DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
 WGET="wget --no-verbose --timestamping --directory-prefix $DOWNLOAD_DIR"
 WGET_GH='wget --no-verbose --no-if-modified-since'
 TAR='tar --extract --verbose --keep-newer-files --file'
-
-if ls bootstrap.d/*.sh 1> /dev/null 2>&1; then
-  for f in bootstrap.d/*.sh; do source $f; done
+SCRIPTDIR="$(dirname $0)/bootstrap.d"
+if readlink -e "$SCRIPTDIR"; then
+  for f in $SCRIPTDIR/*.sh; do source $f; done
 fi
 
 mkdir -p ~/.local/bin

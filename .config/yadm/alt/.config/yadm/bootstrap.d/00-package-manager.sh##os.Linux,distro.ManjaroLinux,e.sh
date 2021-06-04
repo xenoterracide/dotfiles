@@ -1,3 +1,3 @@
 #!/bin/sh
 
-yay -S - < pkglist.txt
+cat $(dirname $0)/bootstrap.d/pkglist.txt | xargs pamac install --no-confirm
