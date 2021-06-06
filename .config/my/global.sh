@@ -1,5 +1,4 @@
 #!/bin/zsh
-export SSH_ASKPASS="/usr/bin/ksshaskpass"
 export NVM_DIR="$HOME/.local/share/nvm"
 zinit wait lucid as"null" \
   dl"https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" \
