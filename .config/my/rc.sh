@@ -1,7 +1,6 @@
 #!/bin/sh
-if "$DESKTOP_SESSION" -eq "gnome"; then
+if [ "$DESKTOP_SESSION" = "gnome" ]; then
   eval $(gnome-keyring-daemon --start)
-  export SSH_AUTH_SOCK
   if command -v seahorse > /dev/null 2>&1; then
     export SSH_ASKPASS=$(which seahorse)
   fi
@@ -9,6 +8,7 @@ fi
 
 if command -v keychain >/dev/null 2>&1; then
   eval `keychain --eval --inherit any --agents ssh id_rsa`
+  eval `keychain --eval --inherit any --agents ssh id_ed25519`
 fi
 #eval `keychain --eval --inherit any --agents gpg 202671F87222DA97 570B348783282576`
 
