@@ -1,3 +1,5 @@
+*.idea
+*.iml
 *.code-workspace
 
 # You may want to customise this file depending on your Operating System
