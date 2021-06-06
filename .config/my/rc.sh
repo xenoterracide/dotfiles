@@ -1,4 +1,12 @@
 #!/bin/sh
+if "$DESKTOP_SESSION" -eq "gnome"; then
+  eval $(gnome-keyring-daemon --start)
+  export SSH_AUTH_SOCK
+  if command -v seahorse > /dev/null 2>&1; then
+    export SSH_ASKPASS=$(which seahorse)
+  fi
+fi
+
 if command -v keychain >/dev/null 2>&1; then
   eval `keychain --eval --inherit any --agents ssh id_rsa`
 fi
@@ -13,3 +21,5 @@ fi
 if command kubectl >/dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
+
+
