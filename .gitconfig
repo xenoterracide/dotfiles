@@ -8,7 +8,6 @@
   default = current
 [core]
   autocrlf = input
-	excludesfile = /home/xeno/.gitignore
 [alias]
   csa = commit --signoff --all
   fap = fetch --all --prune --prune-tags

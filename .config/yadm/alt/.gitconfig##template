@@ -3,15 +3,11 @@
 ;;;
 [user]
   name = Caleb Cushing
-{% if yadm.hostname == "Calebs-MBP" %}
-  email = caleb@7pi.co
-{% else %}
   email = xenoterracide@gmail.com
-{% endif %}
+[core]
+  excludesfile=~/.gitignore
 [push]
   default = current
-[core]
-  autocrlf = input
 [alias]
   csa = commit --signoff --all
   fap = fetch --all --prune --prune-tags
@@ -25,13 +21,8 @@
 [pager]
   status = true
 [merge]
-{% if yadm.os == "Darwin" %}
-  tool = meld
-  guitool = meld
-{% else %}
   tool = vimdiff3
   guitool = vimdiff3
-{% endif %}
 [commit]
   template = ~/.gitmessage
 [pull]
