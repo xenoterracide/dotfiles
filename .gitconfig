@@ -4,10 +4,10 @@
 [user]
   name = Caleb Cushing
   email = xenoterracide@gmail.com
+[core]
+  excludesfile=~/.gitignore
 [push]
   default = current
-[core]
-  autocrlf = input
 [alias]
   csa = commit --signoff --all
   fap = fetch --all --prune --prune-tags
