@@ -1,4 +1,3 @@
-#!/bin/sh
 alias vi="vim -Xp"
 alias vim="vim -Xp"
 alias brix="java -jar ~/.local/share/brix/brix.jar"

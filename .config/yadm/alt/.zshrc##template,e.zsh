@@ -14,9 +14,8 @@ plugins=(
 
 # User configuration
 
-source $HOME/.config/my/env.sh
-source $HOME/.config/my/rc.sh
-source $HOME/.config/my/alias.sh
+{% include "../extra/rc.sh" %}
+{% include "../extra/alias.sh" %}
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -68,5 +67,4 @@ zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
 zinit lucid atload"zicompinit" for zsh-users+fast
-compdef -d yadm
 bindkey -e
