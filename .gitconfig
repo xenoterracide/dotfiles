@@ -1,0 +1,30 @@
+;;;
+; this file is generated edit ~/.config/yadm/alt/.gitconfig##template instead
+;;;
+[user]
+  name = Caleb Cushing
+  email = xenoterracide@gmail.com
+[push]
+  default = current
+[core]
+  autocrlf = input
+	excludesfile = /home/xeno/.gitignore
+[alias]
+  csa = commit --signoff --all
+  fap = fetch --all --prune --prune-tags
+  pushf = push --force-with-lease
+  mush = merge --squash
+  blow = !git branch -d $1 && !git push origin :$1 && :
+[rerere]
+  enabled = true
+[checkout]
+  defaultRemote = origin
+[pager]
+  status = true
+[merge]
+  tool = vimdiff3
+  guitool = vimdiff3
+[commit]
+  template = ~/.gitmessage
+[pull]
+  ff = only
