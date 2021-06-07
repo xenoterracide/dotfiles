@@ -64,7 +64,6 @@ zinit wait lucid as"program" \
   atclone"scd --add $HOME --recursive" \
   for pavoljuhas/smart-change-directory
 
-
 zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
