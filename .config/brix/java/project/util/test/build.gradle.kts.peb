@@ -1,0 +1,6 @@
+plugins {
+  id("{{ project }}.java-library")
+}
+dependencies {
+  implementation(libs.spring.boot.autoconfigure)
+}
