@@ -15,5 +15,5 @@ fileConfigurations:
   destination: '{{ project }}/module/util/test/module-info.java'
 - source: project/util/test/TestApplication.java.peb
   destination: '{{ project }}/module/util/test/src/test/java/com/xenoterracide/{{ project }}/TestApplication.java'
-- source: project/util/test/TestApplication.java.peb
+- source: project/util/test/application.properties
   destination: '{{ project }}/module/util/test/src/test/resources/application.properties'
