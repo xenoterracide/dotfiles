@@ -1,7 +1,7 @@
 fileConfigurations:
 # util/lang
-- source: project/util/lang/build.gradle.kts.peb
-  destination: 'module/util/lang/build.gradle.kts'
+- source: project/util/lang/build.gradle.kts.peb.peb
+  destination: 'module/util/lang/build.gradle.kts.peb'
 - source: project/util/lang/module-info.java.peb
   destination: 'module/util/lang/src/main/java/module-info.java'
 - source: project/util/lang/CollectionUtils.java.peb
@@ -9,8 +9,8 @@ fileConfigurations:
 - source: project/util/lang/ObjectUtils.java.peb
   destination: 'module/util/lang/src/main/java/com/xenoterracide/{{ project }}/util/lang/ObjectUtils.java'
 # util/test
-- source: project/util/test/build.gradle.kts.peb
-  destination: 'module/util/test/build.gradle.kts'
+- source: project/util/test/build.gradle.kts.peb.peb
+  destination: 'module/util/test/build.gradle.kts.peb'
 - source: project/util/test/module-info.java.peb
   destination: 'module/util/test/src/main/java/module-info.java'
 - source: project/util/test/TestApplication.java.peb
