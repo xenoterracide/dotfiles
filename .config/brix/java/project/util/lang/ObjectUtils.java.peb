@@ -3,7 +3,7 @@
  * Apache 2.0. See https://github.com/xenoterracide/brix/LICENSE
  * https://choosealicense.com/licenses/apache-2.0/#
  */
-package com.xenoterracide.brix.util.lang;
+package com.xenoterracide.{{ project }}.util.lang;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 
