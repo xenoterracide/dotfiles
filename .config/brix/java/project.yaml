@@ -12,6 +12,6 @@ fileConfigurations:
 - source: project/util/test/build.gradle.kts.peb
   destination: 'module/util/test/build.gradle.kts'
 - source: project/util/test/module-info.java.peb
-  destination: 'module/util/test/module-info.java'
+  destination: 'module/util/test/src/main/java/module-info.java'
 - source: project/util/test/TestApplication.java.peb
-  destination: 'module/util/test/src/test/java/com/xenoterracide/{{ project }}/TestApplication.java'
+  destination: 'module/util/test/src/main/java/com/xenoterracide/{{ project }}/TestApplication.java'
