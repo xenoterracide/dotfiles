@@ -1,11 +1,12 @@
 export ZSH_THEME="typewritten"
 export TYPEWRITTEN_CURSOR="block"
 export TYPEWRITTEN_RIGHT_PROMPT_PREFIX="# "
-export TYPEWRITTEN_GIT_RELATIVE_PATH=true
+export TYPEWRITTEN_RELATIVE_PATH="adaptive"
 
 export EDITOR='vim'
 export VISUAL='vim'
-export PAGER=''
+export PAGER='bat'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LESS="-R --no-init --quit-if-one-screen"
 export GPG_TTY=$(tty)
 
