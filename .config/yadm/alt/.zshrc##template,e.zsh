@@ -66,5 +66,8 @@ zinit wait lucid as"program" \
 zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
+zinit ice as"program" has"batpipe" atload"$(batpipe)"
+zinit light zdharma/null
+
 zinit lucid atload"zicompinit" for zsh-users+fast
 bindkey -e
