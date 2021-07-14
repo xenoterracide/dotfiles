@@ -5,7 +5,7 @@ export TYPEWRITTEN_RELATIVE_PATH="adaptive"
 
 export EDITOR='vim'
 export VISUAL='vim'
-export PAGER='less -S'
+export PAGER='most +u +s'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LESS="-R --no-init --quit-if-one-screen"
 export GPG_TTY=$(tty)
