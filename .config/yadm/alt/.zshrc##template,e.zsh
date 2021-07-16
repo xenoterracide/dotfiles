@@ -29,6 +29,7 @@ zinit light-mode for \
   zdharma/zconvey
 
 ### End of Zinit's installer chunk
+{% include "../extra/vim.zsh" %}
 {% if yadm.user != "root" %}
   {% include "../extra/developer.sh" %}
 {% endif %}

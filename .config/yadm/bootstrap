@@ -19,21 +19,3 @@ if command -v zsh >/dev/null 2>&1; then
   set -x
 fi
 
-
-if command -v vim >/dev/null 2>&1; then
-  VIM_COLORDIR="$HOME/.vim/colors"
-  VIM_PLUGDIR="$HOME/.vim/pack/local/start"
-  VIM_AFTER_SYNTAX="$HOME/.vim/after/syntax"
-  VIM_EDITORCONFIG="editorconfig-vim"
-  VIM_EDITORCONFIG_URI="https://github.com/editorconfig/$VIM_EDITORCONFIG.git"
-
-  mkdir -p $VIM_PLUGDIR
-  mkdir -p $VIM_AFTER_SYNTAX
-  if [ ! -d "$VIM_PLUGDIR/$VIM_EDITORCONFIG" ]; then
-    git clone --quiet $VIM_EDITORCONFIG_URI "$VIM_PLUGDIR/$VIM_EDITORCONFIG"
-  else
-    git -C "$VIM_PLUGDIR/$VIM_EDITORCONFIG" pull "$VIM_EDITORCONFIG_URI"
-  fi
-  $WGET_GH --directory-prefix $VIM_COLORDIR https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim
-  $WGET_GH --directory-prefix $VIM_AFTER_SYNTAX https://raw.githubusercontent.com/zinit-zsh/zinit-vim-syntax/master/after/syntax/zsh.vim
-fi
