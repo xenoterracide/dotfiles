@@ -20,7 +20,7 @@ if command -v zsh >/dev/null 2>&1; then
 fi
 
 
-if command -v vim >/dev/null 2&>1; then
+if command -v vim >/dev/null 2>&1; then
   VIM_COLORDIR="$HOME/.vim/colors"
   VIM_PLUGDIR="$HOME/.vim/pack/local/start"
   VIM_AFTER_SYNTAX="$HOME/.vim/after/syntax"
