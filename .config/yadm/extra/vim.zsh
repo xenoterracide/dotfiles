@@ -6,7 +6,7 @@ mkdir -p $VIM_PLUGDIR
 mkdir -p $VIM_AFTER_SYNTAX
 
 zinit ice wait cloneonly
-zinit light \
+zinit lucid \
   atClone"cp -a * $VIM_PLUGDIR" \
   atPull"cp -a * $VIM_PLUGDIR" \
   for editorconfig/editorconfig-vim
