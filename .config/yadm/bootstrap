@@ -1,11 +1,11 @@
 #!/bin/sh
 set -x
 
-DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
-WGET="wget --no-verbose --timestamping --directory-prefix $DOWNLOAD_DIR"
-WGET_GH='wget --no-verbose --no-if-modified-since'
-TAR='tar --extract --verbose --keep-newer-files --file'
-SCRIPTDIR="$(dirname $0)/bootstrap.d"
+export DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
+export WGET="wget --no-verbose --timestamping --directory-prefix $DOWNLOAD_DIR"
+export WGET_GH='wget --no-verbose --no-if-modified-since'
+export TAR='tar --extract --verbose --keep-newer-files --file'
+export SCRIPTDIR="$(dirname $0)/bootstrap.d"
 if readlink -e "$SCRIPTDIR"; then
   for f in $SCRIPTDIR/*.sh; do source $f; done
 fi
@@ -15,6 +15,7 @@ mkdir -p ~/.local/bin
 if command -v zsh >/dev/null 2>&1; then
   set +x
   $WGET_GH --output-document - https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh > /dev/null | sh
+  zinit self-update
   set -x
 fi
 
@@ -36,8 +37,3 @@ if command -v vim >/dev/null 2&>1; then
   $WGET_GH --directory-prefix $VIM_COLORDIR https://raw.githubusercontent.com/toupeira/vim-desertink/master/colors/desertink.vim
   $WGET_GH --directory-prefix $VIM_AFTER_SYNTAX https://raw.githubusercontent.com/zinit-zsh/zinit-vim-syntax/master/after/syntax/zsh.vim
 fi
-
-TOOLBOX_VERSION=1.20.7940
-$WGET https://download-cf.jetbrains.com/toolbox/jetbrains-toolbox-$TOOLBOX_VERSION.tar.gz \
-  && $TAR $DOWNLOAD_DIR/jetbrains-toolbox-$TOOLBOX_VERSION.tar.gz --strip-components=1 -C ~/.local/bin
-

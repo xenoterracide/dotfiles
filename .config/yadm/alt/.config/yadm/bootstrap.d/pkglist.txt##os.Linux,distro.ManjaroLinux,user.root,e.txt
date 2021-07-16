@@ -1,0 +1,14 @@
+zsh
+vim
+xclip
+exa
+bat
+tmux
+ripgrep
+keychain
+plocate
+opera
+discord
+slack-desktop
+telegram-desktop
+zram-generator

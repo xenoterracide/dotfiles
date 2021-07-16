@@ -1,19 +1,6 @@
 ### # edit ~/.config/yadm/alt/.zshrc##template
 ###
 
-plugins=(
-  command-not-found
-  history-substring-search
-  gitfast
-  git-auto-fetch
-  git-escape-magic
-  gitignore
-  magic-enter
-  safe-paste
-)
-
-# User configuration
-
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.sh" %}
 
@@ -42,7 +29,9 @@ zinit light-mode for \
   zdharma/zconvey
 
 ### End of Zinit's installer chunk
-source $HOME/.config/my/global.sh
+{% if yadm.user != "root" %}
+  {% include "../extra/developer.sh" %}
+{% endif %}
 
 zinit ice wait"!" lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
@@ -65,9 +54,6 @@ zinit wait lucid as"program" \
 
 zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
-
-zinit ice as"program" has"batpipe" atload'eval "$(batpipe)"'
-zinit light zdharma/null
 
 zinit lucid atload"zicompinit" for zsh-users+fast
 bindkey -e
