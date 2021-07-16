@@ -41,18 +41,12 @@ zinit snippet OMZL::history.zsh
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::systemd
 zinit snippet OMZP::sdk
+zinit snippet OMZP::scd
+zinit snippet OMZP::direnv
+zinit snippet OMZP::gitignore
 
-zinit wait lucid as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
-  atpull'%atclone' pick"direnv" src"zhook.zsh" for \
-    direnv/direnv
-
-zinit wait lucid as"program" \
-  cp"bin/scd* -> scd" \
-  pick"scd" \
-  src"shellrcfiles/zshrc_scd" \
-  atclone"scd --add $HOME --recursive" \
-  for pavoljuhas/smart-change-directory
-
+zinit ice has"perl"
+zinit snippet OMZP::direnv
 zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 

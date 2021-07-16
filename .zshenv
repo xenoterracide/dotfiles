@@ -6,7 +6,6 @@ export TYPEWRITTEN_RELATIVE_PATH="adaptive"
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less --chop-long-lines'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LESS="-R --quit-if-one-screen --silent"
 export GPG_TTY=$(tty)
 

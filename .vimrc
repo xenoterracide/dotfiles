@@ -47,3 +47,4 @@ set noerrorbells visualbell t_vb=
 """""""""""""""""""""""""""
 set list
 
+autocmd BufNewFile,BufRead */environment.d/*.conf set filetype=systemd
