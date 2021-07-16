@@ -6,17 +6,18 @@ VIM_EDITORCONFIG="editorconfig-vim"
 mkdir -p $VIM_PLUGDIR
 mkdir -p $VIM_AFTER_SYNTAX
 
-zinit wait light \
+zinit ice wait
+zinit light \
   atClone"cp -a * $VIM_PLUGDIR" \
   atPull"cp -a * $VIM_PLUGDIR" \
   for editorconfig/$VIM_EDITORCONFIG
 
-zinit ice \
+zinit ice wait \
   atClone"cp colors/desertlink.vim $VIM_COLORDIR" \
   atPull"cp colors/desertlink.vim $VIM_COLORDIR"
-zinit wait light toupeira/vim-desertink
+zinit light toupeira/vim-desertink
 
-zinit ice \
+zinit ice wait \
   atClone"cp after/syntax/zsh.vim $VIM_COLORDIR" \
   atPull"cp after/syntax/zsh.vim $VIM_COLORDIR"
-zinit wait light zinit-zsh/zinit-vim-syntax
+zinit light zinit-zsh/zinit-vim-syntax
