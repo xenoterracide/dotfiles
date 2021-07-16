@@ -12,3 +12,4 @@ discord
 slack-desktop
 telegram-desktop
 zram-generator
+dislocker
