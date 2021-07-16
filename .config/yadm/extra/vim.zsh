@@ -5,8 +5,8 @@ VIM_AFTER_SYNTAX="$HOME/.vim/after/syntax"
 mkdir -p $VIM_PLUGDIR
 mkdir -p $VIM_AFTER_SYNTAX
 
-zinit ice wait cloneonly
-zinit lucid \
+zinit ice wait cloneonly lucid
+zinit load \
   atClone"cp -a * $VIM_PLUGDIR" \
   atPull"cp -a * $VIM_PLUGDIR" \
   for editorconfig/editorconfig-vim
