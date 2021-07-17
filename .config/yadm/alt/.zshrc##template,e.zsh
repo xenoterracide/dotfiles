@@ -30,9 +30,10 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 {% include "../extra/vim.zsh" %}
-{% if yadm.user != "root" %}
-  {% include "../extra/developer.sh" %}
-{% endif %}
+
+if [[ $USER != "root" ]]; then
+{% include "../extra/developer.sh" %}
+fi
 
 zinit ice wait"!" lucid nocd atload'!tw_setup'
 zinit light reobin/typewritten
@@ -45,8 +46,6 @@ zinit snippet OMZP::scd
 zinit snippet OMZP::direnv
 zinit snippet OMZP::gitignore
 
-zinit ice has"perl"
-zinit snippet OMZP::direnv
 zinit ice as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 

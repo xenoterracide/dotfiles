@@ -1,21 +1,36 @@
-VIM_COLORDIR="$HOME/.vim/colors"
-VIM_PLUGDIR="$HOME/.vim/pack/local/start"
-VIM_AFTER_SYNTAX="$HOME/.vim/after/syntax"
+######
+# vim.zsh
+######
 
-mkdir -p $VIM_PLUGDIR
-mkdir -p $VIM_AFTER_SYNTAX
+function vim_setup() {
+  local VIMDIR="$HOME/.vim"
+  local VIM_COLOR="$VIMDIR/colors"
+  local VIM_PACK="$VIMDIR/pack"
+  local VIM_FTPLUGIN="$VIMDIR/ftplugin"
+  local VIM_FTDETECT="$VIMDIR/ftdetect"
+  local VIM_AFTER_SYNTAX="$VIMDIR/after/syntax"
 
-zinit ice wait cloneonly proto"git" nocompile \
-  atClone"cp -a * $VIM_PLUGDIR" \
-  atPull"%atClone" \
-zinit light editorconfig/editorconfig-vim
 
-zinit ice wait cloneonly proto"git" nocompile \
-  atClone"cp colors/desertlink.vim $VIM_COLORDIR" \
-  atPull"%atClone"
-zinit light toupeira/vim-desertink
+  zinit ice wait cloneonly proto"git" nocompile notify \
+    atclone"install --compare -D colors/desertink.vim $VIM_COLOR/desertink.vim" \
+    atpull"%atclone"
+  zinit light toupeira/vim-desertink
 
-zinit ice wait cloneonly proto"git" nocompile \
-  atClone"cp after/syntax/zsh.vim $VIM_COLORDIR" \
-  atPull"%atClone"
-zinit light zinit-zsh/zinit-vim-syntax
+  zinit ice wait cloneonly proto"git" nocompile \
+    atclone"install -D after/syntax/zsh.vim $VIM_AFTER_SYNTAX/zsh.vim" \
+    atpull"%atclone"
+  zinit light zinit-zsh/zinit-vim-syntax
+
+  zinit ice wait cloneonly proto"git" nocompile \
+    atclone"install -D syntax/systemd.vim $VIM_AFTER_SYNTAX/systemd.vim; install -D ftplugin/systemd.vim $VIM_FTPLUGIN/systemd.vim; install -D ftdetect/systemd.vim $VIM_FTDETECT/systemd.vim" \
+    atpull"%atclone"
+  zinit light wgwoods/vim-systemd-syntax
+
+  zinit ice wait cloneonly proto"git" nocompile \
+    atclone"mkdir -p $VIM_PACK && cp -al . $VIM_PACK" \
+    atpull"%atclone"
+  zinit light editorconfig/editorconfig-vim
+}
+vim_setup
+unfunction vim_setup
+######

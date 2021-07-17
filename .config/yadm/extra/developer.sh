@@ -1,5 +1,8 @@
+######
+# developer.sh
+######
 export NVM_DIR="$HOME/.local/share/nvm"
-zinit OMZP::nvm
+zinit snippet OMZP::nvm
 
 export SDKMAN_DIR="$HOME/.local/share/sdkman"
 zinit wait lucid as"command" \
@@ -8,3 +11,4 @@ zinit wait lucid as"command" \
   src"$SDKMAN_DIR/bin/sdkman-init.sh" \
   atpull"%atclone" \
   for zdharma/null
+######

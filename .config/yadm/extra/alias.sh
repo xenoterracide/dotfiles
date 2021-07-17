@@ -1,3 +1,6 @@
+######
+# alias.sh
+######
 alias vi="vim -Xp"
 alias vim="vim -Xp"
 alias brix="java -jar ~/.local/share/brix/brix.jar"
@@ -15,3 +18,4 @@ fi
 if command -v plocate >/dev/null 2>&1; then
   alias locate="plocate"
 fi
+######
