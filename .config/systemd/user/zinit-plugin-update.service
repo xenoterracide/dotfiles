@@ -1,0 +1,9 @@
+[Unit]
+Description=zinit plugin update
+Documentation=https://github.com/zdharma/zinit
+Wants=zinit-update.service
+After=zinit-update.service
+
+[Service]
+Type=oneshot
+ExecStart=zsh --singlecommand -c 'zinit update --all' 
