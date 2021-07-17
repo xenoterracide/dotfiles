@@ -1,0 +1,6 @@
+[Unit]
+Description=zinit update
+
+[Service]
+Type=oneshot
+ExecStart=zsh --singlecommand -c 'zinit self-update' 

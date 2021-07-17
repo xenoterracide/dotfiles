@@ -1,0 +1,13 @@
+[Unit]
+Description=daily zinit update
+Documentation=https://github.com/zdharma/zinit
+JobRunningTimeoutSec=60
+
+[Timer]
+OnCalendar=daily
+AccuracySec=15m
+WakeSystem=false
+Persistent=true
+
+[Install]
+WantedBy=timers.target
