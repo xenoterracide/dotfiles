@@ -27,7 +27,7 @@ function vim_setup() {
   zinit light wgwoods/vim-systemd-syntax
 
   zinit ice wait cloneonly proto"git" nocompile \
-    atclone"mkdir -p $VIM_PACK && cp -al . $VIM_PACK" \
+    atclone"rsync --exclude '.*' --archive . $VIM_PACK/editorconfig" \
     atpull"%atclone"
   zinit light editorconfig/editorconfig-vim
 }

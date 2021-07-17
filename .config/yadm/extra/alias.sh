@@ -8,7 +8,7 @@ alias clip="xclip -selection clipboard -in"
 alias bfg="java -jar ~/.local/share/bfg.jar"
 
 if command -v bat >/dev/null 2>&1; then
-  alias cat="bat"
+  alias cat="bat --paging=never --plain"
 fi
 
 if command -v exa >/dev/null 2>&1; then

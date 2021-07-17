@@ -6,6 +6,7 @@
   email = xenoterracide@gmail.com
 [core]
   excludesfile=~/.gitignore
+  pager = diff-so-fancy | less
 [push]
   default = current
 [alias]
@@ -27,3 +28,5 @@
   template = ~/.gitmessage
 [pull]
   ff = only
+[interactive]
+  diffFilter = diff-so-fancy --patch
