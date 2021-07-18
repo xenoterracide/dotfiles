@@ -1,50 +1,48 @@
 ### # edit ~/.config/yadm/alt/.zshrc##template
 ###
 #
+zinit ice lucid
 zinit load zinit-zsh/z-a-meta-plugins
 
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.sh" %}
 {% include "../extra/vim.zsh" %}
 
-{% if yadm.user == "root" %}
-{% else %}
-{% include "../extra/developer.zsh" %}
-{% endif %}
+zinit wait lucid for \
+  OMZL::history.zsh \
+  OMZP::colored-man-pages \
+  OMZP::systemd \
+  OMZP::direnv \
+  OMZP::gitignore
 
-zinit ice wait
-zinit snippet OMZL::history.zsh
-zinit ice wait
-zinit snippet OMZP::colored-man-pages
-zinit ice wait
-zinit snippet OMZP::systemd
-zinit ice wait
-zinit snippet OMZP::sdk
-zinit ice wait
-zinit snippet OMZP::direnv
-zinit ice wait
-zinit snippet OMZP::gitignore
-
-zinit wait"0a" lucid as"program" \
+zinit lucid wait"0a" lucid as"program" \
   cp"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
   atclone"scd --add $HOME --recursive" \
   for pavoljuhas/smart-change-directory
 
-zinit ice wait"0b"
+zinit ice lucid wait"0b"
 zinit snippet OMZP::scd
 
 
-zinit ice wait as"program" pick"bin/git-dsf"
+zinit ice lucid wait as"program" pick"bin/git-dsf"
 zinit load zdharma/zsh-diff-so-fancy
 
 
-zinit ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
+zinit ice lucid wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
+
+zinit ice lucid wait
+zinit load zdharma/zconvey
+
+{% if yadm.user == "root" %}
+{% else %}
+{% include "../extra/developer.zsh" %}
+{% endif %}
 
 zinit ice nocd atload'!tw_setup'
 zinit load reobin/typewritten
 
-zinit lucid atload"zicompinit" for zsh-users+fast
+zinit lucid wait atload"zicompinit" for zsh-users+fast
 bindkey -e

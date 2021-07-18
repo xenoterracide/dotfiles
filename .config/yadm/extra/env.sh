@@ -1,5 +1,5 @@
 ######
-# developer.sh
+# env.sh
 ######
 export ZSH_THEME="typewritten"
 export TYPEWRITTEN_CURSOR="block"

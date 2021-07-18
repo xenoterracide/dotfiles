@@ -1,5 +1,5 @@
 ######
-# developer.sh
+# env.sh
 ######
 export ZSH_THEME="typewritten"
 export TYPEWRITTEN_CURSOR="block"
@@ -13,6 +13,7 @@ export LESS="-R --quit-if-one-screen --silent"
 export GPG_TTY=$(tty)
 ######
 
+
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
@@ -25,7 +26,12 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+typeset -g ZPLG_MOD_DEBUG=1
+module_path+=( "/home/xeno/.zinit/bin/zmodules/Src" )
+zmodload zdharma/zplugin
+
+zinit ice lucid
 zinit load zinit-zsh/z-a-patch-dl
 
-zinit ice as"program" pick"cmds/zc-bg-notify"
+zinit ice lucid as"program" pick"cmds/zc-bg-notify"
 zinit load zdharma/zconvey
