@@ -21,11 +21,20 @@ zinit snippet OMZP::systemd
 zinit ice wait
 zinit snippet OMZP::sdk
 zinit ice wait
-zinit snippet OMZP::scd
-zinit ice wait
 zinit snippet OMZP::direnv
 zinit ice wait
 zinit snippet OMZP::gitignore
+
+zinit wait lucid as"program" \
+  cp"bin/scd* -> scd" \
+  pick"scd" \
+  src"shellrcfiles/zshrc_scd" \
+  atclone"scd --add $HOME --recursive" \
+  for pavoljuhas/smart-change-directory
+
+zinit ice wait
+zinit snippet OMZP::scd
+
 
 zinit ice wait as"program" pick"bin/git-dsf"
 zinit load zdharma/zsh-diff-so-fancy
