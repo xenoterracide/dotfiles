@@ -25,14 +25,14 @@ zinit snippet OMZP::direnv
 zinit ice wait
 zinit snippet OMZP::gitignore
 
-zinit wait"0a" lucid as"program" \
+zinit wait lucid as"program" \
   cp"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
   atclone"scd --add $HOME --recursive" \
   for pavoljuhas/smart-change-directory
 
-zinit ice wait"0b"
+zinit ice wait"[[ typeset -f foo > /dev/null ]]"
 zinit snippet OMZP::scd
 
 
