@@ -7,10 +7,10 @@ zinit load zinit-zsh/z-a-meta-plugins
 {% include "../extra/alias.sh" %}
 {% include "../extra/vim.zsh" %}
 
-if [[ $USER != "root" ]]; then
+{% if yadm.user == "root" %}
+{% else %}
 {% include "../extra/developer.zsh" %}
-fi
-
+{% endif %}
 
 zinit ice wait
 zinit snippet OMZL::history.zsh
@@ -29,7 +29,6 @@ zinit snippet OMZP::gitignore
 
 zinit ice wait as"program" pick"bin/git-dsf"
 zinit load zdharma/zsh-diff-so-fancy
-
 
 
 zinit ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
