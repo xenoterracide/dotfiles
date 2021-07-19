@@ -5,6 +5,7 @@ if [ "$DESKTOP_SESSION" = "gnome" ]; then
   eval $(gnome-keyring-daemon --start)
   if command -v seahorse > /dev/null 2>&1; then
     export SSH_ASKPASS=$(which seahorse)
+    export SUDO_ASKPASS=$(which seahorse)
   fi
 fi
 
