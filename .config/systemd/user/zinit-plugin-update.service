@@ -1,9 +1,10 @@
 [Unit]
 Description=zinit plugin update
 Documentation=https://github.com/zdharma/zinit
+Requires=network-online.target
 Wants=zinit-update.service
 After=zinit-update.service
 
 [Service]
 Type=oneshot
-ExecStart=zsh --singlecommand -c 'zinit update --all' 
+ExecStart=zsh --singlecommand -c 'zinit update --all'
