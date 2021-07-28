@@ -7,7 +7,8 @@ alias brix="java -jar ~/.local/share/brix/brix.jar"
 alias clip="xclip -selection clipboard -in"
 alias bfg="java -jar ~/.local/share/bfg.jar"
 alias logs="journalctl --output cat --boot 0 --full"
-alias dmesg=dmesg --color=always | less
+alias dmesg="dmesg --color=always | less"
+alias lsblk="lsblk -o name,label,fstype,uuid"
 
 if command -v bat >/dev/null 2>&1; then
   alias cat="bat --paging=never --plain"
