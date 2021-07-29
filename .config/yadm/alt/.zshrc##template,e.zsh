@@ -116,4 +116,5 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
+{% include "../extra/env.sh" %}
 {% include "../extra/alias.sh" %}
