@@ -16,3 +16,4 @@ jetbrains-toolbox
 htop
 lsof
 strace
+diff-so-fancy
