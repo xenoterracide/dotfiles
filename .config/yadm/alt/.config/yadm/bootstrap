@@ -6,16 +6,7 @@ export WGET="wget --no-verbose --timestamping --directory-prefix $DOWNLOAD_DIR"
 export WGET_GH='wget --no-verbose --no-if-modified-since'
 export TAR='tar --extract --verbose --keep-newer-files --file'
 export SCRIPTDIR="$(dirname $0)/bootstrap.d"
-if readlink -e "$SCRIPTDIR"; then
-  for f in $SCRIPTDIR/*.sh; do source $f; done
-fi
 
 mkdir -p ~/.local/bin
 
-if command -v zsh >/dev/null 2>&1; then
-  set +x
-  $WGET_GH --output-document - https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh > /dev/null | sh
-  zinit self-update
-  set -x
-fi
-
+cat $(dirname $0)/pkglist.txt | xargs pamac install --no-confirm

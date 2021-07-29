@@ -7,9 +7,12 @@ tmux
 ripgrep
 keychain
 plocate
-opera
 discord
 slack-desktop
 telegram-desktop
 zram-generator
 dislocker
+jetbrains-toolbox
+htop
+lsof
+strace
