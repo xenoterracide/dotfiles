@@ -68,7 +68,7 @@ ZSH_CUSTOM=$HOME/.config/local/share/omz
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git scd history colored-man-pages docker docker-compose)
+plugins=(scd history colored-man-pages)
 
 
 # User configuration
@@ -106,15 +106,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Use powerline
 USE_POWERLINE="true"
-
-# Source manjaro-zsh-configuration
-if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-  source /usr/share/zsh/manjaro-zsh-config
-fi
-# Use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
-fi
 
 {% include "../extra/env.sh" %}
 {% include "../extra/alias.sh" %}

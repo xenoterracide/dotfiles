@@ -40,11 +40,15 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 
+set tabstop=2 shiftwidth=2 expandtab
+set smarttab
 set noerrorbells visualbell t_vb=
 
 """""""""""""""""""""""""""
 " => show hidden characters
 """""""""""""""""""""""""""
-set list
+" set list
 
+
+set spell
 autocmd BufNewFile,BufRead */environment.d/*.conf set filetype=systemd
