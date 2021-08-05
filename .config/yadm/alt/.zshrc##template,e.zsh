@@ -28,7 +28,6 @@ zinit load zdharma/zsh-diff-so-fancy
 zinit ice lucid wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
-zinit load zdharma/history-search-multi-word
 zinit load zdharma/zconvey
 
 {% if yadm.user == "root" %}
