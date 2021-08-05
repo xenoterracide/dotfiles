@@ -1,3 +1,4 @@
+*.zwc
 *.idea
 *.iml
 *.code-workspace
