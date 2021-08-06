@@ -13,7 +13,6 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-typeset -g ZPLG_MOD_DEBUG=1
 module_path+=( "/home/xeno/.zinit/bin/zmodules/Src" )
 zmodload zdharma/zplugin
 

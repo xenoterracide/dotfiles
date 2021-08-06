@@ -1,4 +1,3 @@
-zinit ice lucid
 zinit load zinit-zsh/z-a-meta-plugins
 
 {% include "../extra/rc.sh" %}
@@ -28,6 +27,7 @@ zinit load zdharma/zsh-diff-so-fancy
 zinit ice lucid wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
+zinit load zdharma/history-search-multi-word
 zinit load zdharma/zconvey
 
 {% if yadm.user == "root" %}
@@ -35,6 +35,11 @@ zinit load zdharma/zconvey
 {% include "../extra/developer.zsh" %}
 {% endif %}
 
+zstyle :plugin:history-search-multi-word reset-prompt-protect 1
+
+zinit snippet OMZL::history.zsh
+zinit ice nocd atload'!tw_setup'
+zinit load reobin/typewritten
 
 schedprompt() {
     zle && zle reset-prompt
@@ -44,9 +49,6 @@ schedprompt() {
 zmodload -i zsh/sched
 schedprompt
 
-zinit ice nocd atload'!tw_setup'
-zinit load reobin/typewritten
-zinit snippet OMZL::history.zsh
-
 zinit lucid wait atload"zicompinit" for zsh-users+fast
 bindkey -e
+bindkey "^R" history-search-multi-word
