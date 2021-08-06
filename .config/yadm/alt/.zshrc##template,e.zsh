@@ -1,4 +1,3 @@
-
 zinit ice lucid
 zinit load zinit-zsh/z-a-meta-plugins
 
@@ -14,6 +13,7 @@ zinit lucid wait lucid as"program" \
   for pavoljuhas/smart-change-directory
 
 zinit wait lucid for \
+  OMZL::theme-and-appearance.zsh \
   OMZP::colored-man-pages \
   OMZP::systemd \
   OMZP::direnv \
@@ -44,22 +44,9 @@ schedprompt() {
 zmodload -i zsh/sched
 schedprompt
 
-#zinit ice nocd atload'!tw_setup'
-#zinit load reobin/typewritten
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-zinit ice depth=1;
-zinit light romkatv/powerlevel10k
+zinit ice nocd atload'!tw_setup'
+zinit load reobin/typewritten
 zinit snippet OMZL::history.zsh
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 zinit lucid wait atload"zicompinit" for zsh-users+fast
 bindkey -e
