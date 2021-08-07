@@ -38,8 +38,9 @@ zinit load zdharma/zconvey
 zstyle :plugin:history-search-multi-word reset-prompt-protect 1
 
 zinit snippet OMZL::history.zsh
-zinit ice nocd atload'!tw_setup'
-zinit load reobin/typewritten
+# zinit ice nocd atload'!tw_setup'
+#zinit load reobin/typewritten
+. /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
 
 schedprompt() {
     zle && zle reset-prompt
