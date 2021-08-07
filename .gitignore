@@ -99,6 +99,7 @@ $RECYCLE.BIN/
 *.lzma
 *.cab
 *.xar
+*.zstd
 
 # Packing-only formats
 *.iso
