@@ -17,3 +17,8 @@ htop
 lsof
 strace
 diff-so-fancy
+otf-fira-sans
+otf-fira-mono
+ttf-fira-code
+ttf-meslo-nerd-font-powerlevel10k
+otf-symbola

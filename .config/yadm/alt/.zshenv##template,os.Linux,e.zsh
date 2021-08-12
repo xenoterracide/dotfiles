@@ -1,6 +1,5 @@
 {% include "../extra/env.sh" %}
 
-
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
@@ -16,7 +15,9 @@ autoload -Uz _zinit
 module_path+=( "/home/xeno/.zinit/bin/zmodules/Src" )
 zmodload zdharma/zplugin
 
-zinit ice lucid
+zinit lucid for zinit-zsh/z-a-default-ice
+zinit default-ice lucid
+
 zinit load zinit-zsh/z-a-patch-dl
 
 zinit ice lucid as"program" pick"cmds/zc-bg-notify"

@@ -1,55 +1,70 @@
 zinit load zinit-zsh/z-a-meta-plugins
 
-{% include "../extra/rc.sh" %}
-{% include "../extra/alias.sh" %}
-{% include "../extra/vim.zsh" %}
 
-zinit lucid wait lucid as"program" \
+zinit for zdharma/history-search-multi-word zdharma/zconvey
+zinit snippet OMZL::history.zsh
+#zinit ice lucid nocd atload'!tw_setup'
+#zinit load reobin/typewritten
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+zinit load romkatv/powerlevel10k
+
+zinit wait as"program" \
   cp"bin/scd* -> scd" \
   pick"scd" \
   src"shellrcfiles/zshrc_scd" \
   atclone"scd --add $HOME --recursive" \
   for pavoljuhas/smart-change-directory
 
-zinit wait lucid for \
-  OMZL::theme-and-appearance.zsh \
+zinit wait for \
+  OMZL::theme-and-appearance.zsh atload"unalias ls" \
   OMZP::colored-man-pages \
   OMZP::systemd \
   OMZP::direnv \
   OMZP::gitignore \
   OMZP::scd
 
-
-zinit ice lucid wait as"program" pick"bin/git-dsf"
+zinit ice wait as"program" pick"bin/git-dsf"
 zinit load zdharma/zsh-diff-so-fancy
 
 
-zinit ice lucid wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
+zinit ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
 
-zinit load zdharma/history-search-multi-word
-zinit load zdharma/zconvey
 
 {% if yadm.user == "root" %}
 {% else %}
 {% include "../extra/developer.zsh" %}
 {% endif %}
 
+{% include "../extra/rc.sh" %}
+{% include "../extra/alias.zsh" %}
+{% include "../extra/vim.zsh" %}
+
 zstyle :plugin:history-search-multi-word reset-prompt-protect 1
 
-zinit snippet OMZL::history.zsh
-# zinit ice nocd atload'!tw_setup'
-#zinit load reobin/typewritten
-. /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
+
+#. /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
 
 schedprompt() {
-    zle && zle reset-prompt
-    sched +1 schedprompt
+  zle && zle reset-prompt
+  sched +1 schedprompt
 }
 
 zmodload -i zsh/sched
 schedprompt
 
-zinit lucid wait atload"zicompinit" for zsh-users+fast
-bindkey -e
+zinit wait for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
+
+zinit wait atload"zicompinit" for zsh-users+fast
+set -o emacs
 bindkey "^R" history-search-multi-word
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
