@@ -3,7 +3,6 @@
 ######
 alias vi="vim"
 alias vim="\vim -Xp"
-alias brix="java -jar ~/.local/share/brix/brix.jar"
 alias clip="xclip -selection clipboard -in"
 alias bfg="java -jar ~/.local/share/bfg.jar"
 alias logs="journalctl --output cat --boot 0 --full"
