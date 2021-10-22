@@ -1,3 +1,7 @@
-fileConfigurations:
-- source: TestApplication.java.peb.peb
-  destination: '{{name}}/{{moduleType}}/src/test/java/com/xenoterracide/TestApplication.java.peb'
+commands:
+- template:
+  source: module/build.gradle.kts.hbs
+  destination: 'module/{{module}}/build.gradle.kts'
+  overwrite: false
+- mkdir:
+

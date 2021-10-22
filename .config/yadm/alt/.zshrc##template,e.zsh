@@ -1,22 +1,12 @@
 zinit load zinit-zsh/z-a-meta-plugins
 
-
 zinit for zdharma/history-search-multi-word zdharma/zconvey
 zinit snippet OMZL::history.zsh
-#zinit ice lucid nocd atload'!tw_setup'
-#zinit load reobin/typewritten
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 zinit load romkatv/powerlevel10k
-
-zinit wait as"program" \
-  cp"bin/scd* -> scd" \
-  pick"scd" \
-  src"shellrcfiles/zshrc_scd" \
-  atclone"scd --add $HOME --recursive" \
-  for pavoljuhas/smart-change-directory
 
 zinit wait for \
   OMZL::theme-and-appearance.zsh atload"unalias ls" \
@@ -24,11 +14,9 @@ zinit wait for \
   OMZP::systemd \
   OMZP::direnv \
   OMZP::gitignore \
-  OMZP::scd
 
 zinit ice wait as"program" pick"bin/git-dsf"
 zinit load zdharma/zsh-diff-so-fancy
-
 
 zinit ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zinit snippet https://cpanmin.us
