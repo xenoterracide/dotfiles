@@ -15,11 +15,11 @@ if command -v perl >/dev/null 2>&1; then
   fi
 fi
 
-if command kubectl >/dev/null 2>&1; then
+if command -v kubectl >/dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
 
-if command cargo >/dev/null 2>&1; then
+if command -v cargo >/dev/null 2>&1; then
   export PATH="$PATH:$HOME/.cargo/bin"
 fi
 ######
