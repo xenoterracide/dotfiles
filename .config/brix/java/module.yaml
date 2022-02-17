@@ -1,7 +1,0 @@
-commands:
-- template:
-  source: module/build.gradle.kts.hbs
-  destination: 'module/{{module}}/build.gradle.kts'
-  overwrite: false
-- mkdir:
-

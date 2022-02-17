@@ -1,25 +1,22 @@
-zinit load zinit-zsh/z-a-meta-plugins
+zi load z-shell/z-a-meta-plugins
 
-zinit for zdharma/history-search-multi-word zdharma/zconvey
-zinit snippet OMZL::history.zsh
+zi for z-shell/history-search-multi-word z-shell/zconvey
+zi snippet OMZL::history.zsh
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-zinit load romkatv/powerlevel10k
+zi load romkatv/powerlevel10k
 
-zinit wait for \
+zi wait for \
   OMZL::theme-and-appearance.zsh atload"unalias ls" \
   OMZP::colored-man-pages \
   OMZP::systemd \
   OMZP::direnv \
-  OMZP::gitignore \
+  OMZP::gitignore
 
-zinit ice wait as"program" pick"bin/git-dsf"
-zinit load zdharma/zsh-diff-so-fancy
-
-zinit ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
-zinit snippet https://cpanmin.us
+zi ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
+zi snippet https://cpanmin.us
 
 
 {% if yadm.user == "root" %}
@@ -44,15 +41,15 @@ schedprompt() {
 zmodload -i zsh/sched
 schedprompt
 
-zinit wait for \
+zi wait for \
   atinit"zicompinit; zicdreplay" \
-      zdharma/fast-syntax-highlighting \
+      z-shell/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
+  blockf atpull'zi creinstall -q .' \
       zsh-users/zsh-completions
 
-zinit wait atload"zicompinit" for zsh-users+fast
+zi wait atload"zicompinit" for zsh-users+fast
 set -o emacs
 bindkey "^R" history-search-multi-word
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -40,7 +40,7 @@
 
   <property name="fileExtensions" value="java, properties, xml"/>
 
-  <!-- Excludes all 'module-info.java.peb.peb' files              -->
+  <!-- Excludes all 'module-info.java.hbs.peb.peb' files              -->
   <!-- See https://checkstyle.org/config_filefilters.html -->
   <module name="BeforeExecutionExclusionFileFilter">
     <property name="fileNamePattern" value="module\-info\.java$"/>

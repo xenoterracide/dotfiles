@@ -1,9 +1,0 @@
-plugins {
-  `java-library`
-  id("{{ project }}.bom")
-  id("{{ project }}.java-compile")
-  id("{{ project }}.java-test")
-  id("{{ project }}.checkstyle")
-  id("{{ project }}.spotbugs")
-  id("{{ project }}.spotless")
-}

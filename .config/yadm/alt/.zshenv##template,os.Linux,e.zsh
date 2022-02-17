@@ -1,24 +1,17 @@
 {% include "../extra/env.sh" %}
 
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
+  sh -c "$(curl -fsSL https://git.io/get-zi)" -- -i skip -b v1.0.0
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+zi_home="${HOME}/.zi"
+source "${zi_home}/bin/zi.zsh"
+# Next two lines must be below the above two
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
-module_path+=( "/home/xeno/.zinit/bin/zmodules/Src" )
-zmodload zdharma/zplugin
+zi ice lucid id-as
+zi load z-shell/z-a-patch-dl
 
-zinit lucid for zinit-zsh/z-a-default-ice
-zinit default-ice lucid
-
-zinit load zinit-zsh/z-a-patch-dl
-
-zinit ice lucid as"program" pick"cmds/zc-bg-notify"
-zinit load zdharma/zconvey
+zi ice lucid as"program" pick"cmds/zc-bg-notify"
+zi load z-shell/zconvey
