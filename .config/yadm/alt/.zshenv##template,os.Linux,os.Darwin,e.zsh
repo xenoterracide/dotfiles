@@ -1,4 +1,5 @@
 {% include "../extra/env.sh" %}
+{% include "../extra/{{ yadm.class }}.zsh %}
 
 if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
   sh -c "$(curl -fsSL https://git.io/get-zi)" -- -i skip -b v1.0.0
