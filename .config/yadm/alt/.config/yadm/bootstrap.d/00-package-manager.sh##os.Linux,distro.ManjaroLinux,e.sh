@@ -142,7 +142,6 @@ pamac install --no-confirm \
    android-sdk-cmdline-tools-latest \
    asdf-vm \
    atool \
-   bat-extras-git \
    brix-git \
    deb2targz \
    dropbox \
