@@ -151,12 +151,7 @@ pamac install --no-confirm \
    git-spindle \
    jetbrains-toolbox \
    kalker \
-   kvantum-theme-matchama \
-   manjaro-gnome-tour \
-   navi \
    otf-symbola \
-   python-github3.py \
-   python-xerox \
    slack-desktop \
    speedtest-netperf \
    tcptraceroute \
