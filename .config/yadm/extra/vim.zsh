@@ -1,7 +1,3 @@
-######
-# vim.zsh
-######
-
 function vim_setup() {
   local VIMDIR="$HOME/.vim"
   local VIM_COLOR="$VIMDIR/colors"

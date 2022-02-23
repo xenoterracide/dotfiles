@@ -1,6 +1,3 @@
-######
-# alias.sh
-######
 alias vi="vim"
 alias vim="\vim -Xp"
 alias bfg="java -jar ~/.local/share/bfg.jar"
@@ -17,5 +14,3 @@ zi wait has"kalker" atload'alias bc="kalker"' for z-shell/null
 zi wait has"procs" atload'alias ps="procs"' for z-shell/null
 zi wait has"tokei" atload'alias cloc="tokei"' for z-shell/null
 zi wait has"zoxide" atinit'eval "$(zoxide init zsh --hook pwd --cmd cd)"' for z-shell/null
-
-######
