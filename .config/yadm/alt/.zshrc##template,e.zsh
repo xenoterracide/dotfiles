@@ -1,3 +1,4 @@
+{% include "../extra/zshrc.os.{{ yadm.os }},e.zsh" %}
 zi load z-shell/z-a-meta-plugins
 
 zi for z-shell/history-search-multi-word z-shell/zconvey
@@ -17,7 +18,6 @@ zi wait for \
 
 zi ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zi snippet https://cpanmin.us
-
 
 {% if yadm.user == "root" %}
 {% else %}
