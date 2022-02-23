@@ -1,0 +1,1 @@
+../alt/.config/yadm/bootstrap.d/00-package-manager.sh##os.Linux,distro.ManjaroLinux,e.sh
