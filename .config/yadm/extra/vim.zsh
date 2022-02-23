@@ -6,7 +6,6 @@ function vim_setup() {
   local VIM_FTDETECT="$VIMDIR/ftdetect"
   local VIM_AFTER_SYNTAX="$VIMDIR/after/syntax"
 
-
   zi ice lucid wait cloneonly nocompile notify \
     atclone"install --compare -D colors/desertink.vim $VIM_COLOR/desertink.vim" \
     atpull"%atclone"
