@@ -6,7 +6,8 @@ brew install \
   exa \
   zoxcide \
   gh \
-  kalker
+  kalker \
+  git-delta
 brew install --cask \
   corretto \
   font-fira-code-nerd-font \
