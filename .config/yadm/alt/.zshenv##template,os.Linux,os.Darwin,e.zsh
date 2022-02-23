@@ -1,6 +1,6 @@
 {% include "../extra/env.sh" %}
 {% if yadm.class %}}
-{% include "../extra/{{ yadm.class }}.zsh %}
+{% include "../extra/{{ yadm.class }}.zsh" %}
 {% endif %}
 
 if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
