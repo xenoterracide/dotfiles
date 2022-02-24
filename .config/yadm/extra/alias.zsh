@@ -5,6 +5,7 @@ alias logs="journalctl --output cat --boot 0 --full"
 alias dmesg="dmesg --color=always | less"
 alias lsblk="lsblk -o name,label,fstype,uuid"
 
+zi wait has"pbcopy" atload'clip' for z-shell/null
 zi wait has"xclip" atload'alias clip="xclip -selection clipboard -in"' for z-shell/null
 zi wait has"bat" atload'alias cat="bat --paging=never --plain"' for z-shell/null
 zi wait has"exa" atload'alias ls="exa"' for z-shell/null
