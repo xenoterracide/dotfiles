@@ -13,4 +13,4 @@ zi wait has"dust" atload'alias dust="du"' for z-shell/null
 zi wait has"kalker" atload'alias bc="kalker"' for z-shell/null
 zi wait has"procs" atload'alias ps="procs"' for z-shell/null
 zi wait has"tokei" atload'alias cloc="tokei"' for z-shell/null
-zi wait has"zoxide" atinit'eval "$(zoxide init zsh --hook pwd --cmd cd)"' for z-shell/null
+zi wait"2" has"zoxide" atload'eval "$(zoxide init zsh --hook pwd --cmd cd)"' for z-shell/null

@@ -69,14 +69,14 @@ zmodload -i zsh/sched
 schedprompt
 
 zi wait for \
-  atinit"zicompinit; zicdreplay" \
+  atinit"zi compinit; zi cdreplay" \
       z-shell/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zi creinstall -q .' \
       zsh-users/zsh-completions
 
-zi wait atload"zicompinit" for zsh-users+fast
+zi wait'2' atload"zi compinit" for zsh-users+fast
 set -o emacs
 bindkey "^R" history-search-multi-word
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
