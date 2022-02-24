@@ -19,19 +19,12 @@ zi wait for \
 zi ice wait as"program" has"perl" mv"cpanmin.us* -> cpanm" pick"cpanm"
 zi snippet https://cpanmin.us
 
-{% if yadm.user == "root" %}
-{% else %}
-{% include "../extra/developer.zsh" %}
-{% endif %}
-
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.zsh" %}
 {% include "../extra/vim.zsh" %}
 
 zstyle :plugin:history-search-multi-word reset-prompt-protect 1
 
-
-#. /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
 
 schedprompt() {
   zle && zle reset-prompt
