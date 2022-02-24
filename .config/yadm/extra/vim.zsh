@@ -21,10 +21,13 @@ function vim_setup() {
     atpull"%atclone"
   zi light wgwoods/vim-systemd-syntax
 
+{% if yadm.class == "cof" %}
+{% else %}
   zi ice lucid wait cloneonly nocompile \
     atclone"rsync --mkpath --exclude '.*' --archive . $VIM_PACK/local/start/editorconfig" \
     atpull"%atclone"
   zi light editorconfig/editorconfig-vim
+{% endif %}
 }
 vim_setup
 unfunction vim_setup
