@@ -10,7 +10,7 @@ zi wait has"xclip" atload'alias clip="xclip -selection clipboard -in"' for z-she
 zi wait has"bat" atload'alias cat="bat --paging=never --plain"' for z-shell/null
 zi wait has"exa" atload'alias ls="exa"' for z-shell/null
 zi wait has"plocate" atload'alias locate="plocate"' for z-shell/null
-zi wait has"dust" atload'alias dust="du"' for z-shell/null
+zi wait has"dust" atload'alias du="dust"' for z-shell/null
 zi wait has"kalker" atload'alias bc="kalker"' for z-shell/null
 zi wait has"procs" atload'alias ps="procs"' for z-shell/null
 zi wait has"tokei" atload'alias cloc="tokei"' for z-shell/null

@@ -6,7 +6,7 @@
 {% endif %}
 
 if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
-  sh -c "$(curl -fsSL https://git.io/get-zi)" -- -i skip -b v1.0.0
+  sh -c "$(curl -fsSL https://git.io/get-zi)"
 fi
 
 zi_home="${HOME}/.zi"

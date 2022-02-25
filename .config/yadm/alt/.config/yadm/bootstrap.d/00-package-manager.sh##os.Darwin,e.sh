@@ -7,7 +7,10 @@ brew install \
   zoxcide \
   gh \
   kalker \
-  git-delta
+  git-delta \
+  fd \
+  dust
+
 brew install --cask \
   corretto \
   font-fira-code-nerd-font \
