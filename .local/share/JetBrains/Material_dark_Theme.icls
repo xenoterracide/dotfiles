@@ -1,10 +1,10 @@
 <scheme name="Material dark-Theme" version="142" parent_scheme="Default">
   <option name="FONT_SCALE" value="1.0" />
   <metaInfo>
-    <property name="created">2022-02-25T09:14:11</property>
+    <property name="created">2022-02-25T13:15:01</property>
     <property name="ide">idea</property>
     <property name="ideVersion">2021.3.2.0.0</property>
-    <property name="modified">2022-02-25T09:14:16</property>
+    <property name="modified">2022-02-25T13:15:04</property>
     <property name="originalScheme">_@user_Material dark-Theme</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.2" />
@@ -416,6 +416,11 @@
         <option name="FOREGROUND" value="3cceff" />
       </value>
     </option>
+    <option name="DEFAULT_COMMA">
+      <value>
+        <option name="FOREGROUND" value="a7dbd8" />
+      </value>
+    </option>
     <option name="DEFAULT_CONSTANT">
       <value>
         <option name="FOREGROUND" value="f77669" />
@@ -460,6 +465,13 @@
         <option name="FOREGROUND" value="82b1ff" />
       </value>
     </option>
+    <option name="DEFAULT_GLOBAL_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="c3d3de" />
+        <option name="EFFECT_COLOR" value="f49810" />
+        <option name="EFFECT_TYPE" value="2" />
+      </value>
+    </option>
     <option name="DEFAULT_IDENTIFIER">
       <value>
         <option name="FOREGROUND" value="c3d3de" />
@@ -477,6 +489,7 @@
     </option>
     <option name="DEFAULT_INVALID_STRING_ESCAPE">
       <value>
+        <option name="FOREGROUND" value="eec213" />
         <option name="EFFECT_COLOR" value="ff5370" />
         <option name="EFFECT_TYPE" value="2" />
       </value>
@@ -488,7 +501,7 @@
     </option>
     <option name="DEFAULT_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="8ec879" />
+        <option name="FOREGROUND" value="608b4e" />
       </value>
     </option>
     <option name="DEFAULT_LOCAL_VARIABLE">
@@ -527,10 +540,25 @@
         <option name="FOREGROUND" value="80cbc4" />
       </value>
     </option>
+    <option name="DEFAULT_REASSIGNED_LOCAL_VARIABLE">
+      <value>
+        <option name="EFFECT_COLOR" value="909090" />
+        <option name="EFFECT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="DEFAULT_REASSIGNED_PARAMETER">
+      <value>
+        <option name="EFFECT_COLOR" value="f49810" />
+        <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
     <option name="DEFAULT_STATIC_FIELD">
       <value>
         <option name="FOREGROUND" value="f77669" />
         <option name="FONT_TYPE" value="2" />
+        <option name="EFFECT_COLOR" value="f49810" />
+        <option name="ERROR_STRIPE_COLOR" value="f49810" />
+        <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
     <option name="DEFAULT_STATIC_METHOD">
@@ -555,7 +583,9 @@
       </value>
     </option>
     <option name="DEFAULT_VALID_STRING_ESCAPE">
-      <value />
+      <value>
+        <option name="FOREGROUND" value="a7dbd8" />
+      </value>
     </option>
     <option name="DELETED_TEXT_ATTRIBUTES">
       <value>
@@ -634,11 +664,6 @@
     <option name="DJANGO_TAG_START_END">
       <value>
         <option name="FOREGROUND" value="89ddff" />
-      </value>
-    </option>
-    <option name="DOC_COMMENT_TAG_VALUE">
-      <value>
-        <option name="FOREGROUND" value="798891" />
       </value>
     </option>
     <option name="DUPLICATE_FROM_SERVER">
@@ -794,12 +819,6 @@
       </value>
     </option>
     <option name="INSTANCE_FIELD_ATTRIBUTES" baseAttributes="DEFAULT_INSTANCE_FIELD" />
-    <option name="INSTANCE_FINAL_FIELD_ATTRIBUTES">
-      <value>
-        <option name="FOREGROUND" value="b389c5" />
-        <option name="FONT_TYPE" value="2" />
-      </value>
-    </option>
     <option name="IVAR">
       <value>
         <option name="FOREGROUND" value="9373a5" />
@@ -820,22 +839,7 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="JAVA_COMMA">
-      <value>
-        <option name="FOREGROUND" value="a7dbd8" />
-      </value>
-    </option>
-    <option name="JAVA_LINE_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="608b4e" />
-      </value>
-    </option>
     <option name="JAVA_SEMICOLON">
-      <value>
-        <option name="FOREGROUND" value="a7dbd8" />
-      </value>
-    </option>
-    <option name="JAVA_VALID_STRING_ESCAPE">
       <value>
         <option name="FOREGROUND" value="a7dbd8" />
       </value>
@@ -852,56 +856,14 @@
     </option>
     <option name="JS.GLOBAL_FUNCTION">
       <value>
-        <option name="FOREGROUND" value="ffffff" />
+        <option name="FOREGROUND" value="82b1ff" />
       </value>
     </option>
-    <option name="JS.GLOBAL_VARIABLE">
-      <value>
-        <option name="FOREGROUND" value="6dc2b8" />
-      </value>
-    </option>
-    <option name="JS.INSTANCE_MEMBER_FUNCTION">
-      <value>
-        <option name="FOREGROUND" value="6dc2b8" />
-      </value>
-    </option>
-    <option name="JS.INSTANCE_MEMBER_VARIABLE">
-      <value>
-        <option name="FOREGROUND" value="6dc2b8" />
-      </value>
-    </option>
-    <option name="JS.INVALID_STRING_ESCAPE">
-      <value>
-        <option name="FOREGROUND" value="c3e887" />
-        <option name="EFFECT_TYPE" value="2" />
-      </value>
-    </option>
-    <option name="JS.LOCAL_VARIABLE">
-      <value>
-        <option name="FOREGROUND" value="6dc2b8" />
-      </value>
-    </option>
-    <option name="JS.PARAMETER">
-      <value>
-        <option name="FOREGROUND" value="ffffff" />
-      </value>
-    </option>
-    <option name="JS.PARENTHS">
-      <value>
-        <option name="FOREGROUND" value="d0f5d4" />
-      </value>
-    </option>
+    <option name="JS.GLOBAL_VARIABLE" baseAttributes="DEFAULT_GLOBAL_VARIABLE" />
+    <option name="JS.INSTANCE_MEMBER_FUNCTION" baseAttributes="DEFAULT_INSTANCE_METHOD" />
+    <option name="JS.LOCAL_VARIABLE" baseAttributes="DEFAULT_LOCAL_VARIABLE" />
+    <option name="JS.PARAMETER" baseAttributes="DEFAULT_PARAMETER" />
     <option name="JS.REGEXP">
-      <value>
-        <option name="FOREGROUND" value="6dc2b8" />
-      </value>
-    </option>
-    <option name="JS.SEMICOLON">
-      <value>
-        <option name="FOREGROUND" value="6dc2b8" />
-      </value>
-    </option>
-    <option name="JS.VALID_STRING_ESCAPE">
       <value>
         <option name="FOREGROUND" value="6dc2b8" />
       </value>
@@ -949,6 +911,7 @@
         <option name="FOREGROUND" value="a7dbd8" />
       </value>
     </option>
+    <option name="JavaScript:INJECTED_LANGUAGE_FRAGMENT" baseAttributes="INJECTED_LANGUAGE_FRAGMENT" />
     <option name="KOTLIN_IMPLICIT_EXHAUSTIVE_WHEN">
       <value />
     </option>
@@ -28235,13 +28198,7 @@
       </value>
     </option>
     <option name="STATIC_FIELD_ATTRIBUTES" baseAttributes="DEFAULT_STATIC_FIELD" />
-    <option name="STATIC_FINAL_FIELD_ATTRIBUTES">
-      <value>
-        <option name="FOREGROUND" value="f77669" />
-        <option name="FONT_TYPE" value="3" />
-        <option name="EFFECT_TYPE" value="1" />
-      </value>
-    </option>
+    <option name="STATIC_FINAL_FIELD_ATTRIBUTES" baseAttributes="STATIC_FIELD_ATTRIBUTES" />
     <option name="Static property reference ID">
       <value>
         <option name="FOREGROUND" value="1a1f29" />
@@ -28287,14 +28244,15 @@
         <option name="ERROR_STRIPE_COLOR" value="ffeb95" />
       </value>
     </option>
+    <option name="TS.TYPE_GUARD">
+      <value>
+        <option name="EFFECT_COLOR" value="a7dbd8" />
+        <option name="EFFECT_TYPE" value="4" />
+      </value>
+    </option>
     <option name="TYPEDEF">
       <value>
         <option name="FOREGROUND" value="c7c8f5" />
-      </value>
-    </option>
-    <option name="TYPE_PARAMETER_NAME_ATTRIBUTES">
-      <value>
-        <option name="FOREGROUND" value="ffffff" />
       </value>
     </option>
     <option name="TYPO">
