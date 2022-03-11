@@ -158,5 +158,6 @@ pamac install --no-confirm \
    teams \
    transfersh \
    wev \
-   zoom
+   zoom \
+   bfg
 

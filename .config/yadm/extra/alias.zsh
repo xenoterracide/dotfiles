@@ -1,6 +1,5 @@
 alias vi="vim"
 alias vim="\vim -Xp"
-alias bfg="java -jar ~/.local/share/bfg.jar"
 alias logs="journalctl --output cat --boot 0 --full"
 alias dmesg="dmesg --color=always | less"
 alias lsblk="lsblk -o name,label,fstype,uuid"
