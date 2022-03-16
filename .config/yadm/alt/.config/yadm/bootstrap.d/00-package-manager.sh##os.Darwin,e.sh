@@ -4,12 +4,13 @@ brew install \
   awscli \
   bat \
   exa \
-  zoxcide \
+  zoxide \
   gh \
   kalker \
   git-delta \
   fd \
-  dust
+  dust \
+  ripgrep
 
 brew install --cask \
   corretto \

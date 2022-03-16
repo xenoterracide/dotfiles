@@ -1,1 +1,0 @@
-../alt/.config/yadm/bootstrap.d/01-jetbrains-toolbox.sh##os.Linux,distro.ManjaroLinux,e.sh
