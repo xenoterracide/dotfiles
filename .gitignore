@@ -1,4 +1,14 @@
+## already tracked
+.zshrc
+.zshenv
+.gitconfig
+
+## compiled dynamic langauages
+*.pyc
 *.zwc
+
+*.log
+
 *.idea
 *.iml
 *.code-workspace
@@ -191,11 +201,3 @@ caches/
 .config/FontBase/
 .config/Code - OSS/
 .config/Bitwarden/
-
-*.log
-*.pyc
-
-## already tracked
-.zshrc
-.zshenv
-.gitconfig
