@@ -1,0 +1,8 @@
+rootProject.name = "{{project}}"
+
+include(":{{project}}")
+
+project(":{{project}}").projectDir = file("module/{{project}}")
+
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
