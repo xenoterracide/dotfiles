@@ -155,6 +155,7 @@ caches/
 .sylpheed-2.0/
 .steam*
 .ssh/
+!.ssh/config
 .pki/
 .pkg-cache/
 .spamassassin/
