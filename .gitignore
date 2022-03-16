@@ -198,3 +198,4 @@ caches/
 ## already tracked
 .zshrc
 .zshenv
+.gitconfig
