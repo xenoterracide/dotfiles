@@ -1,2 +1,4 @@
 [scan]
 concurrency = 1
+[schedule]
+skip_on_battery = true
