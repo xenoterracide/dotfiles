@@ -8,3 +8,4 @@ export VISUAL='vim'
 export PAGER='less --chop-long-lines'
 export LESS="-R --quit-if-one-screen --silent"
 export GPG_TTY=$(tty)
+
