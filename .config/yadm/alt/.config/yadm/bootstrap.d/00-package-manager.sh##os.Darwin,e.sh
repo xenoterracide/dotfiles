@@ -42,7 +42,7 @@ brew install --cask \
   font-fira-code-nerd-font \
   font-fira-sans \
   font-noto-nerd-font \
-  font-powerline-symbols \
+  font-powerline-symbols
 
 set +e
 

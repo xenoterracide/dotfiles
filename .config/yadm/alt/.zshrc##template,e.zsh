@@ -14,6 +14,8 @@ zi wait for \
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.zsh" %}
 
+zi wait has'asdf' atload". ~/.asdf/plugins/java/set-java-home.zsh" for z-shell/null
+
 function vim_setup() {
   local VIMDIR="$HOME/.vim"
   local VIM_COLOR="$VIMDIR/colors"
