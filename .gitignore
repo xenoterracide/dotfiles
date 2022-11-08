@@ -99,7 +99,6 @@ $RECYCLE.BIN/
 *.jar
 *.rar
 *.zip
-!.yarn/cache/*.zip
 *.gz
 *.gzip
 *.tgz
