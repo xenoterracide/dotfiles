@@ -25,17 +25,17 @@ function vim_setup() {
   local VIM_AFTER_SYNTAX="$VIMDIR/after/syntax"
 
   zi ice lucid wait cloneonly nocompile notify \
-    atclone"install --compare -D colors/desertink.vim $VIM_COLOR/desertink.vim" \
+    atclone"install --compare -d colors/desertink.vim $VIM_COLOR/desertink.vim" \
     atpull"%atclone"
   zi light toupeira/vim-desertink
 
   zi ice lucid wait cloneonly nocompile \
-    atclone"install -D after/syntax/zsh.vim $VIM_AFTER_SYNTAX/zsh.vim" \
+    atclone"install --compare -d after/syntax/zsh.vim $VIM_AFTER_SYNTAX/zsh.vim" \
     atpull"%atclone"
   zi light z-shell/zinit-vim-syntax
 
   zi ice lucid wait cloneonly nocompile \
-    atclone"install -D syntax/systemd.vim $VIM_AFTER_SYNTAX/systemd.vim; install -D ftplugin/systemd.vim $VIM_FTPLUGIN/systemd.vim; install -D ftdetect/systemd.vim $VIM_FTDETECT/systemd.vim" \
+    atclone"install -d syntax/systemd.vim $VIM_AFTER_SYNTAX/systemd.vim; install -d ftplugin/systemd.vim $VIM_FTPLUGIN/systemd.vim; install -d ftdetect/systemd.vim $VIM_FTDETECT/systemd.vim" \
     atpull"%atclone"
   zi light wgwoods/vim-systemd-syntax
 
