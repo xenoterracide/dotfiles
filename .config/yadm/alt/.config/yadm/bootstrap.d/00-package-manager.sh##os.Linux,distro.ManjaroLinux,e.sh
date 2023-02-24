@@ -137,5 +137,5 @@ pamac install --no-confirm \
    transfersh \
    wev \
    zoom \
-   bfg
-
+   bfg \
+   github-cli
