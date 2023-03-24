@@ -1,6 +1,11 @@
 #!/bin/sh
 
-sudo pacman -S \
+cd /tmp/
+git clone https://aur.archlinux.org/rua.git
+cd rua
+makepkg -si
+cd .. && rm -rf rua
+rua install \
    aspell-en \
    awesome-terminal-fonts \
    bitwarden-cli \
@@ -20,6 +25,6 @@ sudo pacman -S \
    whois \
    yadm \
    zoxide \
-   github-cli
+   github-cli \
+   asdf-vm
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
