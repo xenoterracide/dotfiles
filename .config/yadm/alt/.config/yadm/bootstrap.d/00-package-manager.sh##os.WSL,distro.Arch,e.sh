@@ -1,11 +1,9 @@
 #!/bin/sh
 
-cd /tmp/
-git clone https://aur.archlinux.org/rua.git
-cd rua
-makepkg -si
-cd .. && rm -rf rua
-rua install \
+cd /tmp/ && git clone https://aur.archlinux.org/yay.git
+cd yay && makepkg -si
+cd .. && rm -rf yay 
+yay install \
    aspell-en \
    awesome-terminal-fonts \
    bitwarden-cli \
