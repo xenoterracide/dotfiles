@@ -20,8 +20,4 @@ sudo pacman -S \
    whois \
    yadm \
    zoxide \
-   asdf-vm \
-   kalker \
-   otf-symbola \
-   bfg \
    github-cli
