@@ -3,7 +3,9 @@
 cd /tmp/ && git clone https://aur.archlinux.org/yay.git
 cd yay && makepkg -si
 cd .. && rm -rf yay 
-yay --batchinstall \
+yay -Y --gendb
+yay -Y --combinedupgrade --batchinstall --nodiffmenu --cleanafter --noupgrademenu --save
+yay -S \
    aspell-en \
    awesome-terminal-fonts \
    bitwarden-cli \
