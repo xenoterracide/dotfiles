@@ -37,6 +37,7 @@ export ASDF_DIR="/opt/asdf-vm"
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs latest:lts
 asdf global nodejs lts
+corepack enable
 
 asdf plugin add java https://github.com/halcyon/asdf-java.git
 asdf install java latest:temurin-17
