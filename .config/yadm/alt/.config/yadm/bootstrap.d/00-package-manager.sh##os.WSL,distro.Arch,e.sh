@@ -3,7 +3,7 @@
 cd /tmp/ && git clone https://aur.archlinux.org/yay.git
 cd yay && makepkg -si
 cd .. && rm -rf yay 
-yay install \
+yay --batchinstall \
    aspell-en \
    awesome-terminal-fonts \
    bitwarden-cli \
@@ -24,5 +24,6 @@ yay install \
    yadm \
    zoxide \
    github-cli \
-   asdf-vm
+   asdf-vm \
+   kalker
 
