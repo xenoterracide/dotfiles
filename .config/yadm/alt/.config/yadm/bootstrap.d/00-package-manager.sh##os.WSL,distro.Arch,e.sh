@@ -29,3 +29,16 @@ yay -S \
    asdf-vm \
    kalker
 
+
+export ASDF_DIR="/opt/asdf-vm"
+. /opt/asdf-vm/asdf.sh
+
+
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs latest:lts
+asdf global nodejs lts
+
+asdf plugin add java https://github.com/halcyon/asdf-java.git
+asdf install java latest:temurin-17
+JAVA_VERSION=$(asdf list java | tr -d '\n')
+asdf global java $JAVA_VERSION
