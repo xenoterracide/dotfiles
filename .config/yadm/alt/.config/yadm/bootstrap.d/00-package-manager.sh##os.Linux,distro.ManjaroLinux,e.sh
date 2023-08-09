@@ -2,7 +2,6 @@
 
 pamac install --no-confirm \
    acpi \
-   acpid \
    aspell-en \
    awesome-terminal-fonts \
    b43-fwcutter \
@@ -11,7 +10,6 @@ pamac install --no-confirm \
    bluez-utils \
    breeze-maia-icon-themes \
    btrfsmaintenance \
-   caffeine-ng \
    chromium \
    cronie \
    diff-so-fancy \
@@ -20,11 +18,9 @@ pamac install --no-confirm \
    dust \
    ecryptfs-utils \
    efibootmgr \
-   evolution \
    exfat-utils \
    fd \
    fio \
-   firefox-gnome-theme-maia \
    flex \
    gdm-plymouth \
    gparted \
@@ -47,20 +43,15 @@ pamac install --no-confirm \
    kde-gtk-config \
    kernel-alive \
    lib32-mesa-demos \
-   libredefender \
    licenses \
-   linux515 \
+   linux60 \
    lollypop \
    lsd \
    man-pages \
    manjaro-alsa \
    manjaro-artwork \
    manjaro-aur-support \
-   manjaro-browser-settings \
-   manjaro-documentation-en \
    manjaro-dynamic-wallpaper \
-   manjaro-firmware \
-   manjaro-gnome-assets \
    manjaro-gnome-postinstall \
    manjaro-hotfixes \
    manjaro-log-helper \
@@ -82,10 +73,6 @@ pamac install --no-confirm \
    ncompress \
    ndisc6 \
    netctl \
-   networkmanager-openconnect \
-   networkmanager-openvpn \
-   networkmanager-pptp \
-   networkmanager-vpnc \
    nfs-utils \
    nmap \
    ntp \
@@ -110,26 +97,18 @@ pamac install --no-confirm \
    systemd-boot-manager \
    systemd-fsck-silent \
    telegram-desktop \
-   tlp \
    tokei \
    traceroute \
-   tracker-miners \
    transmission-gtk \
    ttf-fira-code \
    ttf-inconsolata \
    ttf-indic-otf \
    vi \
    vim-spell-en \
-   vino \
    webapp-manager \
    whois \
    xdg-user-dirs-gtk \
-   xf86-input-elographics \
    xf86-input-evdev \
-   xf86-input-void \
-   xf86-input-wacom \
-   xf86-video-amdgpu \
-   xf86-video-ati \
    xf86-video-intel \
    xf86-video-nouveau \
    xorg-mkfontscale \
@@ -139,7 +118,6 @@ pamac install --no-confirm \
    zoxide \
    zram-generator \
    ananicy \
-   android-sdk-cmdline-tools-latest \
    asdf-vm \
    atool \
    brix-git \
@@ -159,5 +137,5 @@ pamac install --no-confirm \
    transfersh \
    wev \
    zoom \
-   bfg
-
+   bfg \
+   github-cli

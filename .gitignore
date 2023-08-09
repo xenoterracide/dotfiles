@@ -11,7 +11,7 @@
 
 *.idea
 *.iml
-*.code-workspace
+*.code-workspacE
 
 # You may want to customise this file depending on your Operating System
 # and the editor that you use.
@@ -136,7 +136,7 @@ $RECYCLE.BIN/
 
 *.swp
 
-# Homedir
+# Homedir yadm optimization
 Videos/
 Pictures/
 Downloads/
