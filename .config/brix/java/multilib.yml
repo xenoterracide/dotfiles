@@ -1,6 +1,6 @@
 commands:
 - copy:
-    source: project/shared
+    source: project/copy/shared
     destination: .
     overwrite: true
 - template:
