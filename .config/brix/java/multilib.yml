@@ -1,12 +1,10 @@
+context:
+  tld: com.xenoterracide
 commands:
 - copy:
     source: project/copy/shared
     destination: .
     overwrite: true
-- template:
-  source: module/build.gradle.kts.hbs
-  destination: 'module/{{module}}/build.gradle.kts'
-  overwrite: false
 - template:
   source: module/src/main/java/module-info.java.hbs
   destination: 'module/{{module}}/src/main/java/module-info.java'
