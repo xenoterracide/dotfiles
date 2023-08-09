@@ -1,4 +1,5 @@
 import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.io.FileNotFoundException
 
@@ -13,10 +14,10 @@ repositories {
 val libs = the<LibrariesForLibs>()
 
 dependencies {
-  runtimeOnly(libs.spring.boot.starter.log4j2)
   implementation(libs.log4j.api)
+  testImplementation(platform(libs.junit.bom))
   testImplementation(libs.bundles.test)
-  testRuntimeOnly(libs.junit.engine)
+  testRuntimeOnly(libs.bundles.junit.platform)
 }
 
 val available = tasks.register("tests available") {
@@ -35,6 +36,7 @@ tasks.test.configure {
     lifecycle {
       showStandardStreams = true
       displayGranularity = 2
+      exceptionFormat = TestExceptionFormat.FULL
       events.addAll(listOf(TestLogEvent.STARTED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED))
     }
   }

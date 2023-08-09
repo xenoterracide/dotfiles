@@ -28,10 +28,12 @@ tasks.withType<Jar> {
 }
 
 tasks.withType<JavaCompile>().configureEach {
+  options.encoding = "UTF-8"
   options.compilerArgs.addAll(
     listOf(
       "-parameters",
       "-g",
+      "-Xdiags:verbose",
       "-Xlint:all",
       "-Xlint:-processing",
       "-Xlint:-exports",
@@ -174,7 +176,6 @@ tasks.withType<JavaCompile>().configureEach {
       "ClassName",
       "ComparisonContractViolated",
       "DeduplicateConstants",
-      "DivZero",
       "EmptyIf",
       "FuzzyEqualsShouldNotBeUsedInEqualsMethod",
       "IterablePathParameter",
@@ -201,14 +202,14 @@ tasks.withType<JavaCompile>().configureEach {
       "MultipleTopLevelClasses",
       "PackageLocation",
       "RemoveUnusedImports",
-      "WildcardImport",
       "Var"
     )
 
-    val inIdea = providers.systemProperty("idea.active").forUseAtConfigurationTime().map { it.toBoolean() }
+    val inIdea = providers.systemProperty("idea.active").map { it.toBoolean() }
     if (!inIdea.getOrElse(false)) {
       errors.addAll(
         listOf(
+          "WildcardImport",
           "UnusedVariable",
           "UnusedMethod",
           "UnusedNestedClass",
