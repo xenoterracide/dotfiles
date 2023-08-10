@@ -6,17 +6,17 @@ commands:
     destination: .
     overwrite: true
 - template:
-  source: module/src/main/java/module-info.java.hbs
-  destination: 'module/{{module}}/src/main/java/module-info.java'
-  overwrite: false
+    source: module/src/main/java/module-info.java.hbs
+    destination: 'module/{{module}}/src/main/java/module-info.java'
+    overwrite: false
 - template:
-  source: project/templates/shared/package.json.hbs
-  destination: 'package.json'
-  overwrite: false
+    source: project/templates/shared/package.json.hbs
+    destination: 'package.json'
+    overwrite: false
 - template:
-  source: project/templates/shared/settings.gradle.kts.hbs
-  destination: 'settings.gradle.kts'
-  overwrite: false
+    source: project/templates/shared/settings.gradle.kts.hbs
+    destination: 'settings.gradle.kts'
+    overwrite: false
 - mkdir:
     destination: "module/{{module}}/src/main/java/com/xenoterracide/{{module}}"
 - mkdir:

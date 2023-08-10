@@ -2,7 +2,7 @@
 
 cd /tmp/ && git clone https://aur.archlinux.org/yay.git
 cd yay && makepkg -si
-cd .. && rm -rf yay 
+cd .. && rm -rf yay
 yay -Y --gendb
 yay -Y --combinedupgrade --batchinstall --nodiffmenu --cleanafter --noupgrademenu --save
 yay -S \
@@ -43,3 +43,6 @@ asdf plugin add java https://github.com/halcyon/asdf-java.git
 asdf install java latest:temurin-17
 JAVA_VERSION=$(asdf list java | tr -d '\n')
 asdf global java $JAVA_VERSION
+
+# https://github.com/asdf-community/asdf-rust/issues/18#issuecomment-1200289019
+asdf plugin add rust https://github.com/code-lever/asdf-rust.git
