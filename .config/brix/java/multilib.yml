@@ -27,7 +27,7 @@ commands:
 - mkdir:
     destination: "module/{{module}}/src/main/java/{{to-java-package-path tld}}/{{to-java-package-path project}}/{{to-java-package-path module}}"
 - mkdir:
-    destination: "module/{{module}}/src/main/java/{{to-java-package-path tld}}/{{to-java-package-path project}}/{{to-java-package-path module}}"
+    destination: "module/{{module}}/src/test/java/{{to-java-package-path tld}}/{{to-java-package-path project}}/{{to-java-package-path module}}"
 - exec:
     stdout: false
     commands:
