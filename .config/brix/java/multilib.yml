@@ -5,6 +5,16 @@ commands:
     source: project/copy/shared
     destination: .
     overwrite: true
+- exec:
+    commands:
+    - git init
+    - git add .
+    - git commit -m initial
+    - 'git remote add origin git@github.com:xenoterracide/{{project}}.git'
+- template:
+    source: module/build.gradle.kts.hbs
+    destination: 'module/{{module}}/build.gradle.kts'
+    overwrite: false
 - template:
     source: module/src/main/java/module-info.java.hbs
     destination: 'module/{{module}}/src/main/java/module-info.java'
@@ -23,8 +33,9 @@ commands:
     destination: "module/{{module}}/src/test/java/com/xenoterracide/{{module}}"
 - exec:
     commands:
-    - git init
-    - git add .
-    - git commit -m initial
     - yarn up
-    stdout: false
+    - ./gradlew dependencies --write-locks
+    - git add .
+    - ./gradlew spotlessApply
+    - 'git commit -m "add deps"'
+    stdout: true

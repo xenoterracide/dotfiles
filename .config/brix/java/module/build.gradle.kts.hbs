@@ -1,0 +1,11 @@
+group = "{{tld}}"
+version = "0.1.0-SNAPSHOT"
+
+plugins {
+  id("our.java-library")
+}
+
+dependencies {
+  implementation(platform(libs.spring.platform))
+  testImplementation(libs.compile.testing)
+}
