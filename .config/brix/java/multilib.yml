@@ -6,6 +6,7 @@ commands:
     destination: .
     overwrite: true
 - exec:
+    stdout: false
     commands:
     - git init
     - git add .
@@ -16,10 +17,6 @@ commands:
     destination: 'module/{{module}}/build.gradle.kts'
     overwrite: false
 - template:
-    source: module/src/main/java/module-info.java.hbs
-    destination: 'module/{{module}}/src/main/java/module-info.java'
-    overwrite: false
-- template:
     source: project/templates/shared/package.json.hbs
     destination: 'package.json'
     overwrite: false
@@ -28,14 +25,21 @@ commands:
     destination: 'settings.gradle.kts'
     overwrite: false
 - mkdir:
-    destination: "module/{{module}}/src/main/java/com/xenoterracide/{{module}}"
+    destination: "module/{{module}}/src/main/java/{{to-java-package-path tld}}/{{to-java-package-path project}}/{{to-java-package-path module}}"
 - mkdir:
-    destination: "module/{{module}}/src/test/java/com/xenoterracide/{{module}}"
+    destination: "module/{{module}}/src/main/java/{{to-java-package-path tld}}/{{to-java-package-path project}}/{{to-java-package-path module}}"
 - exec:
+    stdout: false
     commands:
     - yarn up
     - ./gradlew dependencies --write-locks
+- template:
+    source: module/src/main/java/module-info.java.hbs
+    destination: 'module/{{module}}/src/main/java/module-info.java'
+    overwrite: false
+- exec:
+    stdout: false
+    commands:
     - git add .
     - ./gradlew spotlessApply
     - 'git commit -m "add deps"'
-    stdout: true
