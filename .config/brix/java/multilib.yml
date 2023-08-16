@@ -39,7 +39,7 @@ commands:
     overwrite: false
 - template:
     source: module/Application.java.hbs
-    destination: 'module/{{module}}/src/main/java/{{to-java-package-path tld}}/{{to-java-package-path project}}/{{to-java-package-path module}}/module-info.java'
+    destination: 'module/{{module}}/src/main/java/{{to-java-package-path tld}}/{{to-java-package-path project}}/{{to-java-package-path module}}/Application.java'
     overwrite: false
 - exec:
     stdout: false
