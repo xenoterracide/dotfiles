@@ -46,4 +46,5 @@ commands:
     commands:
     - git add .
     - ./gradlew spotlessApply
+    - git add -u
     - 'git commit -m "add deps"'
