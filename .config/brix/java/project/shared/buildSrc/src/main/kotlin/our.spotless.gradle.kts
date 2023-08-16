@@ -6,8 +6,6 @@ plugins {
 }
 
 val copyright = "Copyright © \$YEAR Caleb Cushing."
-val license = "Apache 2.0. See https://github.com/xenoterracide/brix/LICENSE.txt"
-val licenseSimple = "https://choosealicense.com/licenses/apache-2.0/#"
 
 spotless {
   val isCI = providers.environmentVariable("CI").isPresent
@@ -19,8 +17,6 @@ spotless {
       /**
 
       $copyright
-      $license
-      $licenseSimple
 
       Licensed under the Apache License, Version 2.0 (the "License");
       you may not use this file except in compliance with the License.
