@@ -1,0 +1,1264 @@
+--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]
+
+-------------------------------
+-- Chess Against the Machine --
+-------------------------------
+
+-- A chess mod for Tabletop Simulator that lets you play against a chess engine.
+-- Written by Connor Howington :)
+
+-- Want to contribute?
+-- Head over to https://github.com/chowington/chess-against-the-machine
+
+-- Parts of this script are copied or adpated from sunfish.lua, a lua chess
+-- engine written by Soumith Chintala: https://github.com/soumith/sunfish.lua
+-- Thanks Soumith!
+
+
+
+-- Set to print debugging info
+debug = false
+
+-- The table size is the maximum number of elements in the transposition table.
+--local TABLE_SIZE = 1e6
+local TABLE_SIZE = 1e6
+
+-- This constant controls how much time we spend on looking for optimal moves.
+--local NODES_SEARCHED = 1e4
+local NODES_SEARCHED = 150
+
+-- Mate value must be greater than 8*queen + 2*(rook+knight+bishop)
+-- King value is set to twice this value such that if the opponent is
+-- 8 queens up, but we got the king, we still exceed MATE_VALUE.
+local MATE_VALUE = 30000
+
+-- Our board is represented as a 120 character string. The padding allows for
+-- fast detection of moves that don't stay within the board.
+local A1, H1, A8, H8 = 91, 98, 21, 28
+local initial =
+    '         \n' .. --   0 -  9
+    '         \n' .. --  10 - 19
+    ' rnbqkbnr\n' .. --  20 - 29
+    ' pppppppp\n' .. --  30 - 39
+    ' ........\n' .. --  40 - 49
+    ' ........\n' .. --  50 - 59
+    ' ........\n' .. --  60 - 69
+    ' ........\n' .. --  70 - 79
+    ' PPPPPPPP\n' .. --  80 - 89
+    ' RNBQKBNR\n' .. --  90 - 99
+    '         \n' .. -- 100 -109
+    '          '     -- 110 -119
+
+local __1 = 1 -- 1-index correction
+
+-- Move and evaluation tables
+local N, E, S, W = -10, 1, 10, -1
+local directions = {
+    P = {N, 2*N, N+W, N+E},
+    N = {2*N+E, N+2*E, S+2*E, 2*S+E, 2*S+W, S+2*W, N+2*W, 2*N+W},
+    B = {N+E, S+E, S+W, N+W},
+    R = {N, E, S, W},
+    Q = {N, E, S, W, N+E, S+E, S+W, N+W},
+    K = {N, E, S, W, N+E, S+E, S+W, N+W}
+}
+
+local pst = {
+    P = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 198, 198, 198, 198, 198, 198, 198, 198, 0,
+        0, 178, 198, 198, 198, 198, 198, 198, 178, 0,
+        0, 178, 198, 198, 198, 198, 198, 198, 178, 0,
+        0, 178, 198, 208, 218, 218, 208, 198, 178, 0,
+        0, 178, 198, 218, 238, 238, 218, 198, 178, 0,
+        0, 178, 198, 208, 218, 218, 208, 198, 178, 0,
+        0, 178, 198, 198, 198, 198, 198, 198, 178, 0,
+        0, 198, 198, 198, 198, 198, 198, 198, 198, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    B = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 797, 824, 817, 808, 808, 817, 824, 797, 0,
+        0, 814, 841, 834, 825, 825, 834, 841, 814, 0,
+        0, 818, 845, 838, 829, 829, 838, 845, 818, 0,
+        0, 824, 851, 844, 835, 835, 844, 851, 824, 0,
+        0, 827, 854, 847, 838, 838, 847, 854, 827, 0,
+        0, 826, 853, 846, 837, 837, 846, 853, 826, 0,
+        0, 817, 844, 837, 828, 828, 837, 844, 817, 0,
+        0, 792, 819, 812, 803, 803, 812, 819, 792, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    N = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 627, 762, 786, 798, 798, 786, 762, 627, 0,
+        0, 763, 798, 822, 834, 834, 822, 798, 763, 0,
+        0, 817, 852, 876, 888, 888, 876, 852, 817, 0,
+        0, 797, 832, 856, 868, 868, 856, 832, 797, 0,
+        0, 799, 834, 858, 870, 870, 858, 834, 799, 0,
+        0, 758, 793, 817, 829, 829, 817, 793, 758, 0,
+        0, 739, 774, 798, 810, 810, 798, 774, 739, 0,
+        0, 683, 718, 742, 754, 754, 742, 718, 683, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    R = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 1258, 1263, 1268, 1272, 1272, 1268, 1263, 1258, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    Q = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 2529, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    K = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 60098, 60132, 60073, 60025, 60025, 60073, 60132, 60098, 0,
+        0, 60119, 60153, 60094, 60046, 60046, 60094, 60153, 60119, 0,
+        0, 60146, 60180, 60121, 60073, 60073, 60121, 60180, 60146, 0,
+        0, 60173, 60207, 60148, 60100, 60100, 60148, 60207, 60173, 0,
+        0, 60196, 60230, 60171, 60123, 60123, 60171, 60230, 60196, 0,
+        0, 60224, 60258, 60199, 60151, 60151, 60199, 60258, 60224, 0,
+        0, 60287, 60321, 60262, 60214, 60214, 60262, 60321, 60287, 0,
+        0, 60298, 60332, 60273, 60225, 60225, 60273, 60332, 60298, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+}
+
+local function isspace(s)
+   if s == ' ' or s == '\n' then
+      return true
+   else
+      return false
+   end
+end
+
+local special = '. \n'
+
+local function isupper(s)
+   if special:find(s) then return false end
+   return s:upper() == s
+end
+
+local function islower(s)
+   if special:find(s) then return false end
+   return s:lower() == s
+end
+
+-- super inefficient
+local function swapcase(s)
+   local s2 = ''
+   for i=1,#s do
+      local c = s:sub(i, i)
+      if islower(c) then
+	 s2 = s2 .. c:upper()
+      else
+	 s2 = s2 .. c:lower()
+      end
+   end
+   return s2
+end
+
+-- History is implemented as a doubly-linked list
+function add_to_history(position)
+    local new_list_item = {prev = curr_board_position, next = nil, value = position}
+    curr_board_position.next = new_list_item
+    curr_board_position = new_list_item
+end
+
+local Position = {}
+
+-- Chess logic
+function Position.new(board, score, wc, bc, ep, kp)
+   --[[  A state of a chess game
+      board -- a 120 char representation of the board
+      score -- the board evaluation
+      wc -- the castling rights
+      bc -- the opponent castling rights
+      ep - the en passant square
+      kp - the king passant square
+   ]]--
+   local self = {}
+   self.board = board
+   self.score = score
+   self.wc = wc
+   self.bc = bc
+   self.ep = ep
+   self.kp = kp
+   for k,v in pairs(Position) do self[k] = v end
+   return self
+end
+
+function Position:genMoves()
+   local moves = {}
+   -- For each of our pieces, iterate through each possible 'ray' of moves,
+   -- as defined in the 'directions' map. The rays are broken e.g. by
+   -- captures or immediately in case of pieces such as knights.
+   for i = 1 - __1, #self.board - __1 do
+      local p = self.board:sub(i + __1, i + __1)
+      if isupper(p) and directions[p] then
+	 for _, d in ipairs(directions[p]) do
+	    local limit = (i+d) + (10000) * d -- fake limit
+	    for j=i+d, limit, d do
+	       local q = self.board:sub(j + __1, j + __1)
+	       -- Stay inside the board
+	       if isspace(self.board:sub(j + __1, j + __1)) then break; end
+	       -- Castling
+	       if i == A1 and q == 'K' and self.wc[0 + __1] then
+		  table.insert(moves,  {j, j-2})
+	       end
+	       if i == H1 and q == 'K' and self.wc[1 + __1] then
+		  table.insert(moves,  {j, j+2})
+	       end
+	       -- print(p, q, i, d, j)
+	       -- No friendly captures
+	       if isupper(q) then break; end
+	       -- Special pawn stuff
+	       if p == 'P' and (d == N+W or d == N+E) and q == '.' and j ~= self.ep and j ~= self.kp then
+		  break;
+	       end
+	       if p == 'P' and (d == N or d == 2*N) and q ~= '.' then
+		  break;
+	       end
+	       if p == 'P' and d == 2*N and (i < A1+N or self.board:sub(i+N + __1, i+N + __1) ~= '.') then
+		  break;
+	       end
+	       -- Move it
+	       table.insert(moves, {i, j})
+	       -- print(i, j)
+	       -- Stop crawlers from sliding
+	       if p == 'P' or p == 'N' or p == 'K' then break; end
+	       -- No sliding after captures
+	       if islower(q) then break; end
+	    end
+	 end
+      end
+   end
+   return moves
+end
+
+
+function Position:rotate()
+   return self.new(
+      swapcase(self.board:reverse()), -self.score,
+      self.bc, self.wc, 119-self.ep, 119-self.kp)
+end
+
+function Position:move(move)
+   assert(move) -- move is zero-indexed
+   local i, j = move[0 + __1], move[1 + __1]
+   local p, q = self.board:sub(i + __1, i + __1), self.board:sub(j + __1, j + __1)
+   local function put(board, i, p)
+      return board:sub(1, i-1) .. p .. board:sub(i+1)
+   end
+   -- Copy variables and reset ep and kp
+   local board = self.board
+   local wc, bc, ep, kp = self.wc, self.bc, 0, 0
+   local score = self.score + self:value(move)
+   -- Actual move
+   board = put(board, j + __1, board:sub(i + __1, i + __1))
+   board = put(board, i + __1, '.')
+   -- Castling rights
+   if i == A1 then wc = {false, wc[0 + __1]}; end
+   if i == H1 then wc = {wc[0 + __1], false}; end
+   if j == A8 then bc = {bc[0 + __1], false}; end
+   if j == H8 then bc = {false, bc[1 + __1]}; end
+   -- Castling
+   if p == 'K' then
+      wc = {false, false}
+      if math.abs(j-i) == 2 then
+	 kp = math.floor((i+j)/2)
+	 board = put(board, j < i and A1 + __1 or H1 + __1 , '.')
+	 board = put(board, kp + __1, 'R')
+      end
+   end
+   -- Special pawn stuff
+   if p == 'P' then
+      if A8 <= j and j <= H8 then
+	 board = put(board, j + __1, 'Q')
+      end
+      if j - i == 2*N then
+	 ep = i + N
+      end
+      if ((j - i) == N+W or (j - i) == N+E) and q == '.' then
+	 board = put(board, j+S + __1, '.')
+      end
+   end
+   -- We rotate the returned position, so it's ready for the next player
+   return self.new(board, score, wc, bc, ep, kp):rotate()
+end
+
+function Position:value(move)
+   local i, j = move[0 + __1], move[1 + __1]
+   local p, q = self.board:sub(i + __1, i + __1), self.board:sub(j + __1, j + __1)
+   -- Actual move
+   local score = pst[p][j + __1] - pst[p][i + __1]
+   -- Capture
+   if islower(q) then
+      score = score + pst[q:upper()][j + __1]
+   end
+   -- Castling check detection
+   if math.abs(j-self.kp) < 2 then
+      score = score + pst['K'][j + __1]
+   end
+   -- Castling
+   if p == 'K' and math.abs(i-j) == 2 then
+      score = score + pst['R'][math.floor((i+j)/2) + __1]
+      score = score - pst['R'][j < i and A1 + __1 or H1 + __1]
+   end
+   -- Special pawn stuff
+   if p == 'P' then
+      if A8 <= j and j <= H8 then
+	 score = score + pst['Q'][j + __1] - pst['P'][j + __1]
+      end
+      if j == self.ep then
+	 score = score + pst['P'][j+S + __1]
+      end
+   end
+   return score
+end
+
+-- the lamest possible and most embarassing namedtuple hasher ordered dict
+-- I apologize to the world for writing it.
+local tp = {}
+local tp_index = {}
+local tp_count = 0
+
+local function tp_set(pos, val)
+   local b1 = pos.bc[1] and 'true' or 'false'
+   local b2 = pos.bc[2] and 'true' or 'false'
+   local w1 = pos.bc[1] and 'true' or 'false'
+   local w2 = pos.bc[2] and 'true' or 'false'
+   local hash = pos.board .. ';' .. pos.score .. ';' .. w1 .. ';' .. w2 .. ';'
+      .. b1 .. ';' .. b2 .. ';' .. pos.ep .. ';' .. pos.kp
+   tp[hash] = val
+   tp_index[#tp_index + 1] = hash
+   tp_count = tp_count + 1
+end
+
+local function tp_get(pos)
+   local b1 = pos.bc[1] and 'true' or 'false'
+   local b2 = pos.bc[2] and 'true' or 'false'
+   local w1 = pos.bc[1] and 'true' or 'false'
+   local w2 = pos.bc[2] and 'true' or 'false'
+   local hash = pos.board .. ';' .. pos.score .. ';' .. w1 .. ';' .. w2 .. ';'
+      .. b1 .. ';' .. b2 .. ';' .. pos.ep .. ';' .. pos.kp
+   return tp[hash]
+end
+
+local function tp_popitem()
+   tp[tp_index[#tp_index]] = nil
+   tp_index[#tp_index] = nil
+   tp_count = tp_count - 1
+end
+
+-- Search logic
+local nodes = 0
+
+local function bound(pos, gamma, depth)
+    -- Defining the coroutine as a separate, inner function allows us to make
+    -- use of params from the outer function.
+    function boundCoroutine()
+        --[[ returns s(pos) <= r < gamma    if s(pos) < gamma
+             returns s(pos) >= r >= gamma   if s(pos) >= gamma
+        ]]--
+        --log('at start of bound()')
+
+        -- An important global variable that tracks when this coroutine has
+        -- finished. This is the only way that other functions that call this
+        -- one will be able to tell when it's done, including when this function
+        -- has been called recursively.
+        bound_done = false
+
+        -- We will frequently yield to allow TTS to continue running;
+        -- otherwise, TTS would be unresponsive and the OS would complain that
+        -- it had frozen. Note that the frequent handing over to TTS does slow
+        -- down the engine.
+        coroutine.yield(0)
+
+        nodes = nodes + 1
+        --log(nodes)
+
+        -- Look in the table if we have already searched this position before.
+        -- We use the table value if it was done with at least as deep a search
+        -- as ours, and the gamma value is compatible.
+        local entry = tp_get(pos)
+        assert(depth)
+        if entry ~= nil and entry.depth >= depth and (
+                entry.score < entry.gamma and entry.score < gamma or
+                entry.score >= entry.gamma and entry.score >= gamma) then
+
+            -- This would normally be returned from the function, but TTS's
+            -- coroutines require to you always return 1, so we have to set it
+            -- as a global variable.
+            bound_score = entry.score
+
+            -- Every time we exit this function, we must set bound_done to true
+            -- so functions lower in the stack know that it's done.
+            bound_done = true
+            return 1
+        end
+
+        -- Stop searching if we have won/lost.
+        if math.abs(pos.score) >= MATE_VALUE then
+            bound_score = pos.score
+            bound_done = true
+            return 1
+        end
+
+        -- Null move. Is also used for stalemate checking
+        local nullscore
+        if depth > 0 then
+            bound(pos:rotate(), 1-gamma, depth-3)
+
+            -- After each call to bound(), we must yield until bound_done is set
+            -- to true, signalling that the function has finished.
+            while not bound_done do
+                coroutine.yield(0)
+            end
+
+            nullscore = -bound_score
+        else
+            nullscore = pos.score
+        end
+        --local nullscore = depth > 0 and -bound_score or pos.score
+        --nullscore = -MATE_VALUE*3 if depth > 0 else pos.score
+        if nullscore >= gamma then
+            bound_score = nullscore
+            bound_done = true
+            return 1
+        end
+
+        -- We generate all possible, pseudo legal moves and order them to provoke
+        -- cuts. At the next level of the tree we are going to minimize the score.
+        -- This can be shown equal to maximizing the negative score, with a slightly
+        -- adjusted gamma value.
+        local best, bmove = -3*MATE_VALUE, nil
+        local moves = pos:genMoves()
+        local function sorter(a, b)
+            local va = pos:value(a)
+            local vb = pos:value(b)
+            if va ~= vb then
+                return va > vb
+            else
+                if a[1] == b[1] then
+                    return a[2] > b[2]
+                else
+                    return a[1] < b[1]
+                end
+            end
+        end
+        table.sort(moves, sorter)
+        for _,move in ipairs(moves) do
+            -- We check captures with the value function, as it also contains ep and kp
+            if depth <= 0 and pos:value(move) < 150 then
+                break
+            end
+
+            bound(pos:move(move), 1-gamma, depth-1)
+            while not bound_done do
+                coroutine.yield(0)
+            end
+
+            local score = -bound_score
+            --log(move[1] .. ' ' ..  move[2] .. ' ' .. score)
+            if score > best then
+                best = score
+                bmove = move
+            end
+            if score >= gamma then
+                break
+            end
+        end
+
+        -- If there are no captures, or just not any good ones, stand pat
+        if depth <= 0 and best < nullscore then
+            bound_score = nullscore
+            bound_done = true
+            return 1
+        end
+        -- Check for stalemate. If best move loses king, but not doing anything
+        -- would save us. Not at all a perfect check.
+        if depth > 0 and (best <= -MATE_VALUE) and nullscore > -MATE_VALUE then
+            best = 0
+        end
+
+        -- We save the found move together with the score, so we can retrieve it in
+        -- the play loop. We also trim the transposition table in FILO order.
+        -- We prefer fail-high moves, as they are the ones we can build our pv from.
+        if entry == nil or depth >= entry.depth and best >= gamma then
+            tp_set(pos, {depth = depth, score = best, gamma = gamma, move = bmove})
+            if tp_count > TABLE_SIZE then
+                tp_popitem()
+            end
+        end
+        --log('ending bound() at end')
+        bound_score = best
+        bound_done = true
+        return 1
+    end
+
+    startLuaCoroutine(Global, 'boundCoroutine')
+end
+
+local strsplit = function(a)
+   local out = {}
+   while true do
+      local pos, _ = a:find('\n')
+      if pos then
+	 out[#out+1] = a:sub(1, pos-1)
+	 a = a:sub(pos+1)
+      else
+	 out[#out+1] = a
+	 break
+      end
+   end
+   return out
+end
+
+local function printboard(board)
+    local str = ''
+    local l = strsplit(board, '\n')
+    for k,v in ipairs(l) do
+      for i=1,#v do
+          str = str .. v:sub(i,i)
+          str = str .. '  '
+       end
+       str = str .. '\n'
+    end
+
+   log(str)
+end
+
+local function render(i)
+   local rank, fil = math.floor((i - A1) / 10), (i - A1) % 10
+   return string.char(fil + string.byte('a')) .. tostring(-rank + 1)
+end
+
+local function render_black(move)
+    return render(119-move[0 + __1]) .. render(119-move[1 + __1])
+end
+
+-- Set interactivity of all in-game objects
+function set_interactivity(value)
+    local interactivity = value
+
+    -- If the game is already over, don't allow interactivity
+    if game_over then
+        interactivity = false
+    end
+
+    for key, obj in pairs(getAllObjects()) do
+        obj.interactable = interactivity
+    end
+end
+
+-- Given a piece and a move, determine whether a castle has occured.
+-- If so, move the corresponding rook.
+function handle_castling(piece, move)
+    -- Castling isn't signified by any special character,
+    -- so we'll need to check whether the moving piece is a king
+    -- and whether it's moving more than one file.
+    if piece.name == 'Chess_King' then
+        local file_start = move:sub(1, 1)
+        local file_end = move:sub(3, 3)
+
+        if math.abs(file_end:byte() - file_start:byte()) > 1 then
+            -- Move rook based on what square the king ends on
+            local square_end = move:sub(3, 4)
+
+            local rook_move = {
+                ['c1'] = 'a1d1',
+                ['g1'] = 'h1f1',
+                ['c8'] = 'a8d8',
+                ['g8'] = 'h8f8'
+            }
+            execute_move(rook_move[square_end])
+        end
+    end
+end
+
+-- Checks a square to see whether it contains a pawn that deserves a promotion.
+-- square (string) is the square to check, eg. 'c8'
+-- Note that sunfish.lua always promotes to queen.
+-- Works for black. Needs testing for white.
+function handle_pawn_promotion(square)
+    local piece = square_to_trigger[square].getObjects()[1]
+
+    if piece and piece.name == 'Chess_Pawn' then
+        local rank = square:sub(2, 2)
+        if rank == '1' or rank == '8' then
+            local position = piece.getPosition()
+            -- Spawn the queen slightly above the board
+            position.y = 3.41
+
+            local color
+            if rank == '1' then
+                color = 'black'
+            else
+                color = 'white'
+            end
+
+            -- Delete pawn
+            piece.destruct()
+            -- Clone new queen from stored json
+            spawnObjectJSON({
+                json = pieces_json[color]['Chess_Queen'],
+                position = position,
+                rotation = {x=0, y=0, z=0}
+            })
+        end
+    end
+end
+
+-- Takes a move string ('e2e4') and physically executes the move on the board
+function execute_move(move)
+    local square_start = move:sub(1, 2)
+    local square_end = move:sub(3, 4)
+    local trigger_start = square_to_trigger[square_start]
+    local trigger_end = square_to_trigger[square_end]
+    local position_start = trigger_start.getPosition()
+    local position_end = trigger_end.getPosition()
+
+    local moving_piece = trigger_start.getObjects()[1]
+    local captured_piece = trigger_end.getObjects()[1]
+
+    -- Handle en passant
+    -- Check to see whether the moving piece is a pawn and whether its ending
+    -- file is different than its starting file.
+    -- Works when calling execute_move independently. Needs to be tested in an
+    -- actual game.
+    if (moving_piece.name == 'Chess_Pawn' and
+        square_start:sub(1, 1) ~= square_end:sub(1, 1)
+    ) then
+        -- This implies that the pawn is capturing a piece. If no piece exists
+        -- on the ending square, then we are executing an en passant
+        if not captured_piece then
+            -- The pawn that is being captured is at the capturing pawn's
+            -- ending file and starting rank
+            local captured_square = square_end:sub(1, 1)..square_start:sub(2, 2)
+            captured_piece = square_to_trigger[captured_square].getObjects()[1]
+        end
+    end
+
+    if captured_piece then
+        -- Move it up and out of the way
+        local new_pos = captured_piece.getPosition()
+        new_pos.y = 10
+        captured_piece.setPositionSmooth(new_pos, false, false)
+        Wait.condition(
+            function()
+                -- Throw it because I'm lazy
+                captured_piece.addForce(Vector(0, 15, 20))
+                captured_piece.addTorque(Vector(10, 0, 0))
+            end,
+            function() return not captured_piece.isSmoothMoving() end)
+    end
+
+    -- The origin of the chess pieces is at their center,
+    -- so we raise them up a bit so they don't try to phase into the board.
+    -- That has proved troublesome.
+    position_end.y = 4
+
+    -- Move the piece.
+    moving_piece.setPositionSmooth(position_end, false, false)
+    handle_castling(moving_piece, move)
+
+    if not game_over and not player_turn then
+        -- Wait until the piece stops moving to continue
+        Wait.condition(
+            function()
+                handle_pawn_promotion(square_end)
+                set_interactivity(true)
+                set_player_turn(true)
+                broadcast_player_turn('white')
+            end,
+            function()
+                return not moving_piece.isSmoothMoving() and moving_piece.resting
+            end
+        )
+    end
+end
+
+-- Declare a winner and update UI for post-game interaction
+local function end_game(winner)
+    game_over = true
+    set_interactivity(false)
+    update_buttons()
+    UI.setAttribute('reset_button', 'interactable', true)
+    UI.setAttribute('new_game_button', 'interactable', true)
+    UI.setAttribute('turn_text', 'text', "Game over")
+
+    if winner == 'white' then
+        if debug then log("You won") end
+        broadcastToAll("White wins!", {r=0, g=1, b=0})
+    else
+        if debug then log("You lost") end
+        broadcastToAll("Black wins!", {r=1, g=0, b=0})
+    end
+end
+
+-- Called after the engine is finished choosing its move
+local function engine_finished()
+    if debug then log('Engine done') end
+    -- log(move, score)
+    assert(chosen_score)
+    if chosen_score <= -MATE_VALUE then
+        end_game('white')
+        -- If the player won, the winning move has already been played,
+        -- so immediately return
+        return
+    end
+    if chosen_score >= MATE_VALUE then
+        end_game('black')
+        -- If the engine won, we still need to execute the move, so continue
+    end
+
+    assert(chosen_move)
+    -- The black player moves from a rotated position, so we have to
+    -- 'back rotate' the move before printing it.
+    local move_str = render_black(chosen_move)
+
+    if debug then log("Engine move: "..move_str) end
+    -- Update sunfish.lua's game state with the new move
+    pos = pos:move(chosen_move)
+    -- Update our board history
+    add_to_history(pos)
+    if debug then printboard(pos.board) end
+
+    chosen_move = nil
+    chosen_score = nil
+
+    -- Execute the move on the board
+    execute_move(move_str)
+end
+
+function search()
+    -- Iterative deepening MTD-bi search
+    --log('start search() coroutine')
+    maxn = NODES_SEARCHED
+    nodes = 0 -- the global value "nodes"
+    local score
+
+    -- We limit the depth to some constant, so we don't get a stack overflow in
+    -- the end game.
+    for depth=1,98 do
+        --log('depth: '..tostring(depth))
+        -- The inner loop is a binary search on the score of the position.
+        -- Inv: lower <= score <= upper
+        -- However this may be broken by values from the transposition table,
+        -- as they don't have the same concept of p(score). Hence we just use
+        -- 'lower < upper - margin' as the loop condition.
+        local lower, upper = -3*MATE_VALUE, 3*MATE_VALUE
+        while lower < upper - 3 do
+            local gamma = math.floor((lower+upper+1)/2)
+            --log('starting bound() from search()')
+            bound(pos, gamma, depth)
+            --log('back to search() from bound()')
+            while not bound_done do
+                --log('search yielding in while loop')
+                coroutine.yield(0)
+            end
+            score = bound_score
+            --log('nodes '..nodes..' gamma '..gamma..' score '..score)
+            assert(score)
+            if score >= gamma then
+                lower = score
+            end
+            if score < gamma then
+                upper = score
+            end
+        end
+        assert(score)
+
+        --log(string.format("Searched %d nodes. Depth %d. Score %d(%d/%d)", nodes, depth, score, lower, upper))
+
+        -- We stop deepening if the global N counter shows we have spent too
+        -- long, or if we have already won the game.
+        if nodes >= maxn or math.abs(score) >= MATE_VALUE then
+            break
+        end
+
+        --log('pausing coroutine')
+        coroutine.yield(0)
+        --log('resuming coroutine')
+    end
+
+    -- If the game hasn't finished we can retrieve our move from the
+    -- transposition table.
+    local entry = tp_get(pos)
+    if entry ~= nil then
+        -- return entry.move, score
+        chosen_move = entry.move
+        chosen_score = score
+    else
+        -- return nil, score
+        chosen_move = nil
+        chosen_score = score
+    end
+
+    --log('end coroutine')
+    engine_finished()
+    return 1
+end
+
+-- User interface
+local function parse(c)
+   if not c then return nil end
+   local p, v = c:sub(1,1), c:sub(2,2)
+   if not (p and v and tonumber(v)) then return nil end
+
+   local fil, rank = string.byte(p) - string.byte('a'), tonumber(v) - 1
+   return A1 + fil - 10*rank
+end
+
+local function ttfind(t, k)
+   assert(t)
+   if not k then return false end
+   for _,v in ipairs(t) do
+      if k[1] == v[1] and k[2] == v[2] then
+	 return true
+      end
+   end
+   return false
+end
+
+-- Sets up new game state in sunfish.lua and board history
+local function setup_game()
+   pos = Position.new(initial, 0, {true,true}, {true,true}, 0, 0)
+   curr_board_position = {prev = nil, next = nil, value = pos}
+
+   -- We add some spaces to the board before we print it.
+   -- That makes it more readable and pleasing.
+   if debug then printboard(pos.board) end
+end
+
+-- Takes a player move, validates it, and updates game state as necessary.
+-- Returns true if move is valid and false if not.
+local function handle_player_move(move)
+    local square_start = move:sub(1, 2)
+    local square_end = move:sub(3, 4)
+    local parsed_move = {parse(square_start), parse(square_end)}
+    if not ttfind(pos:genMoves(), parsed_move) then
+        -- Inform the user when invalid input (e.g. "help") is entered
+        if debug then log("Invalid input. Please enter a move in the proper format (e.g. g8f6)") end
+        return false
+    -- else
+    --     -- This seems to work well enough for check checking,
+    --     -- however it significantly slows down the game.
+    --     -- Can it be incorporated into genMoves()?
+    --     local this_pos = pos:move(move)
+    --     local next_move, this_score = search(this_pos)
+    --     local lower, upper = -3*MATE_VALUE, 3*MATE_VALUE
+    --     local gamma = math.floor((lower+upper+1)/2)
+    --     next_score = bound(this_pos:move(next_move), gamma, 1)
+    --     log(next_score)
+    --     if math.abs(next_score) >= MATE_VALUE then
+    --     	-- Illegal move - in check?
+    --     	log('Illegal move - King in check!')
+    --     	return false
+    --     end
+    end
+
+    local trigger_end = square_to_trigger[square_end]
+    local moving_piece = trigger_end.getObjects()[1]
+
+    handle_castling(moving_piece, move)
+    handle_pawn_promotion(square_end)
+
+    pos = pos:move(parsed_move)
+    -- The position is now reversed. Rotate it back to store in history.
+    add_to_history(pos:rotate())
+
+    -- After our move we rotate the board and print it again.
+    -- This allows us to see the effect of our move.
+    if debug then printboard(pos:rotate().board) end
+
+    return true
+end
+
+-- Given 2 numbers repesenting the file and rank indices,
+-- returns the name of the square ('b3') at that rank and file.
+function index_to_square(file_index, rank_index)
+    return squares[9-rank_index][file_index]
+end
+
+-- Called after each trigger is spawned. obj is the trigger and
+-- name should be the name of the square the trigger is on.
+function trigger_callback(obj, name)
+    obj.setName(name)
+
+    -- Store the trigger in global tables for later use
+    triggers[#triggers+1] = obj
+    square_to_trigger[name] = obj
+
+    local piece = obj.getObjects()[1]
+    if piece then
+        -- Assign piece to white or black based on its rank
+        if tonumber(name:sub(2)) <= 4 then
+            piece.setName('white')
+        else
+            piece.setName('black')
+        end
+
+        -- The piece's mouseover tooltip now shows 'black' or 'white'.
+        -- We'll disable that.
+        piece.tooltip = false
+
+        -- Store this piece for later reference
+        pieces_json[piece.getName()][piece.name] = piece.getJSON()
+    end
+end
+
+--Run once to spawn board triggers
+function spawn_triggers()
+    -- Size of square on chess board in in-game units
+    local square_size = 1.7
+    -- x,z coordinates of the 'a1' square
+    local a1_xz = -3.5 * square_size
+
+    for rank = 1,8 do
+        -- Calculate spawn coordinates
+        local z = a1_xz + (rank-1)*square_size
+
+        for file = 1,8 do
+            local x = a1_xz + (file-1)*square_size
+            local name = index_to_square(file, rank)
+
+            spawnObject({
+              type = "ScriptingTrigger",
+              position = {x=x, y=1.6, z=z},
+              scale = {x=1, y=0, z=1},
+              sound = false,
+              callback_function = function(obj) trigger_callback(obj, name) end
+            })
+        end
+    end
+
+    if debug then
+        Wait.condition(
+            function() log('Triggers spawned') end,
+            function() return #triggers == 64 end
+        )
+    end
+end
+
+--[[ The onLoad event is called after the game save finishes loading. --]]
+function onLoad()
+    -- Global variables
+    squares = {
+        {"a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8"},
+        {"a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7"},
+        {"a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6"},
+        {"a5", "b5", "c5", "d5", "e5", "f5", "g5", "h5"},
+        {"a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4"},
+        {"a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3"},
+        {"a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2"},
+        {"a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"}
+    }
+
+    sunfish_to_tts_pieces = {
+        p = 'Chess_Pawn',
+        r = 'Chess_Rook',
+        n = 'Chess_Knight',
+        b = 'Chess_Bishop',
+        q = 'Chess_Queen',
+        k = 'Chess_King'
+    }
+
+    game_over = false
+    player_move = ''
+    player_turn = true
+
+    -- The following tables will be populated when triggers are spawned
+    -- 1D array of triggers
+    triggers = {}
+    -- Table mapping square to trigger
+    square_to_trigger = {}
+    -- Table mapping type of piece to json of that piece type
+    pieces_json = {white = {}, black = {}}
+
+    -- Clear all existing triggers from the game
+    for _, obj in pairs(getAllObjects()) do
+        if obj.name == 'ScriptingTrigger' then
+            obj.destruct()
+        end
+    end
+
+    spawn_triggers()
+    setup_game()
+end
+
+--[[ The onUpdate event is called once per frame. --]]
+-- function onUpdate()
+--     -- This is meant to show the engine's progress in finding a move, however
+--     -- nodes is a minimum, not a maximum, so I'm not sure how helpful this is.
+--     --UI.setAttribute('progressbar', 'percentage', nodes / NODES_SEARCHED * 100)
+-- end
+
+function onObjectLeaveScriptingZone(zone, leave_object)
+    -- Clear out the move string
+    player_move = ''
+
+    if player_turn and leave_object.getName() == 'white' then
+        local name = zone.getName()
+        if debug then log('Leaving '..name) end
+        -- Store this square as the first square in the move string,
+        -- the square that the moving piece left.
+        player_move = name
+    end
+end
+
+function onObjectEnterScriptingZone(zone, enter_object)
+    local name = zone.getName()
+
+    local function handleEvent(zone, enter_object)
+        -- Ignore if player_move doesn't currently have exactly two characters
+        -- (one square) or if both squares are the same
+        if #player_move == 2 and name ~= player_move then
+            -- Add this zone's square to the end of the move string,
+            -- being the square the moving piece is moving into
+            player_move = player_move..name
+            if debug then log('Player move: '..player_move) end
+
+            -- Send the player's move to the engine
+            local valid_move = handle_player_move(player_move)
+
+            if valid_move then
+                -- Set player_turn to false
+                -- It will get reset to true in search()
+                set_player_turn(false)
+                set_interactivity(false)
+                broadcast_player_turn('black')
+
+                -- Fire up the engine to look for a move
+                if debug then log('Engine running...') end
+                startLuaCoroutine(Global, 'search')
+            else
+                broadcastToAll('Illegal move!', {r=1, g=0.5, b=0})
+                -- Reset the piece
+                -- This doesn't play nicely if the move was messy
+                set_player_turn(false)
+                local orig_square = player_move:sub(1, 2)
+                local orig_pos = square_to_trigger[orig_square].getPosition()
+                orig_pos.y = 4
+                enter_object.setPositionSmooth(orig_pos, false, true)
+                Wait.condition(
+                    function() set_player_turn(true) end,
+                    function()
+                        return not enter_object.isSmoothMoving() and enter_object.resting
+                    end
+                )
+            end
+        else
+            player_move = ''
+        end
+    end
+
+    if player_turn and #name > 0 and enter_object.getName() == 'white' then
+        if debug then log('Entering '..name) end
+
+        Wait.condition(
+            function() handleEvent(zone, enter_object) end,
+            function() return enter_object.resting end
+        )
+    end
+end
+
+-- Takes a sunfish.lua board position string and sets it up on the TTS board
+function set_position(position)
+    if debug then
+        log('Setting up position:')
+        printboard(position)
+    end
+    -- Set player_turn to false so triggers won't be activated when pieces are
+    -- spawned
+    player_turn = false
+
+    -- Clear all pieces from the game
+    for _, obj in pairs(getAllObjects()) do
+        if obj.name:sub(1, 5) == 'Chess' and obj.name ~= 'Chess_Board' then
+            obj.destruct()
+        end
+    end
+
+    -- Build the new position
+    for square = A8, H1 do
+        -- Single-character piece string from sunfish.lua board position
+        local piece = position:sub(square + __1, square + __1)
+
+        if piece ~= '.' and not isspace(piece) then
+            local lower_piece = piece:lower()
+            local color = 'white'
+            local y_rot = 180
+
+            -- If piece is lowercase
+            if piece == lower_piece then
+                color = 'black'
+                y_rot = 0
+            end
+
+            -- Get xyz position to spawn piece
+            local square_str = tostring(square - 10)
+            local rank_index = tonumber(square_str:sub(1, 1))
+            local file_index = tonumber(square_str:sub(2, 2))
+            local square_name = squares[rank_index][file_index]
+            local trigger = square_to_trigger[square_name]
+            local pos = trigger.getPosition()
+            pos.y = 4
+
+            -- Spawn the piece
+            local piece_json = pieces_json[color][sunfish_to_tts_pieces[lower_piece]]
+            spawnObjectJSON({
+                json = piece_json,
+                position = pos,
+                rotation = {x=0, y=y_rot, z=0},
+                callback_function = function(obj) obj.interactable = false end,
+            })
+        end
+    end
+
+    Wait.time(
+        function()
+            player_turn = true
+            set_interactivity(true)
+        end,
+        0.6
+    )
+end
+
+-- Go back in the game's history to before the previous player move
+function step_game_back()
+    if (curr_board_position.prev ~= nil and curr_board_position.prev.prev ~= nil) then
+        curr_board_position = curr_board_position.prev.prev
+        local new_position = curr_board_position.value
+        pos = new_position
+        update_buttons()
+        set_position(new_position.board)
+    end
+end
+
+-- Go forward in the game's history to before the next player move
+function step_game_forward()
+    if (curr_board_position.next ~= nil and curr_board_position.next.next ~= nil) then
+        curr_board_position = curr_board_position.next.next
+        local new_position = curr_board_position.value
+        pos = new_position
+        update_buttons()
+        set_position(new_position.board)
+    end
+end
+
+-- Reset the current board position in case pieces were misplaced
+function reset_board()
+    set_position(curr_board_position.value.board)
+end
+
+-- Start a new game, permanently losing current game state and history
+function start_new_game()
+    game_over = false
+    setup_game()
+    set_position(pos.board)
+end
+
+-- Set the game history forward and back buttons depending on
+-- whether history exists in each direction
+function update_buttons()
+    if curr_board_position.prev then
+        UI.setAttribute('back_button', 'interactable', true)
+    else
+        UI.setAttribute('back_button', 'interactable', false)
+    end
+
+    if curr_board_position.next then
+        UI.setAttribute('forward_button', 'interactable', true)
+    else
+        UI.setAttribute('forward_button', 'interactable', false)
+    end
+end
+
+-- Set global boolean player_turn, updating UI buttons accordingly
+function set_player_turn(value)
+    player_turn = value
+
+    if not value then
+        UI.setAttribute('back_button', 'interactable', false)
+        UI.setAttribute('forward_button', 'interactable', false)
+        UI.setAttribute('reset_button', 'interactable', false)
+        UI.setAttribute('new_game_button', 'interactable', false)
+    else
+        update_buttons()
+        UI.setAttribute('reset_button', 'interactable', true)
+        UI.setAttribute('new_game_button', 'interactable', true)
+    end
+end
+
+-- Broadcast player_color's turn starting and update UI turn text accordingly
+function broadcast_player_turn(player_color)
+    local current_turn_text = UI.getAttribute('turn_text', 'text')
+
+    if player_color ~= current_turn_text:sub(1, 5):lower() then
+        if player_color == 'white' then
+            broadcastToAll("White's turn", {r=1, g=1, b=1})
+            UI.setAttribute('turn_text', 'text', "White's turn")
+            UI.setAttribute('turn_text', 'color', 'white')
+        else
+            broadcastToAll("Black's turn", {r=0.5, g=0.5, b=0.5})
+            UI.setAttribute('turn_text', 'color', 'rgb(0.6, 0.6, 0.6)')
+            animate_black_turn_message()
+        end
+    end
+end
+
+-- Animate the "Black's turn..." text as long as it's still black's turn
+function animate_black_turn_message()
+    if not player_turn and not game_over then
+        local turn_text = UI.getAttribute('turn_text', 'text')
+        local _, num_periods = turn_text:gsub('.', '.')
+        local periods = string.rep('.', (num_periods + 1) % 4)
+        UI.setAttribute('turn_text', 'text', "Black's turn"..periods)
+
+        Wait.time(animate_black_turn_message, 0.8)
+    end
+end
+
+-- Show/hide new game confirmation panel based on boolean value
+function show_new_game_confirm_panel(_, value)
+    if value == 'True' or value == true then
+        UI.show('new_game_confirm_panel')
+    else
+        UI.hide('new_game_confirm_panel')
+    end
+end
+
+-- Handles the player's choice in the new game confirmation panel
+function confirm_new_game(_, value)
+    UI.hide('new_game_confirm_panel')
+    UI.setAttribute('new_game_button', 'isOn', 'false')
+
+    if value == 'True' then
+        start_new_game()
+    end
+end
+
+-- Show/hide instructions panel based on boolean value
+function show_instructions_panel(_, value)
+    if value == 'True' or value == true then
+        UI.show('instructions_panel')
+    else
+        UI.hide('instructions_panel')
+    end
+end

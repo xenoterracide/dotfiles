@@ -1,0 +1,38 @@
+name: Update Dependencies
+on:
+  schedule:
+    - cron: "0 3 * * 4"
+jobs:
+  update-java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: current
+      - run: gradle wrapper --write-locks
+      - run: ./gradlew --version
+      - run: ./gradlew dependencies --write-locks
+      - run: ./gradlew build --no-build-cache
+      - uses: peter-evans/create-pull-request@v5
+        with:
+          title: "chore: Update Java Dependencies"
+          branch: topic/update-java
+  update-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v3
+      - run: corepack enable
+      - run: yarn set version stable
+      - run: yarn up
+      - run: yarn up -R
+      - run: yarn dedupe
+      - uses: peter-evans/create-pull-request@v5
+        with:
+          title: "chore: Update Node Dependencies"
+          branch: topic/update-node

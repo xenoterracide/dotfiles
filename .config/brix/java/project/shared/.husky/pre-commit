@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-. /opt/asdf-vm/asdf.sh
-. ~/.asdf/plugins/java/set-java-home.bash
-./gradlew spotlessApply
+if [[ -f /opt/asdf-vm/asdf.sh ]]; then
+  . /opt/asdf-vm/asdf.sh
+  . ~/.asdf/plugins/java/set-java-home.bash
+  ./gradlew spotlessApply
+fi
 git add -u
 yarn lint-staged
