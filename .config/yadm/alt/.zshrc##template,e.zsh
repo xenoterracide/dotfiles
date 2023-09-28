@@ -68,6 +68,6 @@ schedprompt
 
 zi wait for @zsh-users+fast
 
-
+setopt GLOBDOTS
 set -o emacs
 bindkey "^R" history-search-multi-word
