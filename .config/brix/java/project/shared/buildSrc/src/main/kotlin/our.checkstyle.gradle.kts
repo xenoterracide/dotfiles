@@ -20,7 +20,7 @@ tasks.withType<Checkstyle>().configureEach {
 }
 
 fun checkstyleConfig(filename: String): File {
-  val path = ".config/checkstyle/${filename}"
+  val path = "checkstyle/${filename}"
   val f = file(path)
   return if (f.exists()) f else rootProject.file(path)
 }
