@@ -7,7 +7,7 @@ alias lsblk="lsblk -o name,label,fstype,uuid"
 zi wait has"pbcopy" atload'alias clip="pbcopy"' for z-shell/null
 zi wait has"xclip" atload'alias clip="xclip -selection clipboard -in"' for z-shell/null
 zi wait has"bat" atload'alias cat="bat --paging=never --plain"' for z-shell/null
-zi wait has"exa" atload'alias ls="exa"' for z-shell/null
+zi wait has"eza" atload'alias ls="eza"' for z-shell/null
 zi wait has"plocate" atload'alias locate="plocate"' for z-shell/null
 zi wait has"dust" atload'alias du="dust"' for z-shell/null
 zi wait has"kalker" atload'alias bc="kalker"' for z-shell/null
