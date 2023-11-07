@@ -14,7 +14,8 @@ zi wait for \
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.zsh" %}
 
-zi wait has'asdf' atload". ~/.asdf/plugins/java/set-java-home.zsh" for z-shell/null
+zi ice lucid wait'[[ -f ~/.asdf/plugins/java/set-java-home.zsh ]]' has'asdf' \
+  atload'. ~/.asdf/plugins/java/set-java-home.zsh' for z-shell/null
 
 vim_setup
 unfunction vim_setup
