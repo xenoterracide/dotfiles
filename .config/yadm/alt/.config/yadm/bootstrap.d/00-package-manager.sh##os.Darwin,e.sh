@@ -27,6 +27,7 @@ kalker
 parallel
 pgcli
 ripgrep
+rsync
 rust
 swi-prolog
 tokei
