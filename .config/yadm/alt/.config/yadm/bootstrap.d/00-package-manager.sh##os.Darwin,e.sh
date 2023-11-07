@@ -5,7 +5,7 @@ asdf
 awscli
 bat
 dust
-exa
+eza
 fd
 findutils
 fmt
@@ -31,9 +31,7 @@ rust
 swi-prolog
 tokei
 wget
-yadm
 zoxide
-microsoft/git/git-credential-manager-core
 EOF
 
 brew tap homebrew/cask-fonts
