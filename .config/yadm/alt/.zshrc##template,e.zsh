@@ -14,15 +14,16 @@ zi wait for \
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.zsh" %}
 
-if [[ -f ~/.asdf/plugins/java/set-java-home.zsh ]]; then
-  source ~/.asdf/plugins/java/set-java-home.zsh
-fi
 
 zi wait atload'eval "$(direnv hook zsh)"' for z-shell/null
 
 vim_setup
 unfunction vim_setup
-######
+#######
+
+if [[ -f ~/.asdf/plugins/java/set-java-home.zsh ]]; then
+  source ~/.asdf/plugins/java/set-java-home.zsh
+fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
