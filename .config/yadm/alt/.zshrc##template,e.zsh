@@ -14,8 +14,9 @@ zi wait for \
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.zsh" %}
 
-zi ice lucid wait'[[ -f ~/.asdf/plugins/java/set-java-home.zsh ]]' has'asdf' \
-  atload'. ~/.asdf/plugins/java/set-java-home.zsh' for z-shell/null
+if [[ -f ~/.asdf/plugins/java/set-java-home.zsh ]]; then
+  source ~/.asdf/plugins/java/set-java-home.zsh
+fi
 
 zi wait atload'eval "$(direnv hook zsh)"' for z-shell/null
 
