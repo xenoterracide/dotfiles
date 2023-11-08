@@ -4,6 +4,7 @@ cat << EOF | xargs brew install
 asdf
 awscli
 bat
+direnv
 dust
 eza
 fd
