@@ -17,6 +17,8 @@ zi wait for \
 zi ice lucid wait'[[ -f ~/.asdf/plugins/java/set-java-home.zsh ]]' has'asdf' \
   atload'. ~/.asdf/plugins/java/set-java-home.zsh' for z-shell/null
 
+zi wait atload'eval "$(direnv hook zsh)"' for z-shell/null
+
 vim_setup
 unfunction vim_setup
 ######
