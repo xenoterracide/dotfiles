@@ -1,3 +1,4 @@
+## rc.sh
 if [ "$DESKTOP_SESSION" = "gnome" ]; then
   eval $(gnome-keyring-daemon --start)
   if command -v seahorse > /dev/null 2>&1; then
@@ -19,3 +20,4 @@ fi
 if command -v cargo >/dev/null 2>&1; then
   export PATH="$PATH:$HOME/.cargo/bin"
 fi
+##
