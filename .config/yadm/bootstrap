@@ -1,9 +1,6 @@
 #!/bin/sh
 set -x
 
-# make explicit on this repo for simplicity of not forgetting on corporate laptops
-yadm gitconfig user.email xenoterracide@gmail.com
-
 if [ command -v xdg-user-dir > /dev/null ];
 then export DOWNLOAD_DIR="$(xdg-userdir DOWNLOAD)"
 else export DOWNLOAD_DIR="$HOME/Downloads"
