@@ -1,3 +1,4 @@
+# os.Darwin
 PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 PATH="$(brew --prefix findutils)/libexec/gnubin:$PATH"
 PATH="$(brew --prefix grep)/libexec/gnubin:$PATH"
@@ -35,3 +36,4 @@ function vim_setup() {
     atpull"%atclone"
   zi light editorconfig/editorconfig-vim
 }
+#######

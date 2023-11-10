@@ -1,3 +1,4 @@
+# os.Linux
 zi wait atload=". /opt/asdf-vm/asdf.sh" for z-shell/null
 
 function vim_setup() {
@@ -33,3 +34,4 @@ function vim_setup() {
 
   zi light editorconfig/editorconfig-vim
 }
+#######

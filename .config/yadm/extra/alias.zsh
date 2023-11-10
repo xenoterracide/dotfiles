@@ -1,4 +1,4 @@
-## alias.sh
+####### alias.sh
 zi wait has'vim' atload'alias vi="vim"' for z-shell/null
 zi wait has'vim' atload'alias vim="\vim -Xp"' for z-shell/null
 zi wait has'journalctl' atload'alias journalctl="journalctl --output cat --boot 0 --full"' for z-shell/null
