@@ -34,4 +34,6 @@ function vim_setup() {
 
   zi light editorconfig/editorconfig-vim
 }
+vim_setup
+unfunction vim_setup
 #######

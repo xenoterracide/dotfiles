@@ -36,4 +36,7 @@ function vim_setup() {
     atpull"%atclone"
   zi light editorconfig/editorconfig-vim
 }
+
+vim_setup
+unfunction vim_setup
 #######
