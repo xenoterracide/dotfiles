@@ -15,9 +15,7 @@ zi wait for \
 {% include "../extra/rc.sh" %}
 {% include "../extra/alias.zsh" %}
 
-if [[ -f ~/.asdf/plugins/java/set-java-home.zsh ]]; then
-  source ~/.asdf/plugins/java/set-java-home.zsh
-fi
+zi wait atload'. ~/.asdf/plugins/java/set-java-home.zsh' for z-shell/null
 
 zi ice wait has'java' as'program' pick'bin/mvn' extract'!apache-maven-3.9.5-bin.tar.gz'
 zi snippet https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz
