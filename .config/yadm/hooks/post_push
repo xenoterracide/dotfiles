@@ -3,4 +3,3 @@ set -x
 if command -v gh >/dev/null 2>&1; then
   gh auth setup-git
 fi
-yadm push
