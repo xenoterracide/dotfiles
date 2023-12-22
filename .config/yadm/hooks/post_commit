@@ -1,3 +1,4 @@
 #!/bin/sh
 set -x
+gh auth setup-git
 yadm push
