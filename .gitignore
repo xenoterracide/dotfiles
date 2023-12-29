@@ -137,6 +137,34 @@ $RECYCLE.BIN/
 
 *.swp
 
+# https://github.com/github/gitignore/blob/main/Global/Backup.gitignore
+*.bak
+*.gho
+*.ori
+*.orig
+*.tmp
+
+# https://github.com/github/gitignore/blob/main/Global/MicrosoftOffice.gitignore
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Word Auto Backup File
+Backup of *.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsd*
+
 # Homedir yadm optimization
 Videos/
 Pictures/
@@ -203,3 +231,4 @@ caches/
 .config/FontBase/
 .config/Code - OSS/
 .config/Bitwarden/
+.config/autostart/
