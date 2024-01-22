@@ -13,7 +13,7 @@ zi wait has'dust' atload'alias du="dust"' for z-shell/null
 zi wait has'kalker' atload'alias bc="kalker"' for z-shell/null
 zi wait has'procs' atload'alias ps="procs"' for z-shell/null
 zi wait has'tokei' atload'alias cloc="tokei"' for z-shell/null
-zi wait has'zoxide' atload'eval "$(zoxide init zsh --hook pwd --cmd cd)"' for z-shell/null
+zi wait has'zoxide' atload'eval "$(zoxide init zsh --hook pwd --cmd c)"' for z-shell/null
 zi wait has'direnv' atload'eval "$(direnv hook zsh)"' for z-shell/null
 zi wait has'kubectl' atload'eval "$(kubectl completion zsh)"' for z-shell/null
 zi wait has'cargo' atload'export PATH="$PATH:$HOME/.cargo/bin"' for z-shell/null
