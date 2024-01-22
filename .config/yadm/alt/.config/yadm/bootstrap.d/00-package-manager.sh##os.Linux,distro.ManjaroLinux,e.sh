@@ -122,6 +122,7 @@ pamac install --no-confirm \
    atool \
    brix-git \
    deb2targz \
+   direnv \
    dropbox \
    em-keyboard \
    fontfor \
