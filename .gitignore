@@ -297,3 +297,4 @@ caches/
 .config/Bitwarden/
 .config/autostart/
 .config/unity3d/
+.config/brix/
