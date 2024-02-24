@@ -261,7 +261,6 @@ caches/
 .minikube/
 .m2/repository/
 *history*
-.local/
 .kde4/
 .jdks/
 .java/
