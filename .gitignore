@@ -266,6 +266,7 @@ caches/
 .java/
 .hyper_plugins/
 .gradle/
+!.gradle/gradle.properties
 .gnupg/
 .electron-gyp/
 .dropbox*/
