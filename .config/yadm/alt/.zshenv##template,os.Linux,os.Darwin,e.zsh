@@ -9,6 +9,3 @@ autoload -Uz _zi
 
 zi ice lucid id-as
 zi load z-shell/z-a-patch-dl
-
-zi ice lucid as"program" pick"cmds/zc-bg-notify"
-zi load z-shell/zconvey
