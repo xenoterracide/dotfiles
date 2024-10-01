@@ -1,0 +1,16 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+[directory]
+fish_style_pwd_dir_length=1
+[git_status]
+disabled = false
+[java]
+disabled = true
+[gradle]
+disabled = true
+[nodejs]
+disabled = true
+[kotlin]
+disabled = true
+[gcloud]
+disabled = true
+
