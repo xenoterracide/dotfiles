@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+# SPDX-FileCopyrightText: Copyright © 2020 - 2024 Caleb Cushing
 #
 # SPDX-License-Identifier: MIT
 
