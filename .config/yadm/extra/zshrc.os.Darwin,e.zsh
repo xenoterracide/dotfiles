@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 # os.Darwin
 PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 PATH="$(brew --prefix findutils)/libexec/gnubin:$PATH"

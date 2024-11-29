@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 ## env.sh
 export ZSH_THEME='typewritten'
 export TYPEWRITTEN_CURSOR='block'

@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 cd /tmp/ && git clone https://aur.archlinux.org/yay.git
 cd yay && makepkg -si
 cd .. && rm -rf yay

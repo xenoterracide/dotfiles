@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 set -x
 
 if [ command -v xdg-user-dir > /dev/null ];

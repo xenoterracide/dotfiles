@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 if [ -f /opt/asdf-vm/asdf.sh ]; then
   . /opt/asdf-vm/asdf.sh
   if [ -d $HOME/.asdf/plugins/java ]; then

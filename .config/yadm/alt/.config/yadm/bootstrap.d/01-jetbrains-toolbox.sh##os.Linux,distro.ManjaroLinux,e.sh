@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 {% if yadm.user == "root" %}
 {% else %}
 TOOLBOX_VERSION=1.20.7940

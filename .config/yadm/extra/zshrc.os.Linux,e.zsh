@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 # os.Linux
 zi wait atload=". /opt/asdf-vm/asdf.sh" for z-shell/null
 

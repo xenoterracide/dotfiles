@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright © 2024 Caleb Cushing
+#
+# SPDX-License-Identifier: MIT
+
 ####### alias.sh
 zi wait has'vim' atload'alias vi="vim"' for z-shell/null
 zi wait has'vim' atload'alias vim="\vim -Xp"' for z-shell/null
@@ -18,4 +22,7 @@ zi wait has'direnv' atload'eval "$(direnv hook zsh)"' for z-shell/null
 zi wait has'kubectl' atload'eval "$(kubectl completion zsh)"' for z-shell/null
 zi wait has'cargo' atload'export PATH="$PATH:$HOME/.cargo/bin"' for z-shell/null
 
+gh_secret() {
+  gh repo list --no-archived --topic auto-updates --json name,owner --jq '.[] | [ .owner.login, .name ] | join("/")' | xargs --max-args=1 gh secret set $1 --body $2 --repo
+}
 #######
