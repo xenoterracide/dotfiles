@@ -1,8 +1,11 @@
+
 /.abook/
 /.adobe-reader*/
 /.android/
 /Android/
 /.asdf/
+/.aspell*
+/.battlescribe/
 /.cache/
 /caches/
 /.cargo/
@@ -40,9 +43,11 @@
 /.hyper_plugins/
 /IdeaProjects/
 /.java/
+/.jbang/
 /.jdks/
 /.kde4/
 /.local/
+/*.log
 /.m2/repository/
 /.minikube/
 /.mozilla/
@@ -59,6 +64,7 @@
 !/.ssh/config
 /.steam*
 /.sylpheed-2.0/
+/*.tar.*
 /Templates/
 /.thunderbird/
 /Videos/
@@ -66,5 +72,7 @@
 /.vscode-oss/
 /.yarn/
 /.zi/
+/*.zip
 /.zoom/
+/*.zwc
 
