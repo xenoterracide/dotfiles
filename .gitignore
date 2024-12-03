@@ -1,3 +1,4 @@
+/Android/
 /.abook/
 /.adobe-reader*/
 /.asdf/
@@ -5,6 +6,16 @@
 /caches/
 /.cargo/
 /.claws-mail/
+/.config/
+!/.config/yadm
+!/.config/git
+!/.config/bat/config
+!/.config/direnv/direnv.toml
+!/.config/environment.d/
+!/.config/git/
+!/.config/pgcli/config
+!/.config/starship.toml
+!/.config/systemd/user/
 /Desktop/
 /.dir_colors
 /.docker/
@@ -30,6 +41,7 @@
 /.java/
 /.jdks/
 /.kde4/
+/.local/
 /.m2/repository/
 /.minikube/
 /.mozilla/
@@ -51,6 +63,7 @@
 /Videos/
 /.vim/
 /.vscode-oss/
+/.yarn/
 /.zi/
 /.zoom/
 
