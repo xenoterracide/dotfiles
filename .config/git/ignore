@@ -229,27 +229,3 @@ Backup of *.doc*
 *.3dm
 *.max
 
-
-## .config abusers
-.config/opera/
-.config/evolution/
-.config/discord/
-.config/hexchat/
-.config/zconvey/
-.config/pulse/
-.config/gtk-*/
-.config/ranger/
-.config/ibus/
-.config/chromium/
-.config/akonadi/
-.config/Slack/
-.config/Signal/
-.config/Microsoft/
-.config/JetBrains/
-.config/Hyper/
-.config/FontBase/
-.config/Code - OSS/
-.config/Bitwarden/
-.config/autostart/
-.config/unity3d/
-.config/brix/
