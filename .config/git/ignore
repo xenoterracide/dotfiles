@@ -229,51 +229,6 @@ Backup of *.doc*
 *.3dm
 *.max
 
-# Homedir yadm optimization
-Videos/
-Pictures/
-Downloads/
-IdeaProjects/
-Templates/
-Dropbox/
-Desktop/
-Documents/
-.cache/
-caches/
-.zoom/
-.zi/
-.vscode-oss/
-.vim/
-.thunderbird/
-.sylpheed-2.0/
-.steam*
-.ssh/
-!.ssh/config
-.pki/
-.pkg-cache/
-.spamassassin/
-.phoronix-test-suite/
-.parallel/
-.nvm/
-.npm/
-.node/
-.mozilla/
-.minikube/
-.m2/repository/
-*history*
-.kde4/
-.jdks/
-.java/
-.hyper_plugins/
-.gradle/
-!.gradle/gradle.properties
-.gnupg/
-.electron-gyp/
-.dropbox*/
-.claws-mail/
-.cargo/
-.asdf/
-.adobe-reader*/
 
 ## .config abusers
 .config/opera/
