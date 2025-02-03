@@ -35,7 +35,7 @@ function vim_setup() {
     atpull"%atclone"
   zi light wgwoods/vim-systemd-syntax
 
-{% include "../extra/vim" %}
+{% include "../extra/vim##class.{{ yadm.class }},e.zsh" %}
 }
 
 vim_setup

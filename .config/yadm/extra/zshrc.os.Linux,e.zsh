@@ -36,7 +36,7 @@ function vim_setup() {
     atclone"rsync --mkpath --exclude '.*' --archive . $VIM_PACK/local/start/editorconfig" \
     atpull"%atclone"
 
-{% include "../extra/vim" %}
+{% include "../extra/vim##class.{{ yadm.class }},e.zsh" %}
 }
 vim_setup
 unfunction vim_setup
