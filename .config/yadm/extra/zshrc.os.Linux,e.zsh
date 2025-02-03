@@ -36,7 +36,7 @@ function vim_setup() {
     atclone"rsync --mkpath --exclude '.*' --archive . $VIM_PACK/local/start/editorconfig" \
     atpull"%atclone"
 
-  zi light editorconfig/editorconfig-vim
+{% include "../extra/vim" %}
 }
 vim_setup
 unfunction vim_setup

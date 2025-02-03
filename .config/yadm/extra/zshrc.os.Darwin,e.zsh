@@ -35,10 +35,7 @@ function vim_setup() {
     atpull"%atclone"
   zi light wgwoods/vim-systemd-syntax
 
-  zi ice lucid wait cloneonly nocompile \
-    atclone"rsync --mkpath --exclude '.*' --archive . $VIM_PACK/local/start/editorconfig" \
-    atpull"%atclone"
-  zi light editorconfig/editorconfig-vim
+{% include "../extra/vim" %}
 }
 
 vim_setup
