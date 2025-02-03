@@ -14,6 +14,10 @@ eza
 fd
 findutils
 fmt
+font-fira-code-nerd-font
+font-fira-sans
+font-noto-nerd-font
+font-powerline-symbols
 gawk
 gh
 git-delta
@@ -34,19 +38,11 @@ pgcli
 ripgrep
 rsync
 rust
+starship
 swi-prolog
 tokei
 wget
 zoxide
 EOF
-
-brew tap homebrew/cask-fonts
-
-brew install --cask \
-  font-fira-code-nerd-font \
-  font-fira-sans \
-  font-noto-nerd-font \
-  font-powerline-symbols
-
 set +e
 
