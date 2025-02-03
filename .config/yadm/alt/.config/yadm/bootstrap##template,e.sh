@@ -18,4 +18,5 @@ export SCRIPTDIR="$(dirname $0)/bootstrap.d"
 
 mkdir -p ~/.local/bin
 
+sh -c "$(curl -fsSL get.zshell.dev)" -- -a loader
 source $SCRIPTDIR/00-package-manager.sh
