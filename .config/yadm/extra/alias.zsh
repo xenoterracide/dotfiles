@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 ####### alias.sh
-zi wait has'vim' atload'alias vi="vim"' for z-shell/null
-zi wait has'vim' atload'alias vim="\vim -Xp"' for z-shell/null
+zi wait has'nvim' atload'alias vi="nvim"' for z-shell/null
+zi wait has'nvim' atload'alias vim="\nvim -Xp"' for z-shell/null
 zi wait has'journalctl' atload'alias journalctl="journalctl --output cat --boot 0 --full"' for z-shell/null
 zi wait has'dmesg' atload'alias dmesg="dmesg --color=always | less"' for z-shell/null
 zi wait has'lsblk' atload'alias lsblk="lsblk -o name,label,fstype,uuid"' for z-shell/null
