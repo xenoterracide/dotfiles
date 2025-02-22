@@ -98,6 +98,7 @@ $RECYCLE.BIN/
 # git has its own built in compression methods.
 *.7z
 *.jar
+!gradle-wrapper.jar
 *.rar
 *.zip
 *.gz
