@@ -1,12 +1,10 @@
 # SPDX-FileCopyrightText: Copyright © 2020 - 2024 Caleb Cushing
 #
 # SPDX-License-Identifier: MIT
+# shellcheck shell=sh
 
 ## env.sh
-export ZSH_THEME='typewritten'
-export TYPEWRITTEN_CURSOR='block'
-export TYPEWRITTEN_RIGHT_PROMPT_PREFIX='# '
-export TYPEWRITTEN_RELATIVE_PATH='adaptive'
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less --chop-long-lines'
