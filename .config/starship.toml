@@ -13,5 +13,7 @@ disabled = true
 disabled = true
 [gcloud]
 disabled = true
+[package]
+disabled = true
 [python]
 disabled = true
