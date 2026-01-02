@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 # os.Linux
-zi wait atload=". /opt/asdf-vm/asdf.sh" for z-shell/null
-
 function vim_setup() {
   local VIMDIR="$HOME/.vim"
   local VIM_COLOR="$VIMDIR/colors"
