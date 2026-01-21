@@ -46,8 +46,7 @@
 /.jbang/
 /.jdks/
 /.kde4/
-/.local/
-!/.local/bin/*
+~/.local/
 /*.log
 /.m2/repository/
 /.minikube/
