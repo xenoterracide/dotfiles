@@ -1,2 +1,4 @@
 [yadm]
 	cipher = openssl
+[core]
+	excludesFile = ~/.config/yadm/ignore
