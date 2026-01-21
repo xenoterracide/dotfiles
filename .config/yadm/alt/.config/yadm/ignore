@@ -10,12 +10,8 @@
 /.cargo/
 /.claws-mail/
 /.config/
-!.config/**
+!.config/yadm
 !/.config/yadm
-!/.config/yadm/
-!/.config/yadm/alt/
-!/.config/yadm/alt/.local/
-!/.config/yadm/alt/.local/**
 !/.config/bat/config
 !/.config/direnv/direnv.toml
 !/.config/environment.d/
