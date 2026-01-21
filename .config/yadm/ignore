@@ -46,7 +46,12 @@
 /.jbang/
 /.jdks/
 /.kde4/
+
+# Ignore yadm repo + cache payloads; keep ~/.local/bin manageable.
 /.local/share/**
+!/.local/bin/
+!/.local/bin/**
+
 /*.log
 /.m2/repository/
 /.minikube/
