@@ -5,7 +5,7 @@ set -euo pipefail
 usage() {
   cat <<'USAGE'
 Usage:
-  git secret push [--topic TOPIC] [--org ORG] [--env PATH] [--keyid KEYID] [--dry-run]
+  git secret push [--topic TOPIC] [--org ORG] [--env PATH] [--keyid KEYID] [--dry-run] [--debug]
 
 Defaults are read from:
   ~/.config/git/config (preferred) or ~/.gitconfig (fallback)
@@ -18,6 +18,9 @@ Config keys:
     defaultOrg = <orgOrUser>
     defaultTopic = <topic>
     signingKey = <keyid>      # optional, otherwise uses git user.signingKey
+
+Debug:
+  Pass --debug or set GH_SECRETS_DEBUG=1 to enable tracing (set -x).
 
 Notes:
   Each non-empty, non-comment line in the env file must be KEY=VALUE.
@@ -63,15 +66,28 @@ set_secret() {
   command gh secret set "$name" --app actions --body "$body" --repo "$repo" >/dev/null
 }
 
+enable_debug() {
+  # Keep xtrace opt-in: it can expose arguments/values. We already redact the gh key body in dry-run.
+  PS4='+%N:%i> '
+  set -x
+}
+
 main() {
   local topic=""
   local org=""
   local env_path=""
   local keyid=""
   local dry_run=0
+  local debug=0
+
+  # Support early debug enablement.
+  if [[ "${GH_SECRETS_DEBUG:-0}" != 0 ]]; then
+    debug=1
+  fi
 
   while (( $# > 0 )); do
     case "$1" in
+      --debug) debug=1; shift;;
       --topic) topic="${2:-}"; shift 2;;
       --org) org="${2:-}"; shift 2;;
       --env) env_path="${2:-}"; shift 2;;
@@ -81,6 +97,8 @@ main() {
       *) die "unknown arg: $1";;
     esac
   done
+
+  (( debug )) && enable_debug
 
   org="${org:-$(git_config_get secrets.defaultOrg)}"
   topic="${topic:-$(git_config_get secrets.defaultTopic)}"
