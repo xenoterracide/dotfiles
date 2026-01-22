@@ -19,12 +19,15 @@ Config keys:
     defaultTopic = <topic>
     signingKey = <keyid>      # optional, otherwise uses git user.signingKey
 
+  Per-key GPG overrides (optional):
+    secrets.gpg.<keyid>.passphraseVarName = <ENV_VAR_NAME>
+    secrets.gpg.<keyid>.secretVarName     = <ENV_VAR_NAME>
+
 Debug:
   Pass --debug or set GH_SECRETS_DEBUG=1 to enable tracing (set -x).
 
 Notes:
   Each non-empty, non-comment line in the env file must be KEY=VALUE.
-  GPG passphrase is obtained via gpg-agent.
 USAGE
 }
 
@@ -117,11 +120,27 @@ main() {
   fi
   [[ -n "${keyid}" ]] || die "missing signing key; set user.signingKey (or secrets.signingKey) or pass --keyid"
 
-  # Let gpg-agent handle passphrase entry/caching.
-  local armor_key
-  armor_key="$(command gpg --batch --armor --export-secret-keys "$keyid")"
+  local KEY_SECRET_NAME
+  KEY_SECRET_NAME="$(git_config_get "secrets.gpg.${keyid}.secretVarName")"
+  KEY_SECRET_NAME="${KEY_SECRET_NAME:-GPG_SIGNING_KEY_ASCII_ARMORED}"
 
-  local KEY_SECRET_NAME="GPG_SIGNING_KEY_ASCII_ARMORED"
+  local gpg_passphrase_var
+  gpg_passphrase_var="$(git_config_get "secrets.gpg.${keyid}.passphraseVarName")"
+
+  local gpg_passphrase=""
+  if [[ -n "${gpg_passphrase_var}" ]]; then
+    gpg_passphrase="$(command printenv "$gpg_passphrase_var" 2>/dev/null || true)"
+    [[ -n "${gpg_passphrase}" ]] || die "secrets.gpg.${keyid}.passphraseVarName is set to '${gpg_passphrase_var}', but that env var is empty/unset"
+  fi
+
+  local armor_key
+  if [[ -n "${gpg_passphrase}" ]]; then
+    # Use loopback pinentry so --passphrase works.
+    armor_key="$(command gpg --batch --pinentry-mode loopback --passphrase "$gpg_passphrase" --armor --export-secret-keys "$keyid")"
+  else
+    # Fall back to gpg-agent for passphrase entry/caching.
+    armor_key="$(command gpg --batch --armor --export-secret-keys "$keyid")"
+  fi
 
   local repos_raw
   repos_raw="$(command gh repo list "$org" --no-archived --topic "$topic" --json name,owner --jq '.[] | [ .owner.login, .name ] | join("/")')"
