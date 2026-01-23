@@ -4,7 +4,6 @@
 # shellcheck shell=sh
 
 ## env.sh
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less --chop-long-lines'
