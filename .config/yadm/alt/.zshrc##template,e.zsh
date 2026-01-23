@@ -19,7 +19,6 @@ zi wait for \
   OMZP::systemd \
   OMZP::gitignore
 
-{% include "../extra/rc.sh" %}
 {% include "../extra/alias.zsh" %}
 
 zi wait atload'. ~/.asdf/plugins/java/set-java-home.zsh' for z-shell/null

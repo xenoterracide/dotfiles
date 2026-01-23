@@ -21,9 +21,6 @@ zi wait has'zoxide' atload'eval "$(zoxide init zsh --hook pwd --cmd c)"' for z-s
 zi wait has'direnv' atload'eval "$(direnv hook zsh)"' for z-shell/null
 zi wait has'kubectl' atload'eval "$(kubectl completion zsh)"' for z-shell/null
 zi wait has'cargo' atload'export PATH="$PATH:$HOME/.cargo/bin"' for z-shell/null
-zi wait has'asdf' atload'export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"' for z-shell/null
+zi wait has'asdf' atload'export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH && . ~/.asdf/plugins/java/set-java-home.zsh"' for z-shell/null
 
-gh_secret() {
-  gh repo list --no-archived --topic auto-updates --json name,owner --jq '.[] | [ .owner.login, .name ] | join("/")' | xargs --max-args=1 gh secret set $1 --body $2 --repo
-}
 #######
