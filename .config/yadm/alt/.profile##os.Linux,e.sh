@@ -1,10 +1,22 @@
-# SPDX-FileCopyrightText: Copyright © 2020 - 2024 Caleb Cushing
+# SPDX-FileCopyrightText: Copyright © 2020-2024, 2026 Caleb Cushing
 #
 # SPDX-License-Identifier: MIT
-# shellcheck shell=sh
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+path_prepend() {
+  case ":$PATH:" in
+    *":$1:"*) : ;;              # already present, do nothing
+    *) PATH="$1:$PATH" ;;
+  esac
+}
 
-# Added by Toolbox App
-export PATH="$PATH:/home/xeno/.local/share/JetBrains/Toolbox/scripts"
+path_append() {
+  case ":$PATH:" in
+    *":$1:"*) : ;;
+    *) PATH="$PATH:$1" ;;
+  esac
+}
+
+path_prepend "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
+path_append "$HOME/.local/share/JetBrains/Toolbox/scripts"
+export PATH
 
