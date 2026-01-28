@@ -1,8 +1,0 @@
-[Unit]
-Description=zinit update
-Documentation=https://github.com/zdharma/zinit
-Requires=network-online.target
-
-[Service]
-Type=oneshot
-ExecStart=zsh --singlecommand -c 'zinit self-update'
