@@ -1,0 +1,11 @@
+[Install]
+WantedBy=default.target
+
+[Unit]
+Description=Bootstrap PATH
+Before=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -lc 'systemctl --user set-environment PATH="$PATH"'
+RemainAfterExit=yes
