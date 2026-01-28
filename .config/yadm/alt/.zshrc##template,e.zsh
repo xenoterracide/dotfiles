@@ -11,10 +11,11 @@ setopt extendedglob no_beep
 # Antidote
 # ------------------------------------------------------------
 ANTIDOTE_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/antidote"
-ANTIDOTE_HOME="/usr/share/zsh-antidote"
+ANTIDOTE_HOME="${XDG_CONFIG_DATA:-$HOME/.local/share}/antidote"
+ANTIDOTE_BIN="/usr/share/zsh-antidote"
 
-if [[ -r "$ANTIDOTE_HOME/antidote.zsh" ]]; then
-  source "$ANTIDOTE_HOME/antidote.zsh"
+if [[ -r "$ANTIDOTE_BIN/antidote.zsh" ]]; then
+  source "$ANTIDOTE_BIN/antidote.zsh"
   antidote load "$ANTIDOTE_CONFIG_HOME/plugins.txt"
 fi
 
@@ -65,10 +66,7 @@ has cargo && export PATH="$PATH:$HOME/.cargo/bin"
 if has asdf; then
   [[ -r ~/.asdf/plugins/java/set-java-home.zsh ]] &&
     source ~/.asdf/plugins/java/set-java-home.zsh
-  [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] &&
-    source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 fi
-
 
 # ------------------------------------------------------------
 # Prompt
