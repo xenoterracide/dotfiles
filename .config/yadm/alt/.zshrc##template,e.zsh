@@ -10,11 +10,12 @@ setopt extendedglob no_beep
 # ------------------------------------------------------------
 # Antidote
 # ------------------------------------------------------------
-ANTIDOTE_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/antidote"
+ANTIDOTE_CONFIG_DIR="${XDG_CONFIG:-$HOME/.config}/antidote"
+ANTIDOTE_HOME="/usr/share/zsh-antidote"
 
 if [[ -r "$ANTIDOTE_HOME/antidote.zsh" ]]; then
   source "$ANTIDOTE_HOME/antidote.zsh"
-  antidote load ~/.zsh_plugins.txt
+  antidote load $ANTIDOTE_CONFIG_HOME/plugins.txt
 fi
 
 # ------------------------------------------------------------
