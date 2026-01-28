@@ -1,0 +1,17 @@
+# meta / helpers
+#z-shell/z-a-meta-plugins
+z-shell/H-S-MW
+
+# OMZ library bits
+ohmyzsh/ohmyzsh path:lib/history.zsh
+ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
+
+# OMZ plugins
+ohmyzsh/ohmyzsh path:plugins/safe-paste
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+ohmyzsh/ohmyzsh path:plugins/systemd
+#ohmyzsh/ohmyzsh path:plugins/gitignore
+
+# fast completion / helpers
+zsh-users/zsh-autosuggestions
+
