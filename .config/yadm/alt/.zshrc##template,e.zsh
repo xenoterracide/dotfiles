@@ -57,6 +57,7 @@ has tokei       && alias cloc="tokei"
 has zoxide && eval "$(zoxide init zsh --cmd c)"
 has direnv && eval "$(direnv hook zsh)"
 has kubectl && eval "$(kubectl completion zsh)"
+has glab && eval "$(glab completion -s zsh)"
 
 # ------------------------------------------------------------
 # Language / SDK paths
