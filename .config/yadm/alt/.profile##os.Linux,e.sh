@@ -19,6 +19,7 @@ path_append() {
   esac
 }
 
+export GITHUB_COPILOT_TOKEN=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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
 path_prepend "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
 path_append "$HOME/.local/share/JetBrains/Toolbox/scripts"
 export PATH
