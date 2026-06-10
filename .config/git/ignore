@@ -231,3 +231,5 @@ Backup of *.doc*
 *.3dm
 *.max
 
+
+**/.claude/settings.local.json
