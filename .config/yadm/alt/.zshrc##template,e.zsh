@@ -36,6 +36,12 @@ compinit
 # ------------------------------------------------------------
 has() { command -v "$1" >/dev/null 2>&1 }
 
+# jump to the ai account; pre-grant X11 for opencode's clipboard
+ai() {
+  has xhost && xhost +si:localuser:ai >/dev/null
+  sudo -iu ai
+}
+
 # ------------------------------------------------------------
 # Aliases (deterministic, no scheduler)
 # ------------------------------------------------------------
@@ -53,6 +59,8 @@ has dust        && alias du="dust"
 has kalker      && alias bc="kalker"
 has procs       && alias ps="procs"
 has tokei       && alias cloc="tokei"
+# re-grant the ai user X11 access; resets when Xwayland restarts (opencode clipboard)
+has xhost       && alias xhost-ai="xhost +si:localuser:ai"
 
 # ------------------------------------------------------------
 # Tool hooks
