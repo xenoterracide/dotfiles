@@ -17,3 +17,5 @@ disabled = true
 disabled = true
 [python]
 disabled = true
+[maven]
+disabled = true
